@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="styles/style.css">
+   <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Sanchez&display=swap" rel="stylesheet">
+   <script src="js/scripts.js"></script>
+   <title>Nos Movemos</title>
+</head>
+<body>
+   <div id="cabecera">
+      <h1>Nos<br>Movemos</h1>
+   </div>
+   <!-- INICIO_LOADER -->
+   <div id="pageloader">
+      <img src="img/LogoOjo_FTA.png" class="spining" width="100px">
+   </div>
+   <!-- FIN_LOADER -->
+   <div id="contenido">
+      <h2>Nos Movemos</h2>
+      <h3>Objetos Necesarios</h3>
+      <h4>Gato</h4>
+      <p class="texto">
+         Será nuestro personaje, y se moverá por la pantalla para iniciarnos en el movimiento de los objetos.
+      </p>
+      <h4>Escenarios</h4>
+      <p class="texto">
+         Usaremos el fondo Xy-grid para tener presente las coordenadas del escenario. Una vez finalizado el juego, le 
+         dejaremos que elija cualquier otro escenario para poner de fondo en su juego.
+      </p>
+      <h3>Objetivos del Juego</h3>
+      <p class="texto">
+         El juego consiste en movernos por la pantalla para conocer cómo hacerlo y los límites de la misma.
+         <br><br>
+         El gato debe comenzar siempre desde el centro de la pantalla (Posiciones "X = 0" e "Y = 0".
+         <br><br>
+         Entre movimiento y movimiento el gato, tenemos que cambiar de disfraz para hacer el movimiento más fluido. 
+         También tenemos que hacer que espere para que el movimiento no sea demasiado rápido.
+         <br><br>
+         Utilizar los bucles para no repetir tantas veces lo mismo.
+         <br><br>
+         El gato debe moverse desde el centro hasta la parte final de la derecha, después se moverá a la izquierda, a 
+         continuación se dirigirá al centro de la pantalla para después subir hacia arriba y posteriormente bajar a la 
+         parte de abajo. Por último, volverá al centro. Cuando realicemos estos movimientos, tenemos que llegar hasta 
+         cada limite mencionado sin que el gato llegue a salirse de la pantalla.
+      </p>
+      <h3>Paso A Paso</h3>
+      <p class="texto">
+         Primero pondremos al gato en el centro de la pantalla (x=0 e y=0), apuntando hacia la derecha.
+      </p>
+      <p class="img_centrada"><img src="img/juego1/1-1.png" width="25%" alt=""></p>
+      </p>
+      <p class="texto">    
+         Moveremos pasos hasta que llegue al borde de la derecha, pero sin pasarse.
+      </p>
+      <p class="nota">
+         En los pasos poner siempre valores múltiplos de 10 porque luego es más fácil y más visual cuando más adelante 
+         implementemos el bucle "Repetir".
+      </p>
+      <p class="texto">    
+         Después apuntaremos a la izquierda para llegar al borde de la parte izquierda.
+      </p>
+      <p class="nota">
+         El gato se pondrá boca abajo ya que estamos cambiando su orientación. Para evitar esto y que sólo se dé la 
+         vuelta, tendríamos que cambiar el estilo de rotación a "Izquierda/Derecha".
+      </p>
+      <p class="img_centrada"><img src="img/juego1/1-2.png" width="30%" alt=""></p>    
+      <p class="texto">    
+         Haremos que se mueva hacia la izquierda hasta llegar al borde y volveremos apuntar a la derecha para volver a 
+         la posición inicial (x=0 e y=0).
+         <br><br>
+         Si lo ejecutamos parece que no hace todo lo que le hemos puesto y eso es porque nuestros ojos son más lentos 
+         que el ordenador. Para ver lo que realmente está haciendo el gato, pondremos un bloque "esperar 1 segundo" 
+         después de cada movimiento.
+      </p>
+      <p class="img_centrada"><img src="img/juego1/1-3.png" width="30%" alt=""></p>    
+      <p class="texto">    
+         Una vez que esté de nuevo en el centro, haremos que apunte hacia arriba y que se mueva sin pasarse del borde 
+         superior. A continuación, apuntaremos hacia abajo y volveremos a mover pasos hasta la parte inferior, también 
+         sin pasarse del borde.
+         <br><br>
+         Por último, volveremos a apuntar hacia arriba y movemos pasos hasta llegar de nuevo al centro de la pantalla 
+         (x=0 e y=0).
+         <br><br>
+         Quedaría más o menos de la siguiente forma.
+      </p>
+      <p class="img_centrada"><img src="img/juego1/1-4.png" width="30%" alt=""></p>
+      <p class="texto">    
+         Nos faltaría que el gato en lugar de desplazarse de un lado a otro de la pantalla, se moviera como si fuera 
+         andando. 
+         <br><br>
+         Sustituiremos el movimiento de los pasos de un lado a otro por un bucle donde le moveremos de 10 en 10 pasos 
+         el número de veces que sea necesario y reduciremos el tiempo de espera para que sea más rápido.
+      </p>
+      <p class="img_centrada"><img src="img/juego1/1-5.png" width="40%" alt=""></p>    
+      <p class="texto">    
+         Para que el movimiento del gato sea más real, añadimos que cambie de disfraz cada vez que se mueva y que 
+         antes de cada cambio de dirección reproduzca el sonido "Miau" que tiene asociado el gato.
+         <br><br>
+         Con todos los cambios, quedará de la siguiente manera.
+      </p>
+      <p class="img_centrada"><img src="img/juego1/1-6.png" width="30%" alt=""></p>
+      <p class="texto">    
+         Y el juego quedaría así.
+      </p>
+      <p class="img_centrada">
+         <iframe width="480" height="360" src="juegos/1-NosMovemos.html"></iframe>
+      </p>
+      <p class="texto">
+         Para ver el juego terminado pulsa
+         <a class="link_s" href="https://scratch.mit.edu/projects/899419564/editor" target="_blank">aquí</a>.
+         <br><br>
+         Para descargarte el juego terminado pulsa
+         <a class="link_s" download href="juegos/1-NosMovemos.sb3">aquí</a>.
+      </p>
+      <br><br>
+      <a class="texto volver" href="javascript:history.back(-1);">Volver al índice</a>
+   </div>
+   <div id="pie">
+      <h1> Fun Tech Academy - Calle Alcobendas, 23 Leganés 28914 Madrid - www.funtech.academy </h1>
+   </div>
+</body>
+</html>
