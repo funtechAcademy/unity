@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="styles/style.css">
+   <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Sanchez&display=swap" rel="stylesheet">
+   <script src="js/scripts.js"></script>
+   <title>Articulaciones</title>
+</head>
+<body>
+   <div id="cabecera">
+      <h1>Articulaciones</h1>
+   </div>
+   <!-- INICIO_LOADER -->
+   <div id="pageloader">
+      <img src="img/LogoOjo_FTA.png" class="spining" width="100px">
+   </div>
+   <!-- FIN_LOADER -->
+   <div id="contenido">
+      <h2>Personaje Con Articulaciones</h2>
+      <p class="texto">
+         Esta práctica es para que se dominen las jerarquías y hacer un primer acercamiento a Unity.
+      </p>
+      <p class="texto">
+         Para crear un nuevo proyecto 3D desde el Unity Hub:
+      </p>
+      <p class="texto">
+         •	Dar al botón de New Project.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-1.png" width="80%" alt=""></p>
+      <p class="texto">
+         •	Y seleccionar la versión de Unity con la que vamos hacer el proyecto. En nuestro caso lo haremos con 
+            2021.3.3f1 LTS. El LTS significa que es una versión de Unity que ofrece soporte a largo plazo y máxima 
+            estabilidad.
+      </p>  
+      <p class="img_centrada"><img src="img/tema1/1-2.png" width="80%" alt=""></p>    
+      <p class="texto">
+         •	Y seleccionar que tipo de proyecto vamos hacer. Lo haremos 3D (Built-In Render Pipeline)
+      </p>
+      <p class="texto">
+         •	En la parte de la derecha tendremos que poner su nombre y guardarlo en una carpeta. Y le damos a Crear el proyecto. 
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-3.png" width="80%" alt=""></p>
+      <p class="texto">
+         Nos abre el proyecto y el Gizmo lo ponemos en una vista frontal o sea que la Z este mirando hacia nosotros.
+             Esto significa que la Z siempre ira hacia delante si tenemos que mover a un personaje.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-4.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         Herramientas de teclado que más usaremos:<br>
+         •	Para poder orbirar en la escena lo haremos con el click derecho presionado.<br>
+         •	Con la bola del ratón no acercamos y nos alejamos.<br>
+         •	Si seleccionamos un objeto de Hierarchy y damos a la tecla F nos acercara o alejara a ese objeto seleccionado.<br>
+         •	CTRL+D Duplica el objeto seleccionado.<br>
+      </p>
+
+      <p class="nota">
+         Los Gizmos son información visual que pueden agregar al hacer sus desarrollos, ya sea para trabajar más 
+         cómodos, para visualizar mejor un diseño o como una herramienta de testeo o debugueo.<br>
+         En la Escena, arriba a la izquierda tenemos dos opciones y se usan para definir la ubicación de cualquier 
+         herramienta transform Gizmo.<br>
+         Para posición:<br>
+         •	Pivot: posiciona el Gizmo en el punto de pivote real del GameObject, según lo define el componente 
+            Transform.<br>
+         •	Center: posiciona el Gizmo en una posición central basándose en los GameObjects seleccionados.<br>
+         Para la rotación:<br>
+         •	Local: mantiene la rotación del Gizmo en relación con la del GameObject.<br>
+         •	Global: deja el Gizmo a la orientación espacial mundial.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-5.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema1/1-6.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         En principio trabajaremos en Center y Global.
+      </p>
+
+      <p class="nota">
+         De vez en cuando hay que ir salvando el proyecto. Vamos al Menu principal File/Save ó Save as si queremos ponerle
+         otro nombre ó con CTRL+S se salvaría también.
+      </p>   
+
+      <h3>Cabeza</h3>
+      <p class="texto">
+         Crear una Esfera que la llamaremos Cabeza. Para hacerlo hacemos lo siguiente:<br> 
+         •	En la ventana de Hierarchy hacemos click derecho y seleccionar 3D Object/Sphere.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-7.png" width="80%" alt=""></p>
+
+      <p class="nota">
+         También se podría hacer desde el menu principal GameObject/3D Object/Sphere.
+      </p>  
+      <p class="img_centrada"><img src="img/tema1/1-8.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         •	Lo ponemos en la posición 0,0,0 (X,Y,Z).
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-9.png" width="80%" alt=""></p>
+      <p class="texto">
+         •	Para ponerle el nombre podemos dar dobleclick sobre Sphere o en la ventana del inspector que está a la derecha.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-10.png" width="80%" alt=""></p>
+
+      <h3>Cuello</h3>
+      <p class="texto">
+         Ahora necesitamos un Cuello para que se pueda mover la cabeza de forma independiente:<br> 
+         • 	Seleccionar la Cabeza.<br> 
+         •	Y con CTRL-D duplicamos ó con click derecho Duplicate y lo llamamos Cuello.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-11.png" width="80%" alt=""></p>
+ 
+      <p class="texto">
+         •	Se queda en la misma posición que el Cuello asi que con la flecha la bajamos (Herramienta Move Tool).
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-12.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         • 	Seleccionamos la herramienta Scale Tool y desde el centro arrastramos el ratón hasta el tamaño deseado. O también
+          lo podemos modificar su valor en el inspector en el componente transform Scale.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-13.png" width="80%" alt=""></p>
+  
+      <p class="texto">
+         •	Y lo colocamos con las flechas para que se quede como a mitad del cuello ó con el transform/Position
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-14.png" width="80%" alt=""></p>
+  
+      <p class="texto">
+         Ahora si roto el Cuello debería rotar la Cabeza pero no lo hace porque no tiene una estructura de jerarquías. Para
+         que funcione tendremos que hacer que la Cabeza sea hijo del Cuello:<br>
+         •	Para ello arrastramos la Cabeza al Cuello. Y ahora si roto el Cuello la Cabeza también lo hará.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-15.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         Pero no lo hace del todo bien, porque cuando tengo jerarquías o grupos de selección puedo decir que rote desde
+           el centro o desde su pivote. Habrá que cambiar el Center por Pivote.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-16.png" width="80%" alt=""></p>
+ 
+      <p class="texto">
+         Y ahora el manejador estará en el Cuello.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-17.png" width="80%" alt=""></p>
+ 
+      <p class="texto">
+         Y se ve como la cabeza gira.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-18.png" width="80%" alt=""></p> 
+
+      <p class="texto">
+         Antes de continuar dejar nuestro Cuello con la Rotación 0,0,0.
+      </p>
+      <p class="nota">
+         Todo lo que creemos tendrá que  estar simétrico.
+      </p>
+
+      <h3>Cuerpo</h3>
+      <p class="texto">
+         Si le damos al cuadrado que hay en el centro del gizmo se pone con una vista ortográfica y es más fácil de situar
+         el resto del cuerpo. 
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-19.png" width="80%" alt=""></p>
+ 
+      <p class="texto">
+        Comenzamos a crear el cuerpo:
+      </p>
+
+      <p class="texto">
+         •	Crear un Cube y lo bajamos un poco.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-20.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema1/1-21.png" width="80%" alt=""></p>
+  
+      <p class="texto">
+         •	Usaremos la herramienta de Rect Tool. Nos dejara dimensionar desde los lados y no del pivote (el centro) como
+          pasaba con Scale Tool y lo dejaremos así.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-22.png" width="80%" alt=""></p>
+ 
+      <p class="texto">
+         •	Ahora pondremos una vista de lado y lo estrecharemos un poco. Le damos a la X del gizmo para ponerlo de lado
+          y modificamos los laterales del Cuerpo.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-23.png" width="80%" alt=""></p>
+ 
+      <p class="texto">
+         •	Lo damos de nuevo al gizmo a la Z para dejarlo de frente y lo subimos un poco.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-24.png" width="80%" alt=""></p>
+ 
+      <p class="texto">
+         Necesitamos que se rote el Cuerpo pero poco a poco (para simular la realidad) asi que tendriamos que estructurar
+          el Cuerpo por partes:<br>
+         •	Si roto la Cadera el Abdomen y el Pecho se tendría que rotar.<br>
+         •	Si roto el Abdomen que rote solo el Pecho y la Cabeza.<br>
+         •	Y si roto el Pecho tendrá que rotar el Cuello y la Cabeza.<br><br>
+
+         Tendríamos que partirlo en 3 trozos:<br>
+         •	Duplicar el Cube 2 veces.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-25.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         •	Para poder ver mejor nuestro personaje podemos desactivar el Skybox.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-26.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         •	Y usamos la herramienta Rect Tool y modificamos sus tamaños. Podríamos usar una vista transparente para poder
+       verla malla y ajustarlo mejor y ver mejor los tamaños.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-27.png" width="80%" alt=""></p>
+ 
+      <p class="texto">
+         •	Y tiene que estar con vista fontal para que lo podamos ajustar mejor.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-28.png" width="80%" alt=""></p>
+ 
+      <p class="texto">
+         •	Le damos al Gizmo de la X para verlo de lado y lo volvemos ajustar un poco.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-29.png" width="80%" alt=""></p>
+ 
+      <p class="texto">
+         •	Vamos a la vista de perspectiva y ya se ve mejor.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-30.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         Revisar que todos los cubos del cuerpo tienen en Posicion X y Z el valor de 0 para que este todo centrado.<br>
+         Ahora tenemos que renombrarlos Pecho, Abdomen y Cadera.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-31.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         Nos faltaría hacerles hijos el Abdomen y el Pecho de la Cadera.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-32.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         Ahora si gira la Cadera giraran todos juntos.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-33.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         Si giro solo el Abdomen el Pecho se queda en su lugar.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-34.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         Así que el Pecho tiene que ser hijo del Abdomen.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-35.png" width="80%" alt=""></p>
+      
+      <p class="texto">
+         Probamos si la jerarquía esta correcta:<br>
+         •	Giramos la Cadera.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-36.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         •	Giramos el Abdomen.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-37.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         •	Y giramos el Pecho.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-38.png" width="80%" alt=""></p>
+
+      <p class="nota">
+         A medida que voy girando se van deformando las geometrías debido a las herencias e intentar mantener la 
+         geometría de los padres. Esto simplemente es una práctica para dominar las jerarquías.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-39.png" width="80%" alt=""></p>
+   
+      <p class="texto">
+      Si observamos la cabeza no se rota, así que haremos que el Cuello sea hijo del Pecho para que pueda rotar.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-40.png" width="80%" alt=""></p>
+
+      <p class="texto">
+      Ahora si giro primero la Cadera, luego el Abdomen, luego el Pecho ya podriamos rotar el Cuello y la Cabeza.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-41.png" width="80%" alt=""></p>
+
+      <h3>Brazo</h3>
+      <p class="texto">
+         Vamos a crear ahora el brazo para ello ponemos la vista frontal y ortográfica.<br>
+      </p>
+      <h4>Hombro</h4>
+      <p class="texto">
+         •	Crear una Sphere. Resetear su posición eso lo haremos en los 3 puntos que aparece en su transform para que
+             siempre este centrado.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-42.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         •	Y lo colocamos con las flechas en su hombro. Lo escalamos.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-43.png" width="80%" alt=""></p>
+
+      <h4>Brazo</h4>
+      <p class="texto">
+         •	Crear un Cylinder.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-44.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         •	Resetear su posición.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-45.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         •	Como no lo vemos bien lo ponemos transparente para poder ver la malla y ajustarlo mejor.<br>
+         •	Lo vamos a escalar desde el centro para que no se deforme el cilindro y lo colocamos.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-46.png" width="80%" alt=""></p>
+
+      <h4>Codo</h4>
+      <p class="texto">
+         •	Duplicamos el Hombro.<br>
+         •  Lo escalamos del centro para que sea más pequeño y lo colocamos.
+      </p>
+
+      <h4>Antebrazo</h4>
+      <p class="texto">
+         •	Duplicamos el Brazo.<br>
+         •	Lo escalamos del centro para que sea más fino y más pequeño que el Antebrazo y lo colocamos.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-47.png" width="80%" alt=""></p>
+
+      <h4>Muñeca</h4>
+      <p class="texto">
+         •	Duplicamos el Antebrazo.<br>
+         •	Lo escalamos del centro para que sea más pequeño y lo colocamos.
+      </p>
+
+      <h4>Mano</h4>
+      <p class="texto">
+         •	Crear un Cube.<br>
+         •	Lo escalamos con la Rect Tool y la dejamos fina.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-48.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         •	Pero tenemos que ponerla de lado seleccionando la X en el gizmo para ajustar su anchura.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-49.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         Vamos a Perspectiva y a modo Shaded.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-50.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         Habría que renombrar todos y hacerlos hijos unos de otros: <br>
+         •	 HombroDcho, BrazoDcho, CodoDcho, AntebrazoDcho, MunecaDcho y ManoDcho.<br>
+         •	 Le ponemos Dcho porque si realmente colocamos al personaje mirando al frente seria su
+          brazo derecho.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-51.png" width="80%" alt=""></p>
+
+      <p class="nota">
+         Cuidado al renombrar no es recomendable usar “ñ” ó “Ñ”, ni acentos, ni caracteres especiales. Una forma de
+         renombrar es utilizar lo que se llama en programación "Camel case" que es unir palabras capitalizando la
+          primera letra de cada palabra. Se usa mucho en programación.
+      </p>
+
+      <p class="texto">
+         Tendríamos ahora que duplicar el BrazoDcho. Para colocarlo al lado contrario y poner en el Transform Position X
+          su valor, pero en negativo. Revisar todos los objetos del HombroDcho(1):
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-52.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         • 	El Hombro.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-53.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         •	Y el Brazo Derecho.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-54.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         •	Y así con el resto de los GameObjects.<br>
+         •	Tendríamos que renombrarlos todos a Izqdo.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-55.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         Tenemos que hacer los Hombros sean hijos del Pecho.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-56.png" width="80%" alt=""></p>
+ 
+      <p class="texto">
+         Si cojo el pecho y lo roto también lo harán los brazos.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-57.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         Recordar que no pasa nada si se deforman, es normal.  Cuando un objeto es hijo de otro coge todas las propiedades
+       de Posición, Rotación y Escala. Si creamos un objeto en la 0,0,0 y vemos el Hombro Dcho su posición en X es 0.6 y 
+      es mentira ya que está calculando su posición local con respecto al Pecho que es su padre.<br>
+       Pasaría igual con su Escala. Si tuviese una Escala de 1 en todo no se deformaría. Para solucionarlo crearemos otro GameObject poniéndolo en la misma posición
+       del Pecho y utilizándolo como padre. Este padre tiene escala 1,1,1, y si hacemos hijo a los Hombros, Cuello y Pecho
+       ellos heredaran la escala del padre y así no habrá más deformaciones y los hijos no se verán afectados:<br>
+      •	Para crearlo hacemos click derecho dentro de Hierarchy y seleccionamos Create Empty con click izquierdo.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-58.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+         •	Resetear su posición.<br> 
+         •	Lo llamaremos CTRL_Superior.<br> 
+         •	Rompemos la estructura de Hombros, Cuello y Pecho arrastrándolos fuera de la jerarquía de la Cadera.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-59.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+         •	Copiamos la misma posición que tiene el pecho y se la copiamos al CTRL_Superior:<br>
+        &emsp;&emsp;o   Selecciono el Pecho y le doy a los 3 puntos del transform y selecciono Copy/Position.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-60.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+        &emsp;&emsp;o  Selecciono el CTRL_Superior y hago Paste/Position.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-61.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+            •	Y ahora tendré que arrastrar al Cuello, Pecho y Hombro al CTRL_Superior para que sea su padre.<br> 
+            &emsp;&emsp;o	Me pongo en Perspectiva y en modo Shaded.<br>
+            &emsp;&emsp;o	Cojo el HombroIzqdo lo roto y no se deforma ningún elemento.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-62.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+         &emsp;&emsp;o	Si cojo el CTRL_Superior y lo roto todo funciona como antes.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-63.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+         Si roto el CodoDcho no sufre esa deformidad porque en su escala tiene el mismo número o sin grandes cambios.
+          Si hubiese mucha variación habría que crear un GO vacio a escala 1,1,1 y ponérselo como padre.
+      </p>
+
+      <h3>Abdomen y Cadera</h3>
+      <p class="texto">
+         No tienen escala uniforme y eso hará que se deforme el Abdomen. Así que vamos a sacar el Abdomen de su padre. 
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-64.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+      •	Cadera<br>
+         &emsp;&emsp;o	Crear un Go vacio CTRL_Cadera.<br>
+         &emsp;&emsp;o	Copiamos la posición de la Cadera y se la copiamos al CTRL_Cadera.<br>
+         &emsp;&emsp;o	Y hacemos hijo la Cadera al CTRL_Cadera.<br><br>
+      •	Abdomen<br>
+         &emsp;&emsp;o	Hacemos lo mismo pero el CTRL se llamará CTRL_Abdomen.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-65.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+         Ahora tenemos que volver a componer la jerarquía. Si muevo el CTRL_Cadera se tendrá que mover el CTR_Abdomen y este
+       tendrá que tener como hijo el CTRL_Superior.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-66.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+         Ahora si rotamos no debería tener ninguna deformación. Probarlo.
+      </p>
+
+      <h3>Piernas</h3>
+      <p class="texto">
+         Ponemos la vista en Ortográfico.<br>
+         •	Crear una Sphere y resetear su posición y la ponemos como si fuera el glúteo. Como partirá con una escala
+             uniforme no tendré problemas de deformación.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-67.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+         •	Crear una Capsule con una escala uniforme.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-68.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+         •	Duplicar la Sphere y será la rodilla y ponerla más pequeña.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-69.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+         •	Duplicar la Capsule y la escalamos un poco más pequeña que la parte de arriba y que sea uniforme esa escala.<br>
+         •	Duplicar la Sphere que será el tobillo y la escalamos un poco más pequeña.<br>
+         •	Y el pie será un cubo y este si que tenemos que escalarla con Rect Tool.<br>
+         &emsp;&emsp;o	Ponerlo en posición lateral para modificar su escala.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-70.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+         Si lo vemos en Perspectiva se ve bastante bien. Falta renombrar la pierna entera a Dcho. Y crear la jerarquía.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-71.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+      Duplicamos y la renombramos a Izqdo y hay que posicionarla en X pero en negativo.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-72.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+         Ahora podíamos tener un Controlador que una las Piernas con la Cadera:<br>
+         •	Crear un Go vacío que tenga la misma posición que el CTRL_Cadera.<br>
+         • 	Lo llamaremos CentroPersonaje y tendrá todos los Objetos.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-73.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+         Faltaría otro más que estaría en la parte de los Pies que se llame Raíz para poder posicionarlo en cualquier
+          ubicación y tenerlo como controlador de todo el personaje:<br>
+         •	Ponemos la vista ortográfica.<br>
+         •	Crear un GO vacío que se llame Raiz. Resetear sus valores.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-74.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+         •	Subir el CentroPersonaje con las flechas para que sus pies se queden en la posición 0,0,0 de la Raiz.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-75.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+         •	Y ahora el CentroPersonaje lo haría hijo del Raiz.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-76.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+         Seleccionando Raiz podría mover mi personaje a cualquier ubicación. Le cambiamos el nombre y lo llamamos
+       RaizPersonaje.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-77.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+         Si quisiera usarlo en otras escenas no podría porque lo tengo metido en mi escena. Lo más fácil es crear
+          Prefabs. Los Prefabs son GameObject convertidos en Assets. Los Assets los puedo tener en las carpetas del
+          proyecto y utilizarlos en cualquier escena. Para ello hay que crear una carpeta:<br>
+         •	Vamos a la solapa de Project.<br>
+         •	Click derecho en Assets y seleccionar Create/Folder.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-78.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+         •	Y se llamara Prefabs.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-79.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+         •	Y arrastramos RaizPersonaje a la carpeta de Prefabs.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-80.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+         Podría tener el mismo personaje todas las veces que quisiéramos en esta escena o en cualquier escena que
+          tengamos en nuestro proyecto. Simplemente arrastraríamos el prefab a la escena o a Hierarchy.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-81.png" width="80%" alt=""></p>
+ 
+      <p class="texto"> 
+         Ahora tendríais que rotar las articulaciones del personaje para que parezca que está corriendo.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-82.png" width="80%" alt=""></p>
+
+      <br><br>
+      <a class="texto volver" href="javascript:history.back(-1);">Volver al índice</a>
+   </div>
+   <div id="pie">
+      <h1> Fun Tech Academy - Calle Alcobendas, 23 Leganés 28914 Madrid - www.funtech.academy </h1>
+   </div>
+</body>
+</html>
