@@ -9,11 +9,11 @@
    <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
    <link href="https://fonts.googleapis.com/css?family=Sanchez&display=swap" rel="stylesheet">
    <script src="js/scripts.js"></script>
-   <title>Nos Movemos</title>
+   <title>Articulaciones</title>
 </head>
 <body>
    <div id="cabecera">
-      <h1>Nos<br>Movemos</h1>
+      <h1>Articulaciones</h1>
    </div>
    <!-- INICIO_LOADER -->
    <div id="pageloader">
@@ -21,48 +21,87 @@
    </div>
    <!-- FIN_LOADER -->
    <div id="contenido">
-      <h2>Nos Movemos</h2>
-      <h3>Objetos Necesarios</h3>
+      <h2>Personaje Con Articulaciones</h2>
       <p class="texto">
-         Los objetos necesarios para este juego los tienes en la biblioteca de objetos, sonidos y escenarios de 
-         Scratch. 
+         Esta práctica es para que se dominen las jerarquías y hacer un primer acercamiento a Unity.<br>
+         Ponemos la Z mirando hacia nosotros. Center y Global para tener una mejor orientación a la hora de rotar y
+         mover.<br>
+          Todo lo que creemos tiene que tener un nombre.<br>
+         Cuidado con las herencias ya que a medida que voy girando se van deformando las geometrías e intentan
+          mantener la geometría de los padres. Lo iremos solucionando a lo largo de la práctica.<br>
+         Para ir colocando los GameObjects podemos poner una vista frontal y ortográfica.<br><br>
+         En este ejemplo creamos un personaje con articulaciones.
       </p>
-      <h3>Objetivos del Juego</h3>
+      <p class="img_centrada"><img src="img/tema1/1-74.png" width="80%" alt=""></p>   
+
+      <h3>Cabeza</h3>
       <p class="texto">
-         El juego consiste en movernos por la pantalla para conocer cómo hacerlo y los límites de la misma.
-         <br><br>
-         El gato debe comenzar siempre desde el centro de la pantalla (Posiciones "X = 0" e "Y = 0").
-         <br><br>
-         El gato debe moverse desde el centro hasta la parte final de la derecha sin que los bigotes sobrepasen el 
-         borde.
-         <br><br>
-         Entre movimiento y movimiento del gato, tenemos que cambiar de disfraz para hacer el movimiento más fluido. 
-         <br><br>
-         También tenemos que hacer que espere, para que el movimiento no sea demasiado rápido.
-         <br><br>
-         Después cambiaremos de dirección para que se mueva hacia la izquierda de la pantalla, pero cuidado, porque 
-         puede quedarse boca abajo. Eso es debido a que está puesto en el "Estilo de Rotación" en todas direcciones. En 
-         este caso tendríamos que cambiarlo por izquierda-derecha.
-         <br><br>
-         Una vez lleguemos a la izquierda, también sin que los bigotes sobrepasen el borde, volveremos a girar y se 
-         dirigirá hacia la derecha, hasta el centro de la pantalla, para después subir hacia arriba, pero sin 
-         sobrepasar las orejas.
-         <br><br>
-         A continuación, giraremos otra vez hacia la parte de abajo, sin quedarnos sin los pies. 
-         <br><br>
-         Por último, volverá al centro.
-         <br><br>
-         Cuando realicemos estos movimientos, tenemos que llegar hasta cada limite mencionado como hemos indicado sin 
-         que el gato llegue a salirse de la pantalla.
-         <br><br>
-         Utilizar los bucles para no repetir tantas veces lo mismo.
-         <br><br>
-         Antes de cada cambio de dirección, hay que poner el sonido del gato.
+         Crear 2 Esferas las llamaremos Cabeza y Cuello. La cabeza la posicionamos en la 0,0,0.<br>
+         Probar si la cabeza rota cuando rotemos el cuello.<br>
+         Para que funcione tendremos que hacer la Cabeza hijo del Cuello.<br>
       </p>
-      <h3>Pruébalo</h3>
-      <p class="img_centrada">
-         <iframe width="480" height="360" src="juegos/1-NosMovemos.html"></iframe>
+      <p class="img_centrada"><img src="img/tema1/1-19.png" width="80%" alt=""></p>   
+
+      <h3>Cuerpo</h3>
+      <p class="texto">
+         Necesitamos crear un cubo para el Cuerpo pero si creamos solo 1 no se podría rotar correctamente así que
+          tendríamos que estructurar el Cuerpo por partes para:<br>
+         •	Si roto la Cadera el Abdomen y el Pecho se tendría que rotar.<br>
+         •	Si roto el Abdomen que rote solo el Pecho y la Cabeza.<br>
+         •	Y si roto el Pecho tendrá que rotar el Cuello y la Cabeza.<br>
+         Necesitaríamos 3 cubos: Pecho, Abdomen y Cadera. 
       </p>
+      <p class="img_centrada"><img src="img/tema1/1-30.png" width="80%" alt=""></p>   
+
+      <p class="nota">
+         En X y Z tiene que esta todo en posición 0. Y hay que hacerlos hijos para que funcionen las rotaciones.
+      </p>
+
+      <h3>Brazo Derecho</h3>
+      <p class="texto">
+         Estará compuesto por:<br>
+         •	HombroDcho, BrazoDcho, CodoDcho, AntebrazoDcho, MuñecaDcho y ManoDcho.<br>
+         •	Poner su jerarquía de padre e hijos.<br>
+         •	Hacer el Brazo Izquierdo y sus jerarquías.<br>
+         •	Los Hombros tienen que ser hijos del Pecho.<br><br>
+         Si rotamos vemos que se deforma todo ya que va cogiendo la escala de sus padres. ¿Cómo lo solucionamos?:<br>
+         •	Tendremos que crear un GO vacío con su escala 1,1,1 y que se llame CTRL_Superior.<br>
+         • 	Rompemos la estructura de Hombros, Cuello y Pecho arrastrándolos fuera de la jerarquía de la Cadera.<br>
+         •	Reseteamos CTRL_Superior y cogemos la posición del Pecho y se lo copio.<br>
+         •	Y ahora tendré que arrastrar al Hombros, Cuello y Pecho al CTRL_Superior para que sea su padre.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-62.png" width="80%" alt=""></p>   
+
+      <p class="texto">
+         Haremos lo mismo con el Abdomen y la Cadera ya que no tienen una escala uniforme. Crear 2 GO vacíos CTRL_Cadera
+          y CTRL_Abdomen.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-65.png" width="80%" alt=""></p>
+
+      <h3>Piernas</h3>
+      <p class="texto"> 
+          •	   Estará compuesto por: GluteoDcho, MusloDcho, RodillaDcho, PiernaDcho, TobilloDcho y PieDcho.<br>
+          • 	Poner su jerarquía de padre e hijos.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-71.png" width="80%" alt=""></p>
+  
+      <h3>CentroPersonaje</h3>
+      <p class="texto"> 
+         Ahora podíamos tener un Controlador que una las Piernas con la Cadera que tenga la misma posición que
+          el CTRL_Cadera.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-73.png" width="80%" alt=""></p>
+
+
+      <h3>Raiz Personaje</h3>
+      <p class="texto"> 
+      Será otro GO vacío que se llame RaizPersonaje que estará en sus pies y resetearlo:
+      •	Subir todo el personaje para que RaizPersonaje se quede en los pies.<br><br>
+      Crear un Prefab para poder tener múltiples copias.<br><br>
+      Ahora tendriamos que modificar nuestro personaje para que parezca que esta corriendo.
+      </p>
+
+      <p class="img_centrada"><img src="img/tema1/1-82.png" width="80%" alt=""></p>   
       <br><br>
       <a class="texto volver" href="javascript:history.back(-1);">Volver al índice</a>
    </div>
