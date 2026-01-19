@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="styles/style.css">
+   <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Sanchez&display=swap" rel="stylesheet">
+   <script src="js/scripts.js"></script>
+   <title>ZombieBird</title>
+</head>
+<body>
+   <div id="cabecera">
+      <h1>ZombieBird</h1>
+   </div>
+   <!-- INICIO_LOADER -->
+   <div id="pageloader">
+      <img src="img/LogoOjo_FTA.png" class="spining" width="100px">
+   </div>
+   <!-- FIN_LOADER -->
+   <div id="contenido">
+      <h2>ZombieBird</h2>
+      <p class="texto">
+           Haremos una versión del FlappyBird. Para ello necesitaremos una estructura de carpetas que tendrán el
+          contenido necesario para hacer el juego que lo iremos incluyendo poco a poco:<br><br>
+         _GameAssets<br>
+          &emsp;•	Animation<br>
+          &emsp;•	Audio<br>
+             &emsp;&emsp;o	Hit.wav<br>
+             &emsp;&emsp;o	Point.wav<br>
+             &emsp;&emsp;o	Musica de fondo.mp3<br>
+          &emsp;•	Scenes<br>
+            &emsp;&emsp;o	Escena Portada<br>
+            &emsp;&emsp;o	Escena Jugar<br>
+         &emsp;•	Materiales<br>   
+         &emsp;•	Prefabs<br>
+            &emsp;&emsp;o	Explosión son las partículas de sangre del ZoombieBird cuando choca con las tuberías<br>
+            &emsp;&emsp;o	Tuberias<br>
+         &emsp;•	Scripts<br>
+            &emsp;&emsp;o  PajaroZombie<br>
+            &emsp;&emsp;o  PipeGenerator<br>
+            &emsp;&emsp;o  Tuberías<br>
+            &emsp;&emsp;o  GameConfig tiene 3 métodos estáticos para llamarlos desde cualquier sitio para saber si puedo seguir jugando:<br>
+            &emsp;&emsp;&emsp;- IsPlaying<br>
+            &emsp;&emsp;&emsp;- ArrancaJuego<br>
+            &emsp;&emsp;&emsp;- ParaJuego<br>
+            &emsp;&emsp;o  GameController tiene métodos estáticos y guardaremos en PlayerPrefs las vidas, score y highscore.<br>
+            &emsp;&emsp;&emsp;- SetVidas y GetVidas<br>
+            &emsp;&emsp;&emsp;- SetPuntos y GetPuntos<br>
+            &emsp;&emsp;&emsp;- SetHighScore y GetHighScore<br>
+            &emsp;&emsp;o  PortadaScript. Tendremos varios métodos. Y estará en el Canvas de la portada.<br>
+            &emsp;&emsp;&emsp;- StartGame<br>
+            &emsp;&emsp;&emsp;- ExitGame        
+      </p>
+
+      <p class="nota">
+         En los Scripts de todos los juegos habrá que crear métodos para tenerlo todo más organizado como pej:
+          Actualizar Marcador, Actualizar Vidas, Finalizar Partida….. Lo que vayamos necesitando.
+      </p>
+
+      <p class="texto">
+         &emsp;•	Sprites para tener los botones y el título de la Escena Portada.<br>
+         &emsp;&emsp;o	https://es.cooltext.com/<br>
+         &emsp;•	Texturas para tener los BackGround, texturas de las tuberías…...<br>
+      </p>
+
+
+
+
+
+      <p class="texto">
+         Esta práctica es para que se dominen las jerarquías y hacer un primer acercamiento a Unity.
+      </p>
+      <p class="texto">
+         Para crear un nuevo proyecto 3D desde el Unity Hub:
+      </p>
+      <p class="texto">
+         •	Dar al botón de New Project.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/3-1.png" width="80%" alt=""></p>
+      
+      
+      <br><br>
+      <a class="texto volver" href="javascript:history.back(-1);">Volver al índice</a>
+   </div>
+   <div id="pie">
+      <h1> Fun Tech Academy - Calle Alcobendas, 23 Leganés 28914 Madrid - www.funtech.academy </h1>
+   </div>
+</body>
+</html>
