@@ -26,18 +26,18 @@
            Haremos una versión del FlappyBird. Para ello necesitaremos una estructura de carpetas que tendrán el
           contenido necesario para hacer el juego que lo iremos incluyendo poco a poco:<br><br>
          _GameAssets<br>
-          &emsp;•	Animation<br>
+          &emsp;•	Animation<br><br>
           &emsp;•	Audio<br>
              &emsp;&emsp;o	Hit.wav<br>
              &emsp;&emsp;o	Point.wav<br>
-             &emsp;&emsp;o	Musica de fondo.mp3<br>
+             &emsp;&emsp;o	Musica de fondo.mp3<br><br>
           &emsp;•	Scenes<br>
             &emsp;&emsp;o	Escena Portada<br>
-            &emsp;&emsp;o	Escena Jugar<br>
-         &emsp;•	Materiales<br>   
+            &emsp;&emsp;o	Escena Jugar<br><br>
+         &emsp;•	Materiales<br><br>   
          &emsp;•	Prefabs<br>
             &emsp;&emsp;o	Explosión son las partículas de sangre del ZoombieBird cuando choca con las tuberías<br>
-            &emsp;&emsp;o	Tuberias<br>
+            &emsp;&emsp;o	Tuberias<br><br>
          &emsp;•	Scripts<br>
             &emsp;&emsp;o  PajaroZombie<br>
             &emsp;&emsp;o  PipeGenerator<br>
@@ -62,26 +62,405 @@
 
       <p class="texto">
          &emsp;•	Sprites para tener los botones y el título de la Escena Portada.<br>
-         &emsp;&emsp;o	https://es.cooltext.com/<br>
+         &emsp;&emsp;o	https://es.cooltext.com/<br><br>
          &emsp;•	Texturas para tener los BackGround, texturas de las tuberías…...<br>
       </p>
 
+      <h3>Escena Juego</h3>
+      <p class="texto">
+         Tendremos que crear dentro de esta escena:<br>
+         •	PajaroZombie<br>
+         •	Tuberias (Prefab)<br>
+         •	Background<br>
+         •	PipeGenerator<br>
+         •	Canvas<br>
+         &emsp;o	Puntuacion<br>
+         &emsp;o	HighScore<br>
+         &emsp;o	Vidas<br>
+         •	SoundExplosion<br>
+         •	SoundFondo
+      </p>
 
-
-
+      <h3>Pájaro</h3>
+      <p class="texto">
+         Lo primero que haremos es crear nuestro personaje que será un pájaro hecho con los objetos primitivos 3D:
+          Cubos, capsulas, cilindros……
+      </p>
+ 
+      <p class="nota">
+         Cualquier personaje que se haga partiremos de la posición 0,0,0. Y siempre mirando hacia delante (hacia la Z).
+          En nuestro caso lo haremos mirando hacia la derecha. Ya que nuestro pájaro no usara la Z para moverse.
+      </p>
+      <p class="img_centrada"><img src="img/tema3/3-1.png" width="80%" alt=""></p>
 
       <p class="texto">
-         Esta práctica es para que se dominen las jerarquías y hacer un primer acercamiento a Unity.
+         Creamos un GO vacio que se llame PajaroZombie. Para hacerlo vamos a la solapa de Hierarchy y damos click
+          derecho y seleccionar Creaty Empty. 
       </p>
+      <p class="img_centrada"><img src="img/tema3/3-2.png" width="80%" alt=""></p>
+
       <p class="texto">
-         Para crear un nuevo proyecto 3D desde el Unity Hub:
+        Lo haremos mediante cubos, esferas……lo que necesitemos teniendo en cuenta la colocación de los objetos
+       (padres e hijos). 
       </p>
+      <p class="img_centrada"><img src="img/tema3/3-2.png" width="80%" alt=""></p>
+
       <p class="texto">
-         •	Dar al botón de New Project.
+         Tendremos que crear Materiales para que el pájaro se vea mejor:<br>
+         &emsp;•	En la solapa de Project dentro de la carpeta Materiales hacemos un click derecho Create/Material.
       </p>
-      <p class="img_centrada"><img src="img/tema1/3-1.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema3/3-3.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         &emsp;•	En el Inspector aparecerá la solapa del Material. Tendremos que poner un color en la propiedad Albedo.
+          Damos un click sobre el color y aparecerá una ventana pequeña para poder seleccionar el color que más nos guste.
+      </p>
+      <p class="img_centrada"><img src="img/tema3/3-4.png" width="80%" alt=""></p>
+
+      <p class="texto">
+      &emsp;•	Hay que ponerle un nombre al Material que creemos.<br>
+      &emsp;•	Para poner al pájaro el material lo arrastramos en la escena al objeto que queremos que tenga ese color.<br>
+      &emsp;•	Y así haremos los materiales que nuestro pájaro necesite.
+      </p>
+
+      <p class="nota">
+      Un recordatorio para añadir un componente en el Inspector daremos al botón de “Add Component” y buscaremos el
+       componente que necesitemos.
+      </p>
+   
+      <p class="texto">
+         El PajaroZombie tendrá como componentes adicionales:<br>
+      &emsp;•	BoxCollider (este siempre se crea directamente al crear nuestro GO) donde tendremos que ajustar su
+          Collider pulsando el botón que hay en Edit Collider y aparecerán unos puntos a cado lado del objeto para poder ajustarlo
+          seleccionando el punto con el ratón y arrastrándolo hasta hacerlo más grande o más pequeño, lo que nos interese.
+      </p>
+      <p class="img_centrada"><img src="img/tema3/3-5.png" width="80%" alt=""></p>
+
+      <p class="texto">
+      &emsp;•	RigidBody <br>
+      &emsp;&emsp;o	Y tiene que tener checkeada Use Gravity.<br>
+      &emsp;&emsp;o	Con la Rotación Bloqueada. <br>
+      </p>
+      <p class="img_centrada"><img src="img/tema3/3-5.png" width="80%" alt=""></p>
+
+      <p class="nota">
+         En el Script todos los valores que se usen tendrán que estar dentro de variables. Algunos serán públicos para
+       poder modificarlos desde el Editor y otros private.<br>
+       Pej public int velocidad = 100: Para hacer pruebas y podamos
+       modificarlo en tiempo de ejecución. También pueden ser privadas, pero si ponemos delante de la variable 
+      [SerializeField] seguirá siendo private pero se podrá modificar en el Editor como si fuese una pública. Para 
+      inicializar variables las pondremos dentro de public class…. Y antes de cualquier otro método. Aunque se pueden 
+      definir dentro de un método y se usara solo en ese método.
+      </p>  
+      <p class="img_centrada"><img src="img/tema3/3-6.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         Crear un Script dentro de la carpeta Scripts que se llame PajaroZombie. <br>
+         El pájaro lo podemos mover de varias maneras. Probaremos todas las opciones y dejaremos la que más nos guste.
+          Lo haremos en el método Update().<br>
+         &emsp;•	Con el Espacio.<br>
+         &emsp;&emsp;o	Variables que necesito.
+      </p>  
+      <p class="img_centrada"><img src="img/tema3/3-6.png" width="80%" alt=""></p>
+
+      <p class="texto">
+      &emsp;&emsp;o	Necesito recoger el RigidBody de mi Pájaro en el Start().
+      </p>  
+      <p class="img_centrada"><img src="img/tema3/3-7.png" width="80%" alt=""></p>
+
+      <p class="texto">
+      &emsp;&emsp;o	Y en el Update haremos una fuerza hacia arriba con una variable de fuerza que estará
+      inicializada como SerializeField para que, aunque sea privada la podamos modificar desde el Editor 
+      para poder hacer pruebas en ejecución.
+      </p>
+      <p class="img_centrada"><img src="img/tema3/3-8.png" width="80%" alt=""></p>
+ 
+      <p class="nota"> 
+         El print que aparece es para poder hacer un seguimiento del script y saber si se mete en el if. Es un 
+         comentario que aparecerá en la pestaña de la Consola.<br>
+      </p>
+
+      <p class="texto">
+      &emsp;•	Con ASDW por posición.
+      </p>
+      <p class="img_centrada"><img src="img/tema3/3-9.png" width="80%" alt=""></p>
+
+      <p class="texto">
+      &emsp;&emsp;o	También controlaremos que no se salga de los límites que establezcamos mediante 2 variables
+       limitePosX y limitePosY serán de tipo float.
+      </p>
+      <p class="img_centrada"><img src="img/tema3/3-6.png" width="80%" alt=""></p>
+
+      <p class="texto"> 
+      &emsp;&emsp;o	Lo haremos mediante su transform. Creamos un nuevo Vector3 y cambiaremos el eje según la tecla
+       que pulsemos y se lo añadimos a su posición para que se mueva.  
+       </p>
+      <p class="img_centrada"><img src="img/tema3/3-9.png" width="80%" alt=""></p>
+    
+      <p class="texto">
+         •	Con Translate
+      </p>
+      <p class="img_centrada"><img src="img/tema3/3-10.png" width="80%" alt=""></p>
+
+      <p class="nota">
+         Time.Deltatime para hacer que tu juego funcione independientemente de la velocidad de fotogramas del ordenador.
+      </p>
+
+      <p class="texto">
+         Nos faltaría hacer la animación de las Alas:<br>
+         &emsp;•	En la carpeta de Animation hacer Click derecho Create/Animator Controller.
+      </p>
+      <p class="img_centrada"><img src="img/tema3/3-11.png" width="80%" alt=""></p>
+ 
+      <p class="texto">
+         &emsp;•	Le ponemos el nombre de PajaroZombie.
+      </p>
+      <p class="img_centrada"><img src="img/tema3/3-12.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         &emsp;•	Dobleclick sobre este icono y abre una pestaña de Animator.
+      </p>
+      <p class="img_centrada"><img src="img/tema3/3-13.png" width="80%" alt=""></p>
+
+       <p class="texto">
+         &emsp;•	Añadir una pestaña nueva Window/Animation/Animation y la movemos donde nos venga mejor.
+      </p>
+      <p class="img_centrada"><img src="img/tema3/3-14.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema3/3-15.png" width="80%" alt=""></p>
+ 
+      <p class="texto">
+         &emsp;•	Seleccionar el pájaro de la Hierarchy y nos aparecerá dentro de la ventana de Animation (Si ya
+       tiene animaciones aparecerán) un botón para crear la animación en la carpeta de Animation y la llamamos 
+         Animation Alas.
+      </p>
+      <p class="img_centrada"><img src="img/tema3/3-16.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         &emsp;&emsp;o	Si tuviésemos ya una animación simplemente vamos a la pestaña de Animation y dar click en
+       la flecha donde están la animations y Create New Clip.
+      </p>
+      <p class="img_centrada"><img src="img/tema3/3-17.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         &emsp;•	Para hacer la animation Add Property y seleccionar la Rotacion del Ala Izquierda dando en el “+”.
+      </p>
+      <p class="img_centrada"><img src="img/tema3/3-18.png" width="80%" alt=""></p>
+   
+      <p class="texto">
+         &emsp;•	Para poder añadir la animación:<br>
+         &emsp;&emsp;o	Pulsar al botón de REC (color rojo) para que vaya grabando las posiciones. Se pone de color 
+         granate la línea de tiempo<br>
+         &emsp;&emsp;o	Seleccionar el Ala Izquierda del Pajaro de la Hierarchy.<br>
+         &emsp;&emsp;o	Arrastrar la línea vertical a 0:20.<br>
+         &emsp;&emsp;o	En el Inspector modificar la rotación X del transform. Si nos acercamos a la rotación (o a
+       cualquier valor de la transform) nos aparece unas flechas para poder arrastrar y se modifica la rotación.
+      </p>
+      <p class="img_centrada"><img src="img/tema3/3-19.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         Para poder ver cómo queda la animación paramos de grabar volviendo a dar al botón rojo y le damos al 
+         play o arrastramos la línea de tiempo con el ratón.
+      </p>
+
+      <p class="texto">
+         Habría que terminar la animación y hacer también la animación del ala derecha. En principio haremos de 60
+          frames por segundo, pero se pude aumentar o disminuir este número dependiendo de lo queremos hacer.
+      </p>
+      <p class="img_centrada"><img src="img/tema3/3-20.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         Al crear la Animation en la pestaña de Animator me añade la animation que he creado. 
+      </p>
+      <p class="img_centrada"><img src="img/tema3/3-21.png" width="80%" alt=""></p>
+
+      <p class="texto">
+      &emsp;•	Una vez que tenemos el Animator Control y el Animation añadir un componente Animator al Pajaro y arrastramos
+       el Controlador.
+      </p>
+      <p class="img_centrada"><img src="img/tema3/3-22.png" width="80%" alt=""></p>
+
+      <h3>BackGround</h3>
+      <p class="texto">
+         Crear un Quad para poner un fondo a nuestro juego:
+      </p>
       
+      <p class="texto">
+         &emsp;•	Click derecho en la Hierarchy. Seleccionar 3D Object/Quad.
+      </p>
+      <p class="img_centrada"><img src="img/tema3/3-23.png" width="80%" alt=""></p>
       
+      <p class="texto">
+         &emsp;•	Tenemos que crear un Material:<br>
+         &emsp;&emsp;o	En este caso tendremos que buscar un JPG y lo guardamos en la carpeta de Texturas.<br>
+         &emsp;&emsp;o	Crear un Material y le ponemos el nombre de BackGround.<br>
+         &emsp;&emsp;o	Para poner la Textura en el material lo arrastramos al cuadrado que aparece a la izquierda
+          del Albedo.
+      </p>
+      <p class="img_centrada"><img src="img/tema3/3-24.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema3/3-25.png" width="80%" alt=""></p>
+
+      <h3>Canvas</h3>
+      <p class="texto">
+         El canvas es un contenedor para poder meter elementos de la Interfaz de Usuario (UI) como textos, imágenes,
+          botones y barras de progreso… Al crearse se crea automáticamente el EventSystem que sirve para manejar las
+          interacciones como los clicks o movimientos del ratón sobre los elementos de la UI.
+      </p>
+      <p class="img_centrada"><img src="img/tema3/3-26.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         Para crear el Canvas vamos a la solapa de Hierarchy y hacemos click derecho UI/Canvas.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-27.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         Añadir 3 Textos:<br>
+         &emsp;•	Score<br>
+         &emsp;•	HighScore<br>
+         &emsp;•	Vidas<br>
+         Para añadirlos damos click derecho UI/Text-TextMeshPro y lo llamamos Puntuacion.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-28.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         En el Inspector y teniendo seleccionado Puntuacion aparece el:.<br>
+         &emsp;•	Componente TextMeshPro -Tex(UI).<br>
+         &emsp;&emsp;o	En la Caja donde aparece New Text podemos poner "Score:0" que lo iremos modificando a lo
+          largo del juego.<br>
+         &emsp;&emsp;o	Font Style B.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-29.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema3/3-30.png" width="80%" alt=""></p>
+
+      <p class="texto">
+      Haciendo scroll hacia abajo vamos al siguiente apartado del componente:<br>
+      &emsp;•	Liberation Sans SDF Material.<br>
+      &emsp;&emsp;o	Face color Amarillo.<br>
+      &emsp;&emsp;o	Outline color rojo
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-31.png" width="80%" alt=""></p>
+
+      <p class="texto">
+      Ahora tenemos que posicionarla arriba a la izquierda.<br>
+      &emsp;•	Seleccionar la Puntuacion.<br> 
+      &emsp;•	En el Inspector en el Rect Transform seleccionamos el icono que aparece a la izquierda y aparecen las
+       posiciones donde podemos posicionarlo.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-32.png" width="80%" alt=""></p>
+ 
+      <p class="texto">
+      &emsp;•	Seleccionamos arriba a la izquierda y le damos a SHIFT+ALT y se posicionara.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-33.png" width="80%" alt=""></p>
+
+      <p class="texto">
+      &emsp;•	Si cambiamos el Font Size de nuestro texto habría que cambiar también el Width y el Height para que 
+      quepa del Rect Transform.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-33.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema3/3-34.png" width="80%" alt=""></p>
+
+      <p class="texto">
+      De esta forma haremos el HighScore y las Vidas.<br>
+      En el Script del Pájaro deberemos incluir la librería de TMPro para que no nos de errores a la hora de 
+      cargar los datos en el Canvas. 
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-6.png" width="80%" alt=""></p>
+
+      <h3>Tubería</h3>
+      <p class="img_centrada"><img src="img/tema3/3-35.png" width="80%" alt=""></p>
+      <p class="texto">
+       Crear un GO vacio llamada Tuberia:<br>
+      &emsp;•	Tuberia <br>
+      &emsp;&emsp;o	TuberiaSuperior GO vacío <br>
+      &emsp;&emsp;&emsp;•	Remate será un cilindro <br>
+      &emsp;&emsp;&emsp;•	Cuerpo será un cilindro más largo y un poco más estrecho<br>
+      &emsp;&emsp;o	TuberiaInferior GO vacío<br>
+      &emsp;&emsp;&emsp;•	Remate será un cilindro <br>
+      &emsp;&emsp;&emsp;•	Cuerpo será un cilindro más largo y un poco más estrecho<br>
+      &emsp;&emsp;o	Detector GO Vacio <br>
+      &emsp;&emsp;&emsp;•	Y tendrá un BoxCollider que abarcará la parte central de la tubería<br>
+      &emsp;&emsp;&emsp;•	IsTrigger chequeado para que el Pájaro pueda atravesarlo        
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-36.png" width="80%" alt=""></p>
+
+      <p class="texto">
+      Tanto la Tubería Inferior y Superior tendrán que tener un Material en los hijos de Cuerpo y Remate.
+       Y 2 componentes BoxCollider y RigidBody y no olvidar quitar del remate y del cuerpo el BoxCollider
+      que se crea automáticamente.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-37.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         Tenemos que hacer un Prefab y guardarla en su carpeta.<br>
+         Tendremos que hacer que se generen automáticamente en un punto de la derecha de nuestra escena:<br>
+      &emsp;•	Crear un GO vacío llamado PipeGenerator. Y lo situamos en la parte derecha de nuestra escena.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-38.png" width="80%" alt=""></p>
+
+      <p class="texto">
+       Necesitamos un script que se llamara PipeGenerator:<br>
+      &emsp;•	Variables<br>
+      &emsp;&emsp;o	[SerializeField] donde le pasaremos el GameObject del prefab.<br>
+      &emsp;&emsp;o	[SerializeField] para pasarle cada cuanto tiempo quiero que me genere otra tubería.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-39.png" width="80%" alt=""></p>
+
+      <p class="texto">
+       Hay que arrastrar el Prefab en el Editor y poner el ratioGeneracionTuberias.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-38.png" width="80%" alt=""></p>
+
+      <p class="texto">
+      &emsp;•	Start<br>
+      &emsp;&emsp;o	Usaremos el método InvokeRepeating para que este llamando a un método “GenerarPipe” que crearemos
+       y lo llamaremos cada cierto tiempo.<br>
+      &emsp;•	Método GenerarPipe<br>
+      &emsp;&emsp;o	Creamos la Tuberia con el método Instantiate en la posición del PipeGenerator.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-39.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         Como vemos en el Script tenemos una llamada al GameConfig.IsPlaying(). Este método es para que si el juego
+       continua se seguirán creando tuberías.<br>
+      Vamos a crear el script de GameConfig donde tendremos 3 métodos y uno de ellos será el IsPlaying(). La variable
+       jugando y sus métodos serán static y public para que los pueda llamar desde cualquier script. Los métodos son:<br>
+      &emsp;•	IsPlaying retorna el bool de jugando para saber si sigo con el juego o no.<br>
+      &emsp;•	ArrancaJuego pone la variable de jugando a true.<br>
+      &emsp;•	ParaJuego pone la variable de jugando a false.<br>
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-40.png" width="80%" alt=""></p>
+
+      <p class="texto">
+      Ya podremos poner en el Script de PipeGenerator en el Update que si seguimos jugando crearemos más Tuberias.<br><br>
+      Una vez que tenemos hecha la Generación de las Tuberias y podemos empezar a moverla. El Script se llamará Tuberias.cs:<br>
+      &emsp;•	La Tuberia:<br>
+      &emsp;&emsp;o	Se generará en posiciones aleatorias de Y. <br>
+      &emsp;&emsp;o	Se moverán de arriba hacia abajo aleatoriamente.<br>
+      &emsp;&emsp;o	Y hará una animación para que se junten un poco en el centro como si quisiera aplastar al pájaro.<br><br>
+      Lo primero que tenemos que hacer crear las variables que necesitemos.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-41.png" width="80%" alt=""></p>
+
+      <p class="texto">
+      &emsp;•	Start<br>
+      &emsp;&emsp;o	Recogemos un numero aleatorio de los límites para que se generen en distintas posiciones de Y.<br>
+      &emsp;&emsp;o	Modificamos su posición con este número aleatorio.<br>
+      &emsp;&emsp;o	Y calculamos otro número aleatorio para saber si empieza hacia arriba o hacia abajo el movimiento.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-41.png" width="80%" alt=""></p>
+
+      <p class="texto">
+
+
+•	Update
+o	Preguntamos si estamos Jugando (método estatico de GameConfig.cs)
+o	Y si es así hacemos que se mueva hacia la izquierda con el Translate
+o	Haremos un método TuberiasSubirYBajar para que esten continuamente subiendo y bajando.
+o	Si llega a una determinada posición X destruimos la Tuberia
+
+
+
+
       <br><br>
       <a class="texto volver" href="javascript:history.back(-1);">Volver al índice</a>
    </div>
