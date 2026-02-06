@@ -44,26 +44,41 @@
 
       <h3>Cuerpo</h3>
       <p class="texto">
-         Necesitamos crear un cubo para el Cuerpo pero si creamos solo 1 no se podría rotar correctamente así que
+         Necesitamos crear un cubo para el Cuerpo pero si creamos solo 1 cubo no se podría rotar correctamente así que
           tendríamos que estructurar el Cuerpo por partes para:<br>
          •	Si roto la Cadera el Abdomen y el Pecho se tendría que rotar.<br>
          •	Si roto el Abdomen que rote solo el Pecho y la Cabeza.<br>
          •	Y si roto el Pecho tendrá que rotar el Cuello y la Cabeza.<br>
-         Necesitaríamos 3 cubos: Pecho, Abdomen y Cadera. 
+         Necesitaríamos 3 cubos: Pecho, Abdomen y Cadera. (Renombrar los GameObjects)
       </p>
       <p class="img_centrada"><img src="img/tema1/1-30.png" width="80%" alt=""></p>   
 
       <p class="nota">
          En X y Z tiene que esta todo en posición 0. Y hay que hacerlos hijos para que funcionen las rotaciones.
       </p>
+      <p class="img_centrada"><img src="img/tema1/1-35.png" width="80%" alt=""></p>
+
+      <p class="texto">
+      Si giramos el Pecho la Cabeza no rota así que tendremos que hacerla hija del Pecho.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-40.png" width="80%" alt=""></p>
 
       <h3>Brazo Derecho</h3>
       <p class="texto">
          Estará compuesto por:<br>
-         •	HombroDcho, BrazoDcho, CodoDcho, AntebrazoDcho, MuñecaDcho y ManoDcho.<br>
-         •	Poner su jerarquía de padre e hijos.<br>
-         •	Hacer el Brazo Izquierdo y sus jerarquías.<br>
-         •	Los Hombros tienen que ser hijos del Pecho.<br><br>
+         •	HombroDcho(esfera), BrazoDcho(cilindro), CodoDcho(esfera), AntebrazoDcho(cilindro), MuñecaDcho(esfera)
+             y ManoDcho(cubo).<br>
+         •	Poner su jerarquía de padre e hijos.
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-51.png" width="80%" alt=""></p>
+   
+      <p class="texto">
+         Hacer el Brazo Izquierdo y sus jerarquías.<br>
+         Los Hombros tienen que ser hijos del Pecho.<br><br>
+      </p>
+      <p class="img_centrada"><img src="img/tema1/1-56.png" width="80%" alt=""></p>
+
+      <p class="texto">
          Si rotamos vemos que se deforma todo ya que va cogiendo la escala de sus padres. ¿Cómo lo solucionamos?:<br>
          •	Tendremos que crear un GO vacío con su escala 1,1,1 y que se llame CTRL_Superior.<br>
          • 	Rompemos la estructura de Hombros, Cuello y Pecho arrastrándolos fuera de la jerarquía de la Cadera.<br>
@@ -78,10 +93,18 @@
       </p>
       <p class="img_centrada"><img src="img/tema1/1-65.png" width="80%" alt=""></p>
 
+      <p class="texto"> 
+         Ahora tenemos que volver a componer la jerarquía. Si muevo el CTRL_Cadera se tendrá que mover el CTR_Abdomen y este
+       tendrá que tener como hijo el CTRL_Superior.
+      </p>
+
+      <p class="img_centrada"><img src="img/tema1/1-66.png" width="80%" alt=""></p>
       <h3>Piernas</h3>
       <p class="texto"> 
-          •	   Estará compuesto por: GluteoDcho, MusloDcho, RodillaDcho, PiernaDcho, TobilloDcho y PieDcho.<br>
-          • 	Poner su jerarquía de padre e hijos.
+          •	   Estará compuesto por: GluteoDcho(esfera), MusloDcho(cilindro), RodillaDcho(esfera), PiernaDcho(cilindro),
+          TobilloDcho(esfera) y PieDcho(cubo).<br>
+          • 	Poner su jerarquía de padre e hijos.<br><br>
+         Hacer la Pierna Izquierda y sus jerarquías.
       </p>
       <p class="img_centrada"><img src="img/tema1/1-71.png" width="80%" alt=""></p>
   
