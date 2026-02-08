@@ -152,19 +152,29 @@
       inicializar variables las pondremos dentro de public class…. Y antes de cualquier otro método. Aunque se pueden 
       definir dentro de un método y se usara solo en ese método.
       </p>  
-      <p class="img_centrada"><img src="img/tema3/3-6.png" width="80%" alt=""></p>
-
+      
       <p class="texto">
          Crear un Script dentro de la carpeta Scripts que se llame PajaroZombie. <br>
-         El pájaro lo podemos mover de varias maneras. Probaremos todas las opciones y dejaremos la que más nos guste.
-          Lo haremos en el método Update().<br>
-         &emsp;•	Con el Espacio.<br>
-         &emsp;&emsp;o	Variables que necesito.
+         Variables:<br>
+         &emsp;• fuerza de subida cuando le damos al espacio.<br>
+         &emsp;• puntos que obtendremos cada vez qu atravesamos la tuberia.<br>
+         &emsp;• highScore es la maxima puntuación obtenida que la guardaremos cuando el juego finalice.<br>
+         &emsp;• vidas que tiene el pájaro.
+         &emsp;• velocidad de movimiento cuando usemos el teclado.<br>
+         &emsp;• limitePosY y limitePosX son los limites para que el pájaro no se salga de la pantalla.<br>
+         &emsp;• marcadorPuntos, marcadorHighScore y marcadorVidas son los textos que aparecerán en el Canvas y se 
+         actualizarán durante el juego.<br>
+         &emsp;• prefabExplosion son las particulas que aparecen cuando se choque con la tubería.<br>
+         &emsp;• sonidoExplosion es el sonido cuando choca con la tubería.<br>
+         &emsp;• sonidoPuntuacion es el sonido cuando atraviesa la parte central de las tuberias.
       </p>  
       <p class="img_centrada"><img src="img/tema3/3-6.png" width="80%" alt=""></p>
 
-      <p class="texto">
-      &emsp;&emsp;o	Necesito recoger el RigidBody de mi Pájaro en el Start().
+     <p class="texto">
+         El pájaro lo podemos mover de varias maneras. Probaremos todas las opciones y dejaremos la que más nos guste.
+          Lo haremos en el método Update().<br>
+         &emsp;•	Con el Espacio.<br>
+          &emsp;&emsp;o	Necesito recoger el RigidBody de mi Pájaro en el Start().
       </p>  
       <p class="img_centrada"><img src="img/tema3/3-7.png" width="80%" alt=""></p>
 
@@ -400,8 +410,8 @@
       <p class="texto">
        Necesitamos un script que se llamara PipeGenerator:<br>
       &emsp;•	Variables<br>
-      &emsp;&emsp;o	[SerializeField] donde le pasaremos el GameObject del prefab.<br>
-      &emsp;&emsp;o	[SerializeField] para pasarle cada cuanto tiempo quiero que me genere otra tubería.
+      &emsp;&emsp;o	prefabTuberia donde le pasaremos el GameObject del prefab.<br>
+      &emsp;&emsp;o	ratioGeneracionTuberias cada cuanto tiempo quiero que me genere otra tubería.
       </p>   
       <p class="img_centrada"><img src="img/tema3/3-39.png" width="80%" alt=""></p>
 
@@ -437,7 +447,13 @@
       &emsp;&emsp;o	Se generará en posiciones aleatorias de Y. <br>
       &emsp;&emsp;o	Se moverán de arriba hacia abajo aleatoriamente.<br>
       &emsp;&emsp;o	Y hará una animación para que se junten un poco en el centro como si quisiera aplastar al pájaro.<br><br>
-      Lo primero que tenemos que hacer crear las variables que necesitemos.
+      Lo primero que tenemos que hacer crear las variables que necesitamos:<br>
+      &emsp;• speed que será la velocidad de movimiento hacia la izquierda.<br>
+      &emsp;• limite inferior y superior para posicionar la tuberia en Y en un rango entre -1 y 1.<br>
+      &emsp;• distancia destrucion para que la tuberia se destuya cuando llegue a una determinada posición.<br>
+      &emsp;• contador para que la tuberia suba y baje una serie de veces.<br>
+      &emsp;• direccion inicial 1 la tuberia se movera hacia arriba y 2 hacia abajo.<br>
+      &emsp;• speedArribaAbajo será la velocidad de movimiento hacia arriba o hacia abajo.
       </p>   
       <p class="img_centrada"><img src="img/tema3/3-41.png" width="80%" alt=""></p>
 
@@ -446,19 +462,169 @@
       &emsp;&emsp;o	Recogemos un numero aleatorio de los límites para que se generen en distintas posiciones de Y.<br>
       &emsp;&emsp;o	Modificamos su posición con este número aleatorio.<br>
       &emsp;&emsp;o	Y calculamos otro número aleatorio para saber si empieza hacia arriba o hacia abajo el movimiento.
+       Y lo guardamos en direccion Inicial.
       </p>   
       <p class="img_centrada"><img src="img/tema3/3-41.png" width="80%" alt=""></p>
 
       <p class="texto">
+       &emsp;•	Update<br>
+      &emsp;&emsp;o	Preguntamos si estamos Jugando (método estatico de GameConfig.cs).<br>
+      &emsp;&emsp;o	Y si es así hacemos que se mueva hacia la izquierda con el Translate.<br>
+      &emsp;&emsp;o	Haremos un método TuberiasSubirYBajar para que esten continuamente subiendo y bajando.<br>
+      &emsp;&emsp;o	Si llega a una determinada posición X destruimos la Tuberia
+      </p>   
 
+      <p class="texto">
+       &emsp;•	Método TuberiasSubirYBajar<br>
+      &emsp;&emsp;o Si el contador es igual a 0 direccionInicial a 1 para que vaya hacia arriba.<br>
+      &emsp;&emsp;o Si el contador es igual a 40 direccionInicial a 2 para que vaya hacia abajo.
+      </p>   
 
-•	Update
-o	Preguntamos si estamos Jugando (método estatico de GameConfig.cs)
-o	Y si es así hacemos que se mueva hacia la izquierda con el Translate
-o	Haremos un método TuberiasSubirYBajar para que esten continuamente subiendo y bajando.
-o	Si llega a una determinada posición X destruimos la Tuberia
+      <p class="nota">
+         El contador lo podemos modificar para que se mueva más o menos cambiando 40 a un número mayor o menor.
+      </p>   
 
+      <p class="texto">
+      &emsp;&emsp;o Si la direccionInicial es igual a 1 haremos un Translate hacia arriba. Sumaremos el contador.<br>
+      &emsp;&emsp;o Si la direccionInicial es igual a 2 haremos un Translate hacia abajo. Restaremos el contador.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-42.png" width="80%" alt=""></p>
 
+      <p class="texto">
+         Faltaría la animación de las Tuberías que la haríamos moviendo la posición Y tanto de la TuberiaSuperior y
+       TuberiaInferior. La llamaríamos Tuberia. Crear una Animator a la Tuberia y añadirle la animación.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-43.png" width="80%" alt=""></p>
+
+      <h3>Pájaro</h3>
+      <p class="texto">
+      <p class="texto">
+         A continuación, haremos las colisiones del pájaro con la tubería, pero antes tenemos que llamar a GameConfig
+       en el Script del pájaro (metodo Start) para que Arranque el juego y se guarde la variable para saber si estamos jugando o no.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-6.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         Tenemos 2 métodos para los 2 tipos de colisiones en el Script PajaroZombie.cs:<br>
+         &emsp;•	OnCollisionEnter para cuando nos choquemos con la Tuberia Superior e Inferior y aparecerán unas
+          partículas rojas con si fuesen sangre.<br>
+         &emsp;•	OnTriggerEnter para sumar puntos cuando atravesemos el DetectorPaso de la Tuberia.<br><br>
+      </p>   
+
+      <h3>Partículas de Sangre</h3>
+      <p class="texto">
+         Creamos primero las partículas para instanciarlas cuando nos choquemos:<br>
+         &emsp;•	Crear un GO vacio.<br>
+         &emsp;•	Añadir un Componente Particle System.<br><br>
+         Los parámetros que modificaremos serán los siguientes:<br>
+         &emsp;•	Tenemos la Duration el tiempo de la animación.<br>
+         &emsp;•	Looping estará desactivado solo lo hará una vez cuando hagamos el play.<br>
+         &emsp;•	Tenemos el Start LifeTime y la velocidad de comienzo de la animación.<br>
+         &emsp;•	Color.<br>
+         &emsp;•	Emitter Velocity Mode usaremos el transform.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-44.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         &emsp;•	Emision: Rate over Time es el número de partículas por segundo.<br>
+         &emsp;•	Shape: Shape la forma que queremos que se muestre.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-45.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         &emsp;• Renderer en el Material Default-Particle.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-46.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         Para probarlo nos saldrá una ventana pequeña en la escena y le podemos dar al Play para ver cómo queda.<br>
+         Tendremos que hacer un prefab y dejarlo en la carpeta de Prefabs.<br><br>
+      </p>   
+
+      <h3>Sonidos</h3>
+      <p class="texto">
+         Nos falta meter los sonidos de:<br>
+         &emsp;•	Hit.wav: Crear un GO vacío en Hierarchy llamado SoundExplosion con un componente AudioSource y
+          arrastramos el sonido al AudioClip.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-47.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         &emsp;•	Point.wav: En el Objeto PajaroZombie añadir un componente de AudioSource. Simplemente arrastramos
+       el sonido al AudioClip.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-48.png" width="80%" alt=""></p>
+
+      <h3>Pájaro</h3>
+      <p class="texto">
+         Ya estamos en disposición de hacer los métodos OnCollisionEnter y OnTriggerEnter del Script PajaroZombie.cs.
+      </p>  
+
+      <h4>Método OnCollisionEnter()</h4>
+      <p class="texto">
+         &emsp;•	Variables que estarán inicializadas arriba del script del PajaroZombie.cs.<br>
+         &emsp;&emsp;o	Necesitamos parámetros que pasaremos desde el Editor que son las que tiene [SerializeField]
+          ó public.<br>
+         &emsp;•	Paramos el juego con el método estatico GameConfig.ParaJuego() para que no se muevan las tuberias
+                y no se generen más.<br>
+         &emsp;•	Hacemos que suene el sonido de SoundExplosion.<br>
+         &emsp;•	Tendríamos que quitar 1 vida al pájaro y ponerlo en el marcador de vidas del Canvas. Para ello
+                creamos el método ActualizarVidas().<br>
+         &emsp;•	Hacer que aparezca las partículas de la sangre en la misma posición que el pájaro-<br>
+         &emsp;•	Controlar las vidas.<br> 
+         &emsp;&emsp;o	Si tenemos vidas creamos un método de ContinuarPartida() que lo llama después de 1 segundo
+          (PlayerPerefs).<br>
+         &emsp;&emsp;o	Si no tenemos vidas:<br>
+         &emsp;&emsp;&emsp;-	Antes de continuar necesitaríamos crear el Script de GameControler.<br>
+         &emsp;&emsp;&emsp;-	Recoger el highScore del GameControler.<br>
+         &emsp;&emsp;&emsp;-	Actualizar el highScore si los puntos es mayor que el highScore.<br>
+         &emsp;&emsp;&emsp;-	Inicializar los puntos a 0 del GameControler.<br>
+         &emsp;&emsp;&emsp;-	Inicializar las vidas a 3 del GameControler.<br>
+         &emsp;&emsp;&emsp;-	Llamamos al método de FinalizarPartida().<br>
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-49.png" width="80%" alt=""></p>
+
+      <h4>Método OnTriggerEnter()</h4>
+      <p class="texto">
+         &emsp;•  Cuando choque con el collider que esta entremedias de las tuberias sonara el sonido de puntuación que
+               lo tiene asignado el Objeto PajaroZombie.<br>
+         &emsp;•  Sumamos puntos.<br>
+         &emsp;•  Y llamamos al metodo de Actualizar Marcador del Canvas.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-50.png" width="80%" alt=""></p>
+
+      <h4>Métodos que nos faltan por hacer en el Script del PajaroZombie.cs</h4>
+      <p class="texto">
+          &emsp;•	ActualizarVidas().<br>
+          &emsp;&emsp;o	Ponemos las vidas que nos quedan en el texto del Canvas.<br>
+          &emsp;&emsp;o	Y las vidas las cargarmos en el Script de GameControler.<br><br>
+         &emsp;•	ContinuarPartida().<br>
+         &emsp;&emsp;o	Ponemos a true la variable jugando del método de GameConfig.ArrancaJuego().<br>
+         &emsp;&emsp;o	Y cargamos de nuevo la Escena de Juego que dependerá del número que tenga asignado en
+          File/Build Settings.<br>
+         &emsp;&emsp;&emsp;-	Si tuviese que añadir más escenas lo haría a través del botón de “Add Open Scenes”
+         &emsp;&emsp;&emsp;-	Si quisiera cambiar el número de la escena simplemente tendría que arrástralo con el ratón hacia arriba o hacia abajo.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-51.png" width="80%" alt=""></p>
+ 
+      <p class="texto">
+         &emsp;&emsp;o	Para poder cargar la escena tenemos que incluir una librería nueva que se pondrá al principio
+          del Script. 
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-6.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         &emsp;•	ActualizarMarcador().<br>
+         &emsp; &emsp;o	Actualizamos los puntos y el HighScore.<br>
+         &emsp; &emsp;o	Y cargar el PlayerPrefs los puntos que hemos conseguido.<br>
+         &emsp;•	FinalizarPartida().<br>
+         &emsp; &emsp;o	Cargamos la Escena de la Portada.
+      </p>   
+
+      <h3>GameControler.cs</h3>
+         Guardaremos vidas, puntuación y el HighScore en PlayerPrefs. Son métodos Static para poder llamarlo desde cualquier
+          Script y crearemos los siguientes métodos:<br>
+         GetPuntos(), StorePuntos(), GetHightScore(), StoreHightScore(), GetVidas(), StoreVidas(). 
 
 
       <br><br>
