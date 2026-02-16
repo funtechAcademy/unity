@@ -622,10 +622,172 @@
       </p>   
 
       <h3>GameControler.cs</h3>
+      <p class="texto">
          Guardaremos vidas, puntuación y el HighScore en PlayerPrefs. Son métodos Static para poder llamarlo desde cualquier
           Script y crearemos los siguientes métodos:<br>
-         GetPuntos(), StorePuntos(), GetHightScore(), StoreHightScore(), GetVidas(), StoreVidas(). 
+         GetPuntos(), StorePuntos(), GetHightScore() y StoreHightScore(), GetVidas() y StoreVidas().<br><br>
 
+         &emsp;•	Cargamos en variables constantes el nombre de nuestras variables para después referenciarlas y no equivocarnos. 
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-52.png" width="80%" alt=""></p>
+  
+      <p class="texto">
+      &emsp;•	Método GetPuntos()<br>
+      &emsp;&emsp;o	Inicializar variable puntuación a 0.<br>
+      &emsp;&emsp;o	Preguntamos mediante el método de HasKey si existe PUNTOS. Ya que si lo recogemos antes de
+                preguntar nos daría error.<br>
+      &emsp;&emsp;o	Y retornamos la puntuación.<br>
+      &emsp;•	Método StorePuntos()<br>
+      &emsp;&emsp;o	Pasamos por parámetro la puntuación.<br>
+      &emsp;&emsp;o	Le hacemos un SetInt a PUNTOS de la puntuación que queremos guardar.<br>
+      &emsp;&emsp;o	Y lo salvamos.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-52.png" width="80%" alt=""></p>
+
+      <p class="nota">
+         Faltaría hacer el resto de los métodos. 
+      </p>   
+
+
+      <h3>Escena Portada</h3>
+      <p class="texto">
+         Tendremos que crear dentro de esta escena:<br>
+         &emsp;•	SoundFondo.<br>
+         &emsp;•	Canvas.<br>
+         &emsp;&emsp;o	BackGround.<br>
+         &emsp;&emsp;o	Titulo.<br>
+         &emsp;&emsp;o	Panel.<br>
+         &emsp;&emsp;&emsp;-	Start.<br>
+         &emsp;&emsp;&emsp;-	Exit.<br>
+         &emsp;&emsp;o	Button será el Reset Play(opcional).
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-53.png" width="80%" alt=""></p>
+
+      <h4>SoundFondo</h4>
+      <p class="texto">
+         &emsp;•	Crear in GO vacio con un componente de AudioSource y que tenga el AudioClip de Musica de fondo.<br>
+         &emsp;•	Chequear en Play On Awake para que cuando se abra el juego empiece a oírse la música.<br>
+         &emsp;•	Y Loop para que este continuamente sonando mientras estemos en esta escena.<br>
+         &emsp;•	El resto de los parámetros podréis jugar con ellos.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-54.png" width="80%" alt=""></p>
+  
+      <h4>Canvas</h4>
+      <p class="texto">
+          Hay que crear un Canvas que tendrá en su Inspector el Script PortadaScript.cs. Asi que hay que crear
+          un nuevo Script dentro de la carpeta de Scripts:<br>
+          &emsp;•	Tendremos que incluir la librería de SceneManagement al principio.<br>
+          &emsp;•	Tendremos 3 métodos que los llamaremos a través del Canvas.<br>
+          &emsp;&emsp;o	StartGame para cargar el Escenario Juego e inicializar las vidas.<br>
+          &emsp;&emsp;o	ExitGame para salir del Juego. Esta opción funcionara si hacemos un ejecutable.<br>
+          &emsp;&emsp;o	DeleteGame es para resetear los valores del PlayerPrefs.(Por si lo necesitamos).
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-55.png" width="80%" alt=""></p>
+
+      <p class="texto">
+      &emsp;•	Añadir el Script al Canvas arrastrándolo al inspector
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-56.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         Tendremos que añadir dentro del Canvas:<br>
+         &emsp;•	BackGround. Lo haremos de otra manera que el que se hizo en la Escena de Juego (en esa ocasión
+                se hizo a nivel de la Escena Juego).<br>
+         &emsp;&emsp;o	Seleccionar el Canvas/UI/Image.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-57.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         &emsp;&emsp;o	En la carpeta Texturas descargamos un fondo que sea JPG y lo tenemos que transformar en
+          Texture Type a: Sprite (2D and UI). <br>
+         &emsp;&emsp;o	Hay que darle al botón de Apply para que se apliquen estos cambios.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-58.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         &emsp;&emsp;o	Y la arrastramos al componente Image en Source Image. 
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-59.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         &emsp;•	Titulo también será una imagen de tipo UI como el anterior.<br>
+         &emsp;&emsp;o	Tenemos que crear una carpeta que se llame Sprite.<br>
+         &emsp;&emsp;o  Descargaremos los textos del: Titulo del Juego, Start y Exit a través de la página 
+               https://es.cooltext.com/.<br>
+         &emsp;&emsp;o Hay que transformarlos Texture Type a: Sprite (2D and UI).<br><br>
+         &emsp;•	Para poner el Start y el Exit creamos primero un Panel.<br>
+         &emsp;&emsp;o	Tendra un componente Vertical Layout Group.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-60.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         &emsp;&emsp;o	Añadir dentro del Panel 2 Imágenes Start y Exit con sus respectivos Sprites.<br>
+         &emsp;&emsp;o  Ambos objetos tienen un componente Event Trigger.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-61.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema3/3-62.png" width="80%" alt=""></p>
+
+      <p class="texto">
+       &emsp;&emsp;o	Haremos el StartGame. Dar al botón de Add New Event Type.<br>
+       &emsp;&emsp;o	Seleccionar Pointer Click.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-63.png" width="80%" alt=""></p>
+
+      <p class="texto">
+       &emsp;&emsp;o	Dar a botón “+”.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-64.png" width="80%" alt=""></p>
+      
+      <p class="texto">
+       &emsp;&emsp;o	Arrastrar el objeto Canvas de Hierarchy a debajo de Runtime Only donde aparece None(Object).
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-65.png" width="80%" alt=""></p>
+ 
+      <p class="texto">
+       &emsp;&emsp;o	Desplegar la lista donde pone No Function y seleccionar PortadaScript/StartGame.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-66.png" width="80%" alt=""></p>
+
+      <p class="nota">
+         Faltaria hacer el ExitGame y el Buttom para resetear los PlayerPrefs.
+      </p>
+
+      <h2>Como hacer un ejecutable</h2>
+      <p class="texto">
+         Desde el Editor de Unity vamos a File/Build Settings.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-67.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         &emsp;•	En Platform es a donde queremos exportar el ejecutable en nuestro caso seleccionamos la primera
+       opción de Windows, Mac, Linux.<br>
+         &emsp;•	Tenemos que tener todas las Escenas incluidas.<br>
+         &emsp;•	Botón Player Settings.<br>
+         &emsp;&emsp;o	Nombre de la compañía. Podemos poner “prueba”.<br>
+         &emsp;&emsp;o	Podemos añadirle un Icono.<br>
+         &emsp;&emsp;o	En Resolutions and Presentations.<br>  
+         &emsp;&emsp;&emsp;-	Ponemos el Mode a Windowed para que pueda maximizar, minimizar y cerrar el juego. con
+       el tamaño que me venga mejor.<br>
+         &emsp;&emsp;&emsp;-	Y podemos hacer que la ventana cambie de tamaño con el Resizable Window
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-68.png" width="80%" alt=""></p>
+
+      <p class="texto">
+           &emsp;•	Click al botón de Build.<br>
+           &emsp;•	Nos pide donde queremos guardarlo y el nombre de nuestro ejecutable y le damos Save.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-69.png" width="80%" alt=""></p>
+
+      <p class="texto">
+         &emsp;•	Una vez que termina nos muestra en una ventana donde lo ha dejado y estará con extensión .app.
+      </p>   
+
+      <p class="nota">
+          Cuidado con el tamaño de la pantalla. Para desarrollar el juego en la solapa de Game podemos cambiar o añadir
+            el tamaño que nos interese en el botón de ”+”. Al igual que está en Player Settings la resolución del 
+            juego. No tiene que ser la misma pero es recomendable para evitar problemas de visualización.
+      </p>   
+      <p class="img_centrada"><img src="img/tema3/3-70.png" width="80%" alt=""></p>
 
       <br><br>
       <a class="texto volver" href="javascript:history.back(-1);">Volver al índice</a>

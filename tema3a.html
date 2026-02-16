@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="styles/style.css">
+   <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Sanchez&display=swap" rel="stylesheet">
+   <script src="js/scripts.js"></script>
+   <title>ZombieBird</title>
+</head>
+<body>
+   <div id="cabecera">
+      <h1>ZombieBird</h1>
+   </div>
+   <!-- INICIO_LOADER -->
+   <div id="pageloader">
+      <img src="img/LogoOjo_FTA.png" class="spining" width="100px">
+   </div>
+   <!-- FIN_LOADER -->
+   <div id="contenido">
+      <h2>ZombieBird</h2>
+      <p class="texto">
+           Haremos una versión del FlappyBird. Para ello necesitaremos una estructura de carpetas que tendrán el
+          contenido necesario para hacer el juego que lo iremos incluyendo poco a poco:<br><br>
+         _GameAssets<br>
+          &emsp;•	Animation<br><br>
+          &emsp;•	Audio<br>
+             &emsp;&emsp;o	Hit.wav<br>
+             &emsp;&emsp;o	Point.wav<br>
+             &emsp;&emsp;o	Musica de fondo.mp3<br><br>
+          &emsp;•	Scenes<br>
+            &emsp;&emsp;o	Escena Portada<br>
+            &emsp;&emsp;o	Escena Jugar<br><br>
+         &emsp;•	Materiales para el ZombieBird y Tuberías<br><br>  
+         &emsp;•	Prefabs<br>
+            &emsp;&emsp;o	Explosión son las partículas de sangre del ZoombieBird cuando choca con las tuberías<br>
+            &emsp;&emsp;o	Tuberias<br>
+						&emsp;&emsp;&emsp;-	Tuberia Superior GO vacío <br>
+						&emsp;&emsp;&emsp;&emsp;•	Cuerpo<br>
+						&emsp;&emsp;&emsp;&emsp;•	Remate<br>
+						&emsp;&emsp;&emsp;-	Tuberia Inferior GO vacío<br>
+						&emsp;&emsp;&emsp;&emsp;•	Cuerpo<br>
+						&emsp;&emsp;&emsp;&emsp;•	Remate<br>
+						&emsp;&emsp;&emsp;-	Detector será un GO vacío con un BoxCollider y IsTrigger chequeado<br><br>
+         &emsp;•	Scripts<br>
+            &emsp;&emsp;o  PajaroZombie<br>
+            &emsp;&emsp;o  PipeGenerator<br>
+            &emsp;&emsp;o  Tuberías<br>
+            &emsp;&emsp;o  GameConfig tiene 3 métodos estáticos para llamarlos desde cualquier sitio para saber si puedo seguir jugando:<br>
+            &emsp;&emsp;&emsp;- IsPlaying<br>
+            &emsp;&emsp;&emsp;- ArrancaJuego<br>
+            &emsp;&emsp;&emsp;- ParaJuego<br>
+            &emsp;&emsp;o  GameController tiene métodos estáticos y guardaremos en PlayerPrefs las vidas, score y highscore.<br>
+            &emsp;&emsp;&emsp;- SetVidas y GetVidas<br>
+            &emsp;&emsp;&emsp;- SetPuntos y GetPuntos<br>
+            &emsp;&emsp;&emsp;- SetHighScore y GetHighScore<br>
+            &emsp;&emsp;o  PortadaScript. Tendremos varios métodos. Y estará en el Canvas de la portada.<br>
+            &emsp;&emsp;&emsp;- StartGame<br>
+            &emsp;&emsp;&emsp;- ExitGame<br><br>       
+         &emsp;•	Sprites para tener los botones y el título de la Escena Portada.<br>
+         &emsp;&emsp;o	https://es.cooltext.com/<br><br>
+         &emsp;•	Texturas para tener los BackGround, texturas de las tuberías…...<br>
+      </p>
+
+			<p class="nota">
+				En los Scripts y en todos los juegos habrá que crear métodos para tenerlo todo más organizado como pej: 
+					Actualizar Marcador, Actualizar Vidas, Finalizar Partida….. Lo que vayamos necesitando.
+  		</p>
+
+      <h3>Escena Juego</h3>
+      <p class="texto">
+         Tendremos que crear dentro de esta escena:<br>
+         •	PajaroZombie<br>
+         •	Tuberias (Prefab)<br>
+         •	Background<br>
+         •	PipeGenerator<br>
+         •	Canvas<br>
+         &emsp;o	Puntuacion<br>
+         &emsp;o	HighScore<br>
+         &emsp;o	Vidas<br>
+         •	SoundExplosion<br>
+         •	SoundFondo
+      </p>
+
+      <h3>Pájaro</h3>
+      
+      <p class="img_centrada"><img src="img/tema3/3-1.png" width="80%" alt=""></p>
+       
+      <p class="texto">
+      		El pájaro lo creamos mediante Cubos, esferas……lo que necesitemos teniendo en cuenta la colocación de los
+      	  objetos (padres e hijos). Estará mirando hacia la derecha.
+      </p>	  
+      
+      <p class="nota">
+				En el Script todos los valores que se usen tendrán que estar dentro de variables. Algunos serán públicos
+			  para poder modificarlos desde Unity y otros private. Pej public int velocidad = 100; Para hacer pruebas y
+			  podamos modificarlo en tiempo de ejecución
+ 			</p>	  
+      
+      
+      <h3>Script PajaroZombie.cs</h3>
+      <p class="texto">
+      		Lo podemos mover de varias maneras. Probar todas las opciones y dejaremos la que más nos guste.<br>
+      	   &emsp;•	Con el Espacio: <br>
+					&emsp;&emsp;o		Input.GetKeyDown(“space”)<br>
+					&emsp;&emsp;o		Le damos fuerza al RigidBody con AddForce hacia arriba.<br>
+					&emsp;•	Con ASDW por posición: Input.GetKey(KeyCode.W).<br>
+					&emsp;&emsp;o	Transform.position += ó -= new Vector3(x, y, 0) donde la x ó y será velocidad * Time.Deltatime<br>
+					&emsp;•	Con Translate<br>
+					&emsp;&emsp;o	Multiplicando el Vector.right (o el que corresponda) * velocidad * Time.Deltatime <br><br>
+					El pájaro no podrá sobrepasar los límites de la pantalla.
+			 </p>	  
+      
+      <p class="nota">
+      		Time.Deltatime para hacer que tu juego funcione independientemente de la velocidad de fotogramas.
+      </p>	 
+      
+     <h3>Animación del Pajaro</h3>
+      <p class="texto">
+      	El pájaro tendrá una animación para que se muevan las alas.<br>
+     		&emsp;•	Componente Animator<br>
+				&emsp;&emsp;o	Crear Controlador Pajaro y Animation Alas .
+			</p>	
+		 	 
+		 <h3>Tubería</h3>
+		
+		 	<p class="img_centrada"><img src="img/tema3/3-37.png" width="80%" alt=""></p>
+		 
+		 	<p class="texto">
+		 			Crear la tubería como hemos indicado anteriormente. Tanto la Tubería Inferior y Superior (los GO vacíos)
+		 			 tendrán que tener un Material en los hijos de Cuerpo y Remate. Y 2 componentes BoxCollider y RigidBody.<br>
+					Hacer el Prefab de la Tuberia.
+			</p>	
+		 
+		  
+      <p class="nota">
+      		GO Abreviatura de GameObject.
+      </p>	 
+      
+		 <h3>GO PipeGenerator</h3>
+		 <p class="texto">		 		
+		 		GO vacío desde donde empiezan a generarse las tuberías. Y tendrá asociado un Script PipeGenerator.cs.<br>
+				&emsp;•	InvokeRepating que llamara a un método de GenerarPipe cada cierto tiempo.<br>
+				&emsp;•	Metodo GenerarPipe utilizaremos otro método Instantiate para crear la tuberia.
+			</p>	
+		 		
+		 	<h3>Script Tuberia.cs</h3>
+		 	 <p class="texto">		
+		 		Tendrá un script de Tuberia.cs:<br>
+				&emsp;•	La tubería se generará en una posición aleatoria mediante Random.Range con un limiteSuperior y un
+					 limiteInferior.<br>
+				&emsp;•	Haremos que cada tubería empiece en una dirección aleatoria entre 1 y 2. Para que empiece arriba o
+						 abajo. Y para ello crearemos un método TuberiaSubiryBajar().<br>
+				&emsp;•	El movimiento lo haremos con el Translate hacia la izquierda. Usando el Time.deltaTime y una velocidad.<br>
+				&emsp;•	Cuando la tubería sobrepase una posición X la destruimos.<br><br> 
+				</p>	
+						 
+      <p class="nota">
+      		Crear un Prefab de la Tuberia.
+      </p>	 
+      
+				<h3>Animación de las Tuberías</h3>
+      	<p class="texto">
+      			Faltaría la animación de las Tuberías que la haríamos moviendo la posición Y tanto de la TuberiaSuperior 
+						y TuberiaInferior. Como si nos quisieran aplastar al pájaro entre ellas. La llamaríamos Tuberia.
+      	</p>	
+				
+			 	<h3>Script PajaroZombie.cs</h3>
+			 	 <p class="texto">		
+		 				El pájaro tendrá 3 métodos:<br>
+			 			&emsp;•	Método OnCollisionEnter: Cuando colisionamos con la tubería tendremos que quitar vida, actualizar
+		 						 el canvas (Método Actualizar Vidas) y aparecerán unas partículas de color rojo que será un Prefab 
+		 						 de Explosión. Tendrá un sonido de Hit.<br>
+						
+						&emsp;•	Método OnTriggerEnter: Y si colisionamos con el Detector sumaremos puntos y también aparecerán
+								 el canvas (Método Actualizar Marcador). Tendrá un sonido de Point.<br>
+						&emsp;•	Componente AudioSource<br>
+						&emsp;&emsp;o	Point para puntos
+			</p>	
+		 	 
+		 <h3>GO Explosion</h3>
+		 <p class="texto">	
+		 		GO vacío con un componente Particle System para que aparezcan las particulas cuando se chocan con la tuberia.
+		 		Será un Prefab<br>
+			</p>	
+			<p class="img_centrada"><img src="img/tema3/3-44.png" width="80%" alt=""></p>
+			 
+		 <h3>GO SoundExplosion</h3>
+		 <p class="texto">	
+		 		GO vacío con un componente AudioSource hit para cuando choque con la tubería.<br>
+			</p>	
+				
+		 <h3>GO Background</h3>
+		 <p class="texto">			
+				Será el fondo del juego un Quad. Buscar una textura que sea .JPG y añadírselo a un material.
+		 </p>	
+			
+ 		 <h3>GO Canvas</h3>
+		 <p class="texto">			
+				UI/Text-TextMeshPro<br>
+				&emsp;•	Contendrá la puntuación cada vez que pasemos una tubería.<br>
+				&emsp;•	HighScore.<br>
+				&emsp;•	Vidas del Pajaro.<br>
+			</p>	
+			<p class="img_centrada"><img src="img/tema3/3-71.png" width="80%" alt=""></p>	
+
+	 		<h3>Script GameControler.cs</h3>
+ 			<p class="texto">	
+				 Guardaremos la puntuación, HighScore y Vidas en PlayerPrefs. Los PlayerPrefs los guardamos en un Script
+				 GameControler.cs con métodos Static para poder llamarlo desde el Script:<br>
+					&emsp;•	GetPuntos(), SetPuntos(), GetHightScore(), SetHightScore(), GetVidas(), SetVidas().
+			</p>	
+
+			<p class="nota">
+				PlayerPrefs en Unity es una clase integrada diseñada para guardar y cargar configuraciones o datos simples
+				 del jugador (como volumen, puntuaciones altas o nivel actual.....). 
+			</p>	
+				
+			<h3>Script GameConfig.cs</h3>
+			<p class="texto">	
+					Será un Script que tendrá 3 métodos estáticos:<br>
+				&emsp;•	IsPlaying retorna el bool de jugando para saber si sigo con el juego o no.<br>
+				&emsp;•	ArrancaJuego pone la variable de jugando a true.<br>
+				&emsp;•	ParaJuego pone la variable de jugando a false.<br>
+			</p>	
+				
+			<h3>Escena Portada</h3>
+      <p class="texto">	
+   				Tendremos que crear dentro de esta escena:<br>
+					&emsp;•	AudioSource es una música de Fondo.<br>
+					&emsp;•	Canvas.<br>
+					&emsp;&emsp;o	PortadaScript.cs tendrá 2 métodos para los botones:<br>
+					&emsp;&emsp;&emsp;-	StartGame.<br>
+					&emsp;&emsp;&emsp;-	ExitGame.<br>
+					&emsp;&emsp;&emsp;-	DeteleGame Borra los PlayerPrefs. NO obligatorio<br>
+					&emsp;&emsp;o	Image será el BackGround.<br>
+					&emsp;&emsp;o	Image Titulo del Juego.<br>
+					&emsp;&emsp;o	Button para Resetear los PlayerPrefs Por si lo necesito NO obligatorio.<br>
+					&emsp;&emsp;o	Panel.<br>
+					&emsp;&emsp;&emsp;-	Start.<br>
+					&emsp;&emsp;&emsp;-	Exit.<br>
+				</p>	
+ 				<p class="img_centrada"><img src="img/tema3/3-72.png" width="80%" alt=""></p>
+     
+      <br><br>
+      <a class="texto volver" href="javascript:history.back(-1);">Volver al índice</a>
+   </div>
+   <div id="pie">
+      <h1> Fun Tech Academy - Calle Alcobendas, 23 Leganés 28914 Madrid - www.funtech.academy </h1>
+   </div>
+</body>
+</html>
