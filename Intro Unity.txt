@@ -1,0 +1,66 @@
+Flujo de trabajo de activos
+Esta sección del Manual del usuario de Unity ofrece una descripción general de los principios para trabajar con activos en Unity, incluyendo los siguientes temas:
+
+Tipos comunes de activos
+Paquetes de activos
+Uso de la Asset Store
+AssetBundles
+Base de datos de activos
+Scripting con activos
+Consulte también los siguientes temas relacionados en otras secciones del manual:
+
+Unity Accelerator en la sección Servicios de Unity
+Asset Server (Licencia de equipo) en la sección Legado
+Publicación en la Asset Store
+Qué representan los activos
+Un activo es una representación de cualquier elemento que pueda usar en su proyecto. Un activo puede provenir de un archivo creado fuera de Unity, como un modelo 3D, un archivo de audio o una imagen. Puede crear algunos tipos de activos en Unity, como una malla de ProBuilder, un controlador de animación, un mezclador de audio o una textura de renderizado.
+
+Cómo importa activos Unity
+Unity importa activos automáticamente y administra datos adicionales sobre ellos, como qué configuración de importación se debe usar para importar el activo y dónde se usa el activo en su proyecto. A continuación se describe cómo funciona este proceso:
+
+Unity asigna un ID único al activo.
+Unity crea un archivo .meta.
+Unity procesa el activo.
+En algunos casos, Unity puede crear varios activos al importar un solo archivo. Para obtener más información, consulte Importar activos complejos.
+
+La configuración de importación puede afectar la forma en que Unity procesa los activos. Para obtener más información, consulte Activos y su configuración de importación.
+
+ID únicos
+Al colocar un activo, como una textura, en la carpeta Activos, Unity detecta que se ha agregado un nuevo archivo porque el Editor compara frecuentemente el contenido de la carpeta Activos con la lista de activos que ya conoce.
+
+Cuando Unity encuentra el nuevo archivo, le asigna un ID único. Este ID se utiliza internamente para referenciar el activo, de modo que Unity pueda moverlo o renombrarlo sin afectar su funcionamiento.
+
+Archivos .meta
+Relación entre la carpeta Assets de tu proyecto de Unity en tu ordenador y la ventana del Proyecto en Unity
+Este ejemplo muestra que Unity crea un archivo .meta para cada asset o carpeta dentro de la carpeta Assets del proyecto, tal como aparecen en el explorador de archivos del sistema. Sin embargo, estos archivos .meta no son visibles en la ventana del Proyecto porque están ocultos por defecto. Puedes hacerlos visibles seleccionando "Archivos Meta Visibles" en la configuración del proyecto "Modo".
+
+Cuando Unity crea un archivo .meta para un asset, escribe el ID del asset dentro del archivo .meta y lo almacena en la misma ubicación que el archivo del asset. El archivo .meta debe permanecer en la misma ubicación que el archivo del asset al que se relaciona, ya que contiene el ID del asset. Si mueves o renombras un asset dentro de la ventana del Proyecto, Unity mueve o renombra automáticamente el archivo .meta correspondiente. Sin embargo, si mueve o renombra un recurso fuera de Unity (por ejemplo, a través del explorador de archivos del sistema), asegúrese de mover o renombrar el archivo .meta para que coincida.
+
+Si un recurso pierde su archivo .meta (por ejemplo, si lo movió o renombró fuera de la ventana del Proyecto de Unity, sin actualizar su archivo .meta), cualquier referencia a ese recurso se rompe y Unity genera un nuevo archivo .meta para el recurso como si fuera un recurso diferente, eliminando el antiguo archivo .meta "huérfano".
+
+Por ejemplo, si un recurso de textura pierde su archivo .meta, los materiales que usaban esa textura ya no tienen referencia a ella. Para solucionar esto, deberá reasignar manualmente esa textura a los materiales que la requieran.
+
+De forma similar, cuando un recurso de script asociado a un GameObject (o Prefab) pierde su archivo .meta, dicho GameObject pierde la funcionalidad del script y termina con un componente de "script sin asignar". Para solucionar esto, debes reasignar manualmente el script al GameObject.
+
+Procesamiento de recursos
+Unity lee y procesa cualquier archivo que agregues a la carpeta Assets, convirtiendo su contenido en datos internos listos para usar. Los archivos de recursos permanecen inalterados y los datos internos se almacenan en la carpeta Library del proyecto.
+
+El uso de formatos internos para recursos permite a Unity tener versiones listas para usar en tiempo de ejecución en el Editor, mientras que los archivos fuente sin modificar se guardan en la carpeta Assets. Mantener los formatos internos separados de los archivos de recursos significa que puedes editarlos rápidamente y que el Editor recopile los cambios automáticamente. Por ejemplo, el formato de archivo de Photoshop es práctico y permite guardar archivos .psd directamente en la carpeta Assets, pero dispositivos como dispositivos móviles y tarjetas gráficas de PC no pueden procesar ese formato directamente para renderizarlos como texturas.
+
+Unity almacena la representación interna de los assets en la carpeta Library, que funciona como una carpeta de caché. Como usuario, nunca debería tener que modificar manualmente la carpeta Library, ya que intentar hacerlo podría afectar negativamente a su proyecto en el Editor de Unity. Sin embargo, siempre que el proyecto no esté...
+
+
+Importación de recursos complejos
+A veces, Unity crea varios recursos al importar un solo archivo de recursos. Por ejemplo, esto puede ocurrir en las siguientes situaciones:
+
+Escenario de importación: Cómo Unity gestiona el archivo:
+Cuando un archivo 3D (como un archivo FBX) define materiales o contiene texturas integradas. Unity extrae los materiales y las texturas integradas como recursos independientes.
+Cuando se desea importar un archivo de imagen como varios sprites 2D, se utiliza el Editor de Sprites 2D para definir varios sprites a partir de una sola imagen gráfica. En este caso, cada sprite definido en el Editor aparece como un recurso de Sprite independiente en la ventana del Proyecto.
+Cuando un archivo 3D contiene varias líneas de tiempo de animación o varios clips, Unity define automáticamente líneas de tiempo de animación o clips independientes según su configuración de importación de animación. Los múltiples clips de animación resultantes aparecen como recursos de Clip de Animación independientes en la ventana del Proyecto.
+
+Recursos y sus ajustes de importación
+Además del ID único asignado al recurso, los archivos .meta contienen valores para todos los ajustes de importación que se ven en la ventana del Inspector al seleccionar un recurso en la ventana del Proyecto. Para una Textura, esto incluye los ajustes de importación de Tipo de Textura, Modo de Envoltura, Modo de Filtro y Nivel de Aniso.
+
+Si modifica los ajustes de importación de un recurso, estos nuevos ajustes se guardan en el archivo .meta que lo acompaña. Unity reimporta el recurso según los ajustes actualizados y actualiza los datos "listos para jugar" correspondientes en la carpeta Biblioteca del proyecto.
+
+Al realizar una copia de seguridad de un proyecto o agregar un proyecto a un repositorio de control de versiones, incluya la carpeta principal del proyecto de Unity, que contiene las carpetas Assets y ProjectSettings. Unity utiliza la información de estas carpetas para reimportar los recursos y reconstruir el juego o la aplicación. No realice una copia de seguridad de las carpetas Biblioteca y Temporal ni las ponga bajo control de versiones.
