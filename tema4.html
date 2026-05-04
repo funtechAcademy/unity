@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="styles/style.css">
+   <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Sanchez&display=swap" rel="stylesheet">
+   <script src="js/scripts.js"></script>
+   <title>Prueba De Armas</title>
+</head>
+<body>
+   <div id="cabecera">
+      <h1>Prueba De Armas</h1>
+   </div>
+   <!-- INICIO_LOADER -->
+   <div id="pageloader">
+      <img src="img/LogoOjo_FTA.png" class="spining" width="100px">
+   </div>
+   <!-- FIN_LOADER -->
+   <div id="contenido">
+      <h2>Prueba De Armas</h2>
+      <p class="texto">
+           Haremos una Prueba de Armas con disparos. Para ello necesitaremos una estructura de carpetas que tendrán el
+          contenido necesario para hacer el juego que lo iremos incluyendo poco a poco:<br><br>
+         _GameAssets<br>
+          &emsp;•	Animations<br>
+          &emsp;&emsp;o	CannonControler contendra 2 clips de animación que mediante un parámetro se activa.<br>
+          &emsp;&emsp;o	CannonIdle y CannonMove serán los 2 clips de animación.<br><br>
+          &emsp;•	Audio<br>
+             &emsp;&emsp;o	Bomba.wav<br>
+             &emsp;&emsp;o	Explosion Bomba.mp3<br>
+             &emsp;&emsp;o	Flecha.wav<br><br>
+          &emsp;•	Materiales<br>
+          &emsp;&emsp;o	Cada uno de los objetos tendrán un material asociado.<br>
+				 	&emsp;&emsp;o	También hay un Material Mirilla que tiene un sprite de Mirilla en el Albedo.<br><br>
+				 	&emsp;•	Prefabs<br>
+				 	&emsp;&emsp;o	Bomb<br>
+				  &emsp;&emsp;o	Flecha.<br><br>
+          &emsp;•	Scenes<br>
+            &emsp;&emsp;o	Escena<br><br>
+         &emsp;•	Scripts<br>
+            &emsp;&emsp;o  ArcoScript<br>
+            &emsp;&emsp;o  BombaScript<br>
+            &emsp;&emsp;o  FlechaScript<br>
+            &emsp;&emsp;o  FollowScript<br>
+            &emsp;&emsp;o  FrancotiradorScript<br>
+            &emsp;&emsp;o  MorteroScript <br>   
+         &emsp;•	Sprites<br>
+            &emsp;&emsp;o  Mirilla.png<br>
+      </p>
+     
+      <h3>Escena</h3>
+      <p class="texto">
+         Tendremos que crear dentro de esta escena:<br>
+       	&emsp;•	Plano.<br>
+				&emsp;•	Mortero.<br>
+				&emsp;•	Arco.<br>
+				&emsp;•	Tirachinas.<br>
+				&emsp;•	Francotirador.<br>
+				&emsp;•	CajaExplos1… CajaExplos4 4 Cubos.<br>
+				&emsp;•	Pelota.<br>
+				&emsp;•	ParedArco.<br>
+				&emsp;•	ParedFrancotirador.<br>
+				&emsp;•	CilindroFrancotirador.
+      </p> </p>
+      <p class="img_centrada"><img src="img/tema4/4-1.png" width="80%" alt=""></p>
+
+			<p class="nota">
+				Cuando se crean objetos por defecto siempre los ponemos en la posición 0,0,0.<br>
+ 				A lo largo del juego hay que ir probando si todo va funcionando correctamente.
+ 			</p>
+ 			
+ 			<h3>Plano</h3>
+      <p class="texto">
+ 					Crear un Objeto 3D que sea un Plane y le metemos un material que se guardara en la carpeta de Materiales.
+ 			</p>
+ 			
+ 			<h3>Mortero</h3>
+      <p class="texto">
+ 					Crear un 3D Objeto que sea una esfera y se llamara Mortero.
+ 			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-2.png" width="80%" alt=""></p>
+ 			
+ 			<p class="texto">
+ 					&emsp;•	Si vemos el Gizmo (son las flechas que aparecen) del Mortero lo creamos mirando hacia la
+ 						 izquierda.<br>
+					&emsp;•	Añadir dentro un 3D Objeto que sea un cilindro Canon.<br>
+					&emsp;&emsp;o  Crear otro 3D Objeto que sea otro cilindro que se llamara Canon1 y es hijo de Canon.<br>
+					&emsp;&emsp;&emsp;-	Y otro que sea GO vacío que se llame GenPoint. Desde donde saldrá la bomba cuando
+						 le demos sobre el Mortero con el click izquierdo. Lo situamos en la punta del cilindro.
+			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-3.png" width="80%" alt=""></p>
+ 			
+ 			<p class="texto">
+ 					Se le puede añadir una etiqueta del color que queramos para poder identificar los cañones:<br>
+					&emsp;•	En el inspector del Mortero aparece a la izquierda una etiqueta de color amarillo.<br>
+					&emsp;•	Si damos a la flecha que aparece debajo aparecerá una ventana para poder seleccionarlo.
+			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-4.png" width="80%" alt=""></p>
+ 			
+ 			<h3>Bomba</h3>
+      <p class="texto">
+      		Esta bomba es la que se lanzara cuando demos con el click izquierdo sobre el Mortero:<br>
+      		&emsp;• Descargar una bomba o hacerla mediante una Esfera.<br><br>
+      		
+      		Para poder descargarla haremos lo siguiente:<br>	
+      		Podemos ir al Editor de Unity y desde Window/Asset Store accedemos a la pagina para poder seleccionar
+      		lo que quiero descargar ó tambien accedemos directamente poniendo "asset store unity" en Google.
+     		</p> 	
+      	<p class="img_centrada"><img src="img/tema4/4-5.png" width="80%" alt=""></p>
+				<p class="img_centrada"><img src="img/tema4/4-6.png" width="80%" alt=""></p>
+					
+			<p class="nota">
+				También podriamos ir a otras páginas pero siempre coger las que sean "Low Poly" para que tenga los menos
+				 polígonos posibles y el rendimiento sea mejor.
+ 			</p> 			
+ 			
+ 			<p class="texto">
+ 			 	Vamos a descargarla desde la pagina de Unity. Si es posible que sea gratis.<br>
+ 			 	&emsp;• Lo primero que haremos es buscar en el buscador "bomb".<br>
+ 				&emsp;• Seleccionar que sea Free.
+ 			</p> 	
+      <p class="img_centrada"><img src="img/tema4/4-7.png" width="80%" alt=""></p>
+ 			
+ 			<p class="texto">
+ 					&emsp;• Nos aparecen varios recursos, seleccionamos el que nos interese y le damos al botón de
+ 					 "Add to My Assets".		
+ 			</p> 	
+			<p class="img_centrada"><img src="img/tema4/4-8.png" width="80%" alt=""></p> 	
+			<p class="img_centrada"><img src="img/tema4/4-9.png" width="80%" alt=""></p> 			
+ 			
+ 			<p class="texto">
+ 					&emsp;• Aceptar los Terminos de Uso.
+ 			</p> 	
+			<p class="img_centrada"><img src="img/tema4/4-10.png" width="80%" alt=""></p> 	
+ 			
+ 			<p class="texto">
+ 					&emsp;• Y aparecera una ventana para que lo abramos a Unity o Ir a mis Assets. Seleccionamos que lo abra
+ 					 en Unity.
+ 			</p> 	
+			<p class="img_centrada"><img src="img/tema4/4-11.png" width="80%" alt=""></p> 
+ 			
+ 			<p class="texto">
+ 					&emsp;• Nos lo abrira en el Editor de Unity y le damos al botón de Download.
+ 			</p> 	
+			<p class="img_centrada"><img src="img/tema4/4-12.png" width="80%" alt=""></p> 
+ 			
+ 			<p class="texto">
+ 					&emsp;• Damos al botón Import y nos aparece otra ventana con todos los Modelos, Materiales ..... que nos
+ 					 descargara.
+ 					Y volvemos a dar al botón de Import.
+ 			</p> 	
+			<p class="img_centrada"><img src="img/tema4/4-13.png" width="80%" alt=""></p> 
+ 			
+ 			<p class="texto">
+ 					&emsp;• Nos lo deja en una carpeta dentro de la solapa de Project/Assets.
+ 			</p> 	
+			<p class="img_centrada"><img src="img/tema4/4-14.png" width="80%" alt=""></p> 
+ 			
+ 			<p class="texto">
+ 				&emsp;• Lo que tendriamos que hacer es añadirlo a la Escena. Si es un Prefab lo prodriamos guardar dentro
+ 				 de nuestra carpeta de Prefabs. Y si no lo es podriamos crear el Prefab y dejarlo en su carpeta.
+ 			</p> 
+ 			
+ 			<p class="texto">
+ 					La bomba tendrá varios componentes:<br>
+ 					&emsp;• SphereCollider.<br>
+ 					&emsp;• Rigidbody.<br>
+ 					&emsp;• AudioSource con un AudioClip "Explosion Cajas" que sonará cuando la bomba explote lo que tenga a
+ 					 su alrededor.
+ 			</p> 
+ 			<p class="img_centrada"><img src="img/tema4/4-15.png" width="80%" alt=""></p> 
+ 	
+      <p class="texto">
+      		Tendrá también un script asociado llamado BombaScript.
+      </p>
+ 			<p class="img_centrada"><img src="img/tema4/4-16.png" width="80%" alt=""></p> 
+ 			
+ 			<p class="texto">
+ 				&emsp;• Primero tenemos que añadir las variables.<br>
+				&emsp;&emsp;o	De tipo SerializeField int tiempoParaExplosion, radioExplosion, fuerzaExplosion, 
+				alturaExplosion. Serán privadas, pero al ser SerializeField las podemos modificar en el Editor para 
+				hacer las pruebas.<br>
+				&emsp;&emsp;o	AudioSource AudioSource para recoger el sonido de la explosión.<br>
+				&emsp;•	Start.<br>
+				&emsp;&emsp;o	Recoger el componente del AudioSource.<br>
+				&emsp;&emsp;o	Llamamos al método Explotar y tardara unos segundos en ejecutarse.<br>
+				&emsp;•	Método Explotar.<br>
+				&emsp;&emsp;o	Hacemos que suene el sonido.<br>
+				&emsp;&emsp;o	Recoger todos los Collider que halla en un determinado rango desde la posición que caiga
+				 la bomba. <br>
+				&emsp;&emsp;o	Y a todos los que encuentre con un determinado tag le haremos una fuerza de Explosion.<br>
+				&emsp;&emsp;o	El tag lo tenemos que crear en el Editor desde el Inspector de cualquier objeto.
+			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-17.png" width="80%" alt=""></p> 
+ 			
+			<p class="texto">	
+				&emsp;&emsp;&emsp;-	Le damos Add Tag y le ponemos el nombre de "CajasExplosionables". (Lo usaremos en el Script
+				 y luego se lo pondremos a nuestras cajas)
+			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-18.png" width="80%" alt=""></p>  
+				 
+			<p class="texto">	 
+				&emsp;•	Cuando lo tengamos terminado crearemos un prefab y lo guardaremos en su carpeta.
+			</p>
+ 				
+ 			<h3>Mortero</h3>
+      <p class="texto">
+      		Cuando hagamos un click izquierdo sobre el Mortero haremos que el Cannon del Mortero tenga una animación.
+      		Para ello vamos a necesitar un Animator Controller que llamaremos CannonControler y tendra 2 animaciones:<br>
+      		&emsp;•	CannonIdle se mantendrá en la posición original.<br>
+      		&emsp;• CannonMove se movera en el eje X un poco hacia dentro y luego volvera a su posición inicial.<br><br>
+    
+        	Tendremos que arrastar las animaciones al Animator:<br>
+        	&emsp;•	Arrastrar la CannonIdle al Animator y atomáticamente se crea una linea naranja desde Entry a la
+        	 animación.			
+      	</p>
+      	<p class="img_centrada"><img src="img/tema4/4-19.png" width="80%" alt=""></p>  	
+      	
+      	<p class="texto">
+      	&emsp;•	Arrastrar CannonMove al Animator.	
+      	</p>
+      	<p class="img_centrada"><img src="img/tema4/4-20.png" width="80%" alt=""></p>  	
+      	
+      	<p class="texto">
+      	Necesitamos crear un parámetro para poder hacer una transición de Idle a Move y de Move a Idle. En la
+      	 ventana de Animator tenemos 2 solapas. Seleccionamos "Parameters" y le damos al "+". Y nos aparecera los 
+      	 tipos de variables que podemos crear. En nuestro caso seleccionamos Bool.
+      	</p>
+      	<p class="img_centrada"><img src="img/tema4/4-21.png" width="80%" alt=""></p>  	
+      	  	
+      	<p class="texto">
+      		&emsp;•	Lo llamaremos disparar.
+      	</p>
+      	<p class="img_centrada"><img src="img/tema4/4-22.png" width="80%" alt=""></p>  	
+      	
+      	<p class="texto">   	 
+      	&emsp;•	Hacer click derecho encima de CanonIdle y aparece un menu y seleccionar "Make Transition" y aparece
+      	 una flecha que la llevaremos a CannonMove y hacer otra transicion del CannonMove a CanonIdle.	
+      	</p>
+      	<p class="img_centrada"><img src="img/tema4/4-23.png" width="80%" alt=""></p>  	
+      	<p class="img_centrada"><img src="img/tema4/4-24.png" width="80%" alt=""></p>  	
+   
+   		 <p class="texto">   	 
+      	&emsp;•	Seleccionar la flecha que va a CannonMove. Y a la derecha aparece la animación con unas
+      	 propiedades que podremos modificar. Y en "Conditions" añadir con el "+" el parámetro de "disparar" a "true"
+      	  para que la animación de CannonMove se active.
+       </p>
+      	<p class="img_centrada"><img src="img/tema4/4-25.png" width="80%" alt=""></p>  	 
+   
+   			<p class="texto">   	 
+      	&emsp;•	Seleccionar la flecha que va a CannonIdle y añadir la condición de "disparar" a "false" para 
+      	que la animación se pare. Para poder hacer la animación tendremos que hacer en su Script que esa variable
+      	 cambie de valor.
+   		 </p>
+      	<p class="img_centrada"><img src="img/tema4/4-26.png" width="80%" alt=""></p>  	 
+      	
+  		 <p class="texto">   	 
+  		 	El Cannon del Mortero tendra un componente de Animator donde le arrastraremos el controlador CannonControler. 
+  		 </p>
+  		 <p class="img_centrada"><img src="img/tema4/4-27.png" width="80%" alt=""></p>  	
+   
+    		<p class="texto">   	 
+ 					Crear un script MorteroScript.cs y asociarlo al Mortero para que aparezca nuestra Bomba en la punta
+ 				 de nuestro cañon y haremos también la animación del Cannon.
+ 			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-28.png" width="80%" alt=""></p>  
+ 			
+ 			<p class="texto"> 			
+					&emsp;•	Necesitamos variables de tipo SerializeField.<br>
+					&emsp;&emsp;o	Transform genPoint.<br>
+					&emsp;&emsp;o	GameObject prefabProyectil.<br> 
+					&emsp;&emsp;o	Int force = 600.<br>
+					&emsp;&emsp;o Animator anim.<br>
+					&emsp;•	Y privada AudioSource audiosource.<br>
+					&emsp;•	Habrá que arrastrar en el Editor las variables que sean SerializeField.
+			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-29.png" width="80%" alt=""></p>  
+ 			
+ 			<p class="texto"> 			
+					&emsp;•	Start.<br>
+					&emsp;&emsp;o	Recoger el componente del AudioSource.<br>
+					&emsp;•	OnMouseDown.<br>
+					&emsp;&emsp;o	Llamaremos a una Corutina "Animacion" para hacer la animación.<br>
+					&emsp;&emsp;o	Creamos el proyectil con el método instatiate poniendo el prefab que pasamos por parámetro
+					 en la posición del Getpoint y rotación del mundo.<br>
+				</p>	 
+					 
+				<p class="nota"> 			
+					La rotación dependera de como podamos situar la bomba. Podria ser rotación del mundo o del Getpoint	
+				</p>		
+				 
+				<p class="texto"> 	
+					&emsp;&emsp;o	Recoger con el GetComponent el RigidBody del proyectil para hacerle una fuerza hacia
+					 delante (dependiendo de como este apuntando la flechas del Gizmo) * force usando el método
+					  AddRelativeForce.<br>
+					&emsp;&emsp;o	Hacemos el sonido del disparo.<br>
+					&emsp;&emsp;o	Y lo destruimos al cabo de unos segundos.<br>
+					&emsp;•	IEnumerator Animacion.<br>
+					&emsp;&emsp;o	Modificar el parámetro disparar de la animación a true.<br>
+					&emsp;&emsp;o	Esperar.<br>
+					&emsp;&emsp;o	Y volvemos a dejar el parámetro a false.
+			</p>
+ 			
+ 			<p class="nota"> 			
+ 					Diferencias:<br>
+ 					 AddForce(Vector3.forward) mueve el objeto hacia la dirección Z global del mundo sin importar
+ 					 hacia donde este mirando.<br>
+ 					 AddRelativeForce(Vector3.forward) mueve el objeto hacia su propia dirección Z ya que habriamos modificado
+ 					 sus rotaciones.
+ 			</p>	 
+ 					 
+			<h3>Bomba</h3>
+      <p class="texto">
+				Faltaría añadir un nuevo componente Trail Render en la Bomba para que tenga un rastro cuando
+				 se dispare.<br>
+ 					&emsp;•	Si no tocamos nada del componente y ejecutamos se queda una estela infinita.
+ 			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-30.png" width="80%" alt=""></p>  		
+ 					
+ 			<p class="texto">		
+ 				&emsp;•	Nos aparece de color rosa, aunque en el parámetro de color está en blanco porque no tiene ningún
+ 						 material asignado dentro del componente. 				
+ 			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-31.png" width="80%" alt=""></p>  				
+ 					
+ 			<p class="texto">		
+ 				&emsp;•	Vamos a ponerle el Material Defult-Line buscándolo en el punto que aparece a la derecha del
+ 				 Elemento 0 y ejecutar.
+ 			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-32.png" width="80%" alt=""></p>  				
+ 					
+ 			<p class="texto">		
+ 				&emsp;•	Para ver que la estela se queda por detrás de la Bomba modificaremos el parámetro Order
+ 				 in Layer y pondremos -1. 
+ 			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-33.png" width="80%" alt=""></p>  	
+ 				
+ 			<p class="texto">		
+ 				&emsp;•	Vamos a ver Witdh.<br>
+ 				&emsp;&emsp;o	Esta de 0 a 1 segundo.<br>
+				&emsp;&emsp;o	El ancho esta por defecto en el ancho máximo a 1.<br>
+				&emsp;&emsp;o Si hacemos dobleclick a lo largo de la línea aparecerán puntos que podremos ir bajando.
+				 En nuestro caso al principio es ancha pero se ira haciendo más estrecha. 
+			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-34.png" width="80%" alt=""></p>  	
+ 			
+ 			<p class="nota"> 			
+ 				Se pueden poner más puntos a lo largo de la línea roja.
+ 			</p>
+ 			
+ 			<p class="texto">		
+ 				&emsp;&emsp;o	Pero sigue siendo larga así que también modificaremos el Time de 5 a 0.1 para que
+ 				 sea más corta.<br>	
+ 				 &emsp;•	Color vamos a cambiar el color que empiece en rojo y acabe en amarillo.<br>
+ 				 &emsp;&emsp;o	Seleccionamos Color y aparece una ventana de Gradient Color.
+ 			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-35.png" width="80%" alt=""></p>  	
+ 			
+ 			<p class="texto">		
+ 			 	&emsp;&emsp;o	Seleccionar de nuevo Color y seleccionamos el rojo. 
+ 			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-36.png" width="80%" alt=""></p>  		
+ 			
+ 			<p class="texto">		
+ 			 	&emsp;&emsp;o	Y para hacer que acabe en amarillo seleccionar el punto blanco que parece una flecha y
+ 			 	 mira hacia arriba de la derecha, pero el que esta situado debajo del cuadro.	
+ 			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-37.png" width="80%" alt=""></p>  		
+ 			
+ 			<p class="texto">		
+ 			&emsp;&emsp;o	Seleccionar otra vez el cuadro de color y lo ponemos en amarillo.
+ 			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-38.png" width="80%" alt=""></p>  		
+ 			
+ 			<p class="texto">		
+ 			&emsp;•	Cambiamos el ancho para que sea más estrecho. En el diagrama donde pone 1.0 pondremos 0.1. 			
+ 			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-39.png" width="80%" alt=""></p>  			
+ 				
+ 			<h3>Arco</h3>
+      <p class="texto">
+ 					Crear un 3D Objeto que sea una esfera y se llamara Arco.
+ 			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-40.png" width="80%" alt=""></p>  	
+ 			
+ 			<p class="texto">
+ 					&emsp;•	Si vemos el Gizmo (son las flechas que aparecen) del Arco lo creamos mirando hacia la
+ 						 izquierda.<br>
+					&emsp;•	Añadir dentro un 3D Objeto que sea un cilindro Canon.<br>
+					&emsp;&emsp;o  Crear otro 3D Objeto que sea otro cilindro que se llamara Canon1 y es hijo de Canon.<br>
+					&emsp;&emsp;&emsp;-	Y otro que sea GO vacío que se llame GenPoint.  Desde donde saldrá la flecha cuando
+					 le demos sobre el Arco con el click izquierdo. Lo situamos en la punta del cilindro un poco adelantada.
+					  La X estará rotada hacia la izquierda (-90) para cuando se dispare tenga bien su dirección
+			</p>
+			<p class="img_centrada"><img src="img/tema4/4-41.png" width="80%" alt=""></p>  	
+ 						
+ 			<h3>Flecha</h3>
+      <p class="texto">		
+ 					Esta flecha es la que se lanzara cuando demos con el click izquierdo sobre el Arco. Podemos crearla
+ 				 nosotros o cogerla del Asset Store.	
+ 			</p>
+			<p class="img_centrada"><img src="img/tema4/4-42.png" width="80%" alt=""></p>  	
+ 			
+ 			<p class="texto">							
+ 					&emsp;•	Crear un 3D Objeto que sea un cubo llamado Flecha.<br>
+					&emsp;&emsp;o	Tiene un componente de RigidBody.<br>
+					&emsp;&emsp;o	Y un Script FlechaScript.cs.<br>	
+					&emsp;•	Tendrá un hijo que será un cubo y es la parte final de la Flecha.<br>
+					&emsp;•	Ambos objetos tienen un material asociado.<br>
+					&emsp;•	Y el Culo de la flecha no tiene ningún componente.<br>
+			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-43.png" width="80%" alt=""></p>  					
+ 			
+ 			<p class="texto">							
+ 					&emsp;•	Crear un Script llamado FlechaScript.cs:
+ 			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-44.png" width="80%" alt=""></p>  
+ 			
+ 			<p class="texto">					
+					&emsp;&emsp;o	Primero tenemos que añadir las variables.<br>
+					&emsp;&emsp;&emsp;-	De tipo Vector3 currentPos para tener la posición actual de la flecha.<br>
+					&emsp;&emsp;&emsp;-	De tipo Vector3 prevPos es la posición previa.<br>
+					&emsp;&emsp;&emsp;-	De tipo Vector3 difPos es la diferencia entre currentPos – prevPos.<br>
+					&emsp;&emsp;&emsp;-	Bool primeraVez = true.<br>
+					&emsp;&emsp;o	FixedUpdate.<br>
+					&emsp;&emsp;&emsp;-	Cogemos la posición actual de la flecha.<br>
+					&emsp;&emsp;&emsp;-	Si no es la primeraVez.<br>
+					&emsp;&emsp;&emsp;&emsp;•	Calculamos la diferencia entre currentPos – prevPos.<br>
+					&emsp;&emsp;&emsp;&emsp;•	Y le cambiamos la posición hacia delante con esa diferencia normalizada.<br>
+					&emsp;&emsp;&emsp;-	Y la primera vez modifica la variable bool a false ya que la primera vez no se
+					 modifica.<br>
+					&emsp;&emsp;o	Método OnCollisionEnter.<br> 
+					&emsp;&emsp;&emsp;-	Le ponemos que se Kinematica la flecha. Al hacerlo quitamos la física del Editor
+					 para que nosotros mediante un código incluido en el script lo hagamos según nos convenga..<br>
+					&emsp;&emsp;&emsp;-	Y eliminamos el Script para que se quede pegada la flecha.
+			</p>
+
+			<p class="nota"> 
+ 					Un vector es una combinación de dirección y magnitud. Normalizar un vector le quita la magnitud,
+ 					dejándolo solo con la dirección y con una magnitud máxima de 1. Un vector normalizado hace que siempre
+ 					tengas una velocidad constante independiente de si te mueves recto o en diagonal. Ya que si va en
+ 					 diagonal el vector tendrá una magnitud mayor que 1.<br><br>
+					Vector.normalized devuelve otro vector.<br>
+					Vector.Normalize() modifica el vector existente.
+			</p>
+ 			
+ 			<h3>Arco</h3>
+      <p class="texto">		
+ 					Crear un script ArcoScript.cs y asociarlo al Arco para que aparezca nuestra Flecha en la punta de nuestro
+ 			 		cañon.
+ 			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-45.png" width="80%" alt=""></p>  
+ 			
+ 			 <p class="texto">			
+ 					&emsp;•	Necesitamos variables de tipo SerializaField.<br>
+					&emsp;&emsp;o	Transform genPoint.<br>
+					&emsp;&emsp;o	GameObject prefabProyectil.<br> 
+					&emsp;&emsp;o	Int force = 600.<br>
+					&emsp;&emsp;o Animator anim.<br>
+					&emsp;•	Y privada AudioSource audiosource.<br>
+					&emsp;•	Habrá que arrastrar en el Editor las variables que sean SerializeField.
+			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-46.png" width="80%" alt=""></p>  
+ 			
+ 			 <p class="texto">	
+ 					&emsp;•	Start.<br>
+					&emsp;&emsp;o	Recoger el componente del AudioSource.<br>
+					&emsp;•	OnMouseDown.<br>
+					&emsp;&emsp;o	Llamaremos a una Corutina "Animacion" para hacer la animación.<br>
+					&emsp;&emsp;o	Creamos la flecha con el método instatiate poniendo el prefab que pasamos por parámetro en
+					 la posición y rotación del genPoint.<br>
+					&emsp;&emsp;o	Hacemos el sonido del disparo.<br>
+					&emsp;&emsp;o	Recoger con el GetComponent el RigidBody del proyectil para hacerle una fuerza hacia
+					 delante * force.
+			</p>
+			
+			<h3>ParedArco</h3>
+      <p class="texto">		
+      	Haremos una pared con un cubo delante del Arco para que la flecha cuando salga disparada se quede pegada. Tendrá un
+      	 material.
+      </p>
+      	
+      <h3>Pelota</h3>
+      <p class="texto">		
+      	Creamos un GO que sea una Sphere y que la moveremos desde la escena (mediante las flechas) cuando estemos ejecutando
+      	el proyecto. La utilizaremos tanto para el Tirachinas como el Francotirador.
+ 			</p>
+      	 
+      <h3>Tirachinas</h3>
+      <p class="texto">		
+      		 El Tirachinas solo seguirá a la pelota que tenemos en nuestra escena.<br>
+						Crear un 3D Objeto que sea una esfera y se llamara Tirachinas.
+			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-47.png" width="80%" alt=""></p>  
+								
+			<p class="texto">
+ 					&emsp;•	Si vemos el Gizmo (son las flechas que aparecen) del Tirachinas lo creamos mirando hacia la
+ 						 izquierda.<br>
+ 					&emsp;•	Añadir un GO vacio que se llame Ctrl_Tirachinas con la rotación Y -90 para que la Z apunte hacia
+ 							 la izquierda.<br>	
+					&emsp;&emsp;o	Añadir dentro un 3D Objeto que sea un cilindro Canon.<br>
+					&emsp;&emsp;&emsp;- Crear otro 3D Objeto que sea otro cilindro que se llamara Canon1 y es hijo de Canon.<br>		
+			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-48.png" width="80%" alt=""></p>  
+      
+      <p class="texto">
+      		El Ctrl_Tirachinas tiene asociado un Script FolloScript.cs.
+      </p>
+ 			<p class="img_centrada"><img src="img/tema4/4-49.png" width="80%" alt=""></p>  
+      
+      <p class="texto">
+      		&emsp;•	Necesitamos una variable de tipo SerializaField.<br>
+					&emsp;&emsp;o	Transform target.<br>
+					Habrá que arrastrar la pelota para que podamos hacer que el cañon la siga.<br>
+ 					&emsp;•	Update.<br>
+					&emsp;&emsp;o	El transform del Ctrl_Tirachinas seguira con el método LookAt al transform de la pelota
+					 que hemos pasado por parámetro.
+			 </p>				
+					
+			<h3>Francotirador</h3>
+      <p class="texto">			
+					Podemos duplicar el Tirachinas pero lo renombramos a Francotirador.<br>
+			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-50.png" width="80%" alt=""></p>  	
+					
+			<p class="texto">					
+					Dentro del Ctrl_Francotirador añadir:<br>
+					&emsp;•	Click derecho sobre Ctrl_Francotirador y seleccionar Camera. La posicionaremos detras del
+					 Francotirador.
+			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-51.png" width="80%" alt=""></p>  	
+			
+			<p class="texto">		
+				Cambiar la vista a la Escena para poder ver el Francotirador desde detrás.
+			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-52.png" width="80%" alt=""></p>  		
+				
+			<p class="texto">			
+				&emsp;• Dentro de la Camera creamos un GO que sea un Quad y la llamaremos Mirilla.<br>
+				&emsp;•	Tenemos un Sprite .png que la llamamos Mirilla dentro de la carpeta de Sprites.
+			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-53.png" width="80%" alt=""></p>  			
+				
+			<p class="texto">			
+				&emsp;• En la carpeta de Materiales creo un material llamado Mirilla que sea de tipo Cutout.<br>
+				&emsp;•	Y el Sprite Mirilla lo arrastramos al cuadrado del Material Mirilla que hay al lado del Albedo.
+			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-54.png" width="80%" alt=""></p>  
+ 			
+ 		
+			<p class="nota">		
+				Un material Cutout (recortado) en Unity es un tipo de renderizado utilizado para crear transparencias 
+				basadas en recortes duros (alphatest), ideales para objetos como hojas, vallas, telas con agujeros o mallas
+				con partes invisibles. 
+			</p>
+			
+			 <p class="texto">
+      		El Francorirador tendrá también un script asociado llamado FrancotiradorScript.
+      </p>
+ 			<p class="img_centrada"><img src="img/tema4/4-55.png" width="80%" alt=""></p> 
+ 			
+			<p class="texto">
+      		&emsp;•	Necesitamos unas variables de tipo SerializaField.<br>
+      		&emsp;&emsp;o	Transform puntoDisparo.<br>
+      		&emsp;&emsp;o	Camera miCamara.<br>
+      		&emsp;&emsp;o	GameObject mirilla.<br>
+      		&emsp;•	Necesitamos unas variables de tipo private.<br>
+      		&emsp;&emsp;o	bool apuntando = false.<br>
+      		&emsp;&emsp;o	float currentFOV.<br>
+      		&emsp;&emsp;o	float minFOV = 15.<br>
+      		&emsp;&emsp;o	float maxFOV.<br><br>
+      		&emsp;•	Start.<br>
+      		&emsp;&emsp;o	Inicializar las variables maxFOV y currentFOV con el valor actual del FOV de la Camera.<br>   		
+      		&emsp;•	Update.<br>
+      		&emsp;&emsp;o Si le doy al botón derecho apuntando lo ponemos a true y hacemos visible la mirilla.<br>
+      		&emsp;&emsp;o	Y si lo suelto dejo de apuntar y hacemos invisible la mirilla.<br>
+      		&emsp;&emsp;o	Si apunto.<br>
+      		&emsp;&emsp;&emsp;-	Nos acercamos restando el currentFOV.<br>
+      		&emsp;&emsp;&emsp;- Y con el método Math.Max cojo el valor maximo para que no nos pasemos del valor minFOV
+      		 que definimos anteriormente.<br>
+      		&emsp;&emsp;o Si no apunto.<br>
+      		&emsp;&emsp;&emsp;-	Nos alejamos sumando el currentFOV.<br>
+      		&emsp;&emsp;&emsp;- Y con el método Math.Min cojo el valor mínimo para que no nos pasemos del valor maxFOV
+      		 que definimos anteriormente.<br><br>
+    	</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-56.png" width="80%" alt=""></p> 
+    
+    	<p class="texto">
+    			Usaremos el Método OnMouseDown para cuando hagamos un click izquierdo que genere una rayo en la Escena
+    			 para saber si hemos tocado algún	objeto que tenga un collider.<br>
+     			&emsp;•	Recoger la dirección del puntoDisparo hacia delante.<br>
+     	</p>
+     			
+     	<p class="nota">		
+     			Cuidado con la dirección porque podra variar dependiendo de como se cree el objeto de puntoDisparo y hacia
+     			 donde mire.
+			</p>
+			
+			<p class="texto">
+					&emsp;•	Crear el Rayo desde la posición del puntoDisparo hacia delante.<br>
+					&emsp;•	Crear una variable que sera de tipo RaycastHit que recogera el impacto.<br>
+					&emsp;•	Hacemos un RayCast y lo recogemos sobre una variable bool para saber si le ha dado o no.<br>
+					&emsp;&emsp;o	Si hemos dado a un objeto con collider la dibujamos.<br>
+					&emsp;&emsp;o Y si no ponemos un print para que salga en la consola.
+			</p>
+ 			<p class="img_centrada"><img src="img/tema4/4-57.png" width="80%" alt=""></p> 
+				
+      <p class="texto">				
+      <br><br>
+      <a class="texto volver" href="javascript:history.back(-1);">Volver al índice</a>
+   </div>
+   <div id="pie">
+      <h1> Fun Tech Academy - Calle Alcobendas, 23 Leganés 28914 Madrid - www.funtech.academy </h1>
+   </div>
+</body>
+</html>
