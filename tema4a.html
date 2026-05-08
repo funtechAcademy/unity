@@ -113,13 +113,13 @@
  			<h3>Bomba</h3>
       <p class="texto">
       		Está compuesto por:<br>
-      		&emsp;•	Tendrá un sonido para la explosión de los cubos que aparecen en el plano.<br>
+      		&emsp;•	Un sonido para la explosión de los cubos que aparecen en el plano.<br>
 					&emsp;•	Componente Trail Renderer.<br>
 					&emsp;•	Y un Script Bomba.cs. 
 			</p>
       		
 			<p class="nota">
-				 Cuando descarguemos lo que sea procurar siempre coger las que sean "Low Poly" para que tenga los menos
+				 Cuando descarguemos cualquier objeto procurar siempre coger las que sean "Low Poly" para que tenga los menos
 				 polígonos posibles y el rendimiento sea mejor.
  			</p> 			
  	
@@ -129,8 +129,8 @@
 				 cubos simularan una explosión:<br>
 				&emsp;•	Se recogerá en un Array todos lo Colliders[] en un radio con el método Physics.OverlapShere.<br>
 				&emsp;•	Se recorre el array todos los Colliders mediante el foreach.<br>
-				&emsp;&emsp;o	Y si tienen el tag se les dará a los cubos una fuerza para que los empuje. Se podría hacer que
-				 la fuerza sea desde el centro de la bomba. Utilizaremos el método AddExplosionForce(fuerzaExplosion, posicionBomba,
+				&emsp;&emsp;o	Y si tienen el tag se les dará a los cubos una fuerza para que los empuje. La fuerza sea 
+					desde el centro de la bomba. Utilizaremos el método AddExplosionForce(fuerzaExplosion, posicionBomba,
 				  radioExplosion, AlturaExplosion) 
       </p>
  			
@@ -148,13 +148,13 @@
  					 
 			<h4>Componente Trail Renderer</h4>
       <p class="texto">
-				Este componente es para que la Bomba para que tenga un rastro cuandose dispare.<br>
- 					&emsp;•	Si no tocamos nada del componente y ejecutamos se queda una estela infinita.
+				Este componente es para que la Bomba para que tenga un rastro cuando se dispare.<br>
+ 					&emsp;•	Si no tocamos nada del componente y ejecutamos se queda una estela infinita.<br>
  					&emsp;•	Nos aparece de color rosa, aunque en el parámetro de color está en blanco porque no tiene ningún
  						 material asignado dentro del componente. Material a Default-Line.<br>
  				&emsp;•	Podemos cambiar el Witdh a 0.10 para que sea más estrecho.<br>
- 	      &emsp;•	Si hacemos dobleclick a lo largo de la línea aparecerán puntos que podremos ir bajando. Se pueden poner más
- 	       puntos a lo largo de la linea roja.<br>
+ 	      &emsp;•	Si hacemos dobleclick a lo largo de la línea aparecerán puntos que podremos ir bajando. Se pueden
+ 	       poner más puntos a lo largo de la linea roja.<br>
  	      &emsp;•	Cambiar el color que empiece en rojo y acabe en amarillo.<br>
 			</p>
  	
@@ -170,7 +170,7 @@
 			</p>
  			
  			<p class="texto">
- 					El Arco lanzará un Prefab que llamaremos Flecha cuando demos sobre el Arco con el click izquierdo
+ 					El Arco lanzará un Prefab que llamaremos Flecha cuando hagamos un click izquierdo sobre el Arco 
  					 del ratón (Método OnMouseDown).<br>
 					Habrá que hacer también la animación de disparo.
 
@@ -188,15 +188,20 @@
  				Si la creamos nosotros:<br>						
  					&emsp;•	Crear un 3D Objeto que sea un cubo llamado Flecha.<br>
 					&emsp;&emsp;o	Tiene un componente de RigidBody.<br>
-					&emsp;&emsp;o	Y un Script Flecha.cs.<br>	
+					&emsp;&emsp;o	Script Flecha.cs.<br>	
 					&emsp;•	Tendrá un hijo que será un cubo y es la parte final de la Flecha.<br>
 			</p>
  			<p class="img_centrada"><img src="img/tema4/4-43.png" width="80%" alt=""></p>  					
  			
  			<p class="texto">	
- 				Lo haremos en el Método FixedUpdate().<br>
- 				Recoger en el Script la posición actual(recoger al principio) y previa (se recoge al final) y 
- 				serán de tipo Vector3 e ira cambiando su transform.forward con la diferencia (Vector3) entre ambas normalized.<br><br>
+ 				Lo haremos en el Método FixedUpdate():<br>
+ 				Necesitamos 3 variables Vector3: currentPos, prevPos y difPos. Y Bool primeravez = true<br>
+ 				&emsp;• Recoger en el currentPos la posicion<br>
+ 				&emsp;• Si no es la primeravez <br>
+ 				&emsp;&emsp;• Restamos el current - prev<br>
+ 				&emsp;&emsp;• Tendremos que ir cambiando su transform.forward con la diferencia y normalized.<br>
+ 				&emsp;• Y sino primeravez = false<br>
+ 				&emsp;• Y la previa = current<br><br>		
  				Cuando la flecha colisione contra el muro: <br>
 				&emsp;•	Le ponemos que sea Kinematica la Flecha. Al hacerlo quitamos la física del Editor para que nosotros
 				 mediante un código incluido en el script lo hagamos según nos convenga.<br>
@@ -214,8 +219,7 @@
 			
 			<h3>ParedArco</h3>
       <p class="texto">		
-      	Haremos una pared con un cubo delante del Arco para que la flecha cuando salga disparada se quede pegada. Tendrá un
-      	 material.
+      	Haremos una pared con un cubo delante del Arco para que la flecha cuando salga disparada se quede pegada. 
       </p>
       	
       <h3>Pelota</h3>
@@ -233,15 +237,12 @@
 					&emsp;&emsp;o	Script para que siga el cilindro a la pelota Follow.cs.<br>
 					&emsp;&emsp;o	Canon es un Cilindro negro.<br>
 					&emsp;&emsp;&emsp;-	Canon1 es un Cilindro blanco.<br>
-				En el Update del Script usaremos el Método LookAt().
 			</p>
- 			<p class="img_centrada"><img src="img/tema4/4-47.png" width="80%" alt=""></p>  
 										
 			<h3>Francotirador</h3>
       <p class="texto">			
 					Podemos duplicar el Tirachinas pero lo renombramos a Francotirador.<br>
 			</p>
- 			<p class="img_centrada"><img src="img/tema4/4-50.png" width="80%" alt=""></p>  	
 					
 			<p class="texto">					
 					Dentro del Ctrl_Francotirador añadir la Camera y la posicionaremos detrás del Francotirador.
@@ -250,17 +251,9 @@
 				
 			<p class="texto">			
 				&emsp;• Dentro de la Camera creamos un GO que sea un Quad y la llamaremos Mirilla.<br>
-				&emsp;•	Tenemos un Sprite .png que la llamamos Mirilla dentro de la carpeta de Sprites.
+				&emsp;• Crear un material Mirilla de tipo Cutout y le asignamos Mirilla.png.<br>
 			</p>
- 			<p class="img_centrada"><img src="img/tema4/4-53.png" width="80%" alt=""></p>  			
-				
-			<p class="texto">			
-				&emsp;• En la carpeta de Materiales creo un material llamado Mirilla que sea de tipo Cutout.<br>
-				&emsp;•	Y el Sprite Mirilla lo arrastramos al cuadrado del Material Mirilla que hay al lado del Albedo.
-			</p>
- 			<p class="img_centrada"><img src="img/tema4/4-54.png" width="80%" alt=""></p>  
- 			
- 		
+	
 			<p class="nota">		
 				Un material Cutout (recortado) en Unity es un tipo de renderizado utilizado para crear transparencias 
 				basadas en recortes duros (alphatest), ideales para objetos como hojas, vallas, telas con agujeros o mallas
@@ -268,55 +261,28 @@
 			</p>
 			
 			 <p class="texto">
-      		El Francorirador tendrá también un script asociado llamado Francotirador.
+      		El Francotirador tendrá un script asociado llamado Francotirador. Con el botón derecho del ratón
+      		 acercarmos la cámara y mostramos la mirilla y si lo soltamos se quedará en su posición original y
+      		 la mirilla desaparece. Para ello:<br>
+      		 &emsp;•	Recogemos en el Start dos variables maxFOV y currentFOV el fieldOfView de la cámara.<br>
+      		 &emsp;•	Update<br>
+      		 &emsp;&emsp;• Hacemos el control del botón derecho con GetMouseButtonDown(1) y GeMouseButtonUp(1).<br>
+      		 &emsp;&emsp;• Si estoy apuntando restare -1 currentFOV y con Math.Max(currentFOV, minFOV) para que no se pase de valor
+      		 entre un máximo y un mínimo.<br>
+      		 &emsp;&emsp;• Si suelto el botón haremos lo contrario.<br><br>
+      		 &emsp;Hay que actualizar el fieldOFView de la Camara con el currentFOV.
       </p>
- 			<p class="img_centrada"><img src="img/tema4/4-55.png" width="80%" alt=""></p> 
- 			
-			<p class="texto">
-      		&emsp;•	Necesitamos unas variables de tipo SerializaField.<br>
-      		&emsp;&emsp;o	Transform puntoDisparo.<br>
-      		&emsp;&emsp;o	Camera miCamara.<br>
-      		&emsp;&emsp;o	GameObject mirilla.<br>
-      		&emsp;•	Necesitamos unas variables de tipo private.<br>
-      		&emsp;&emsp;o	bool apuntando = false.<br>
-      		&emsp;&emsp;o	float currentFOV.<br>
-      		&emsp;&emsp;o	float minFOV = 15.<br>
-      		&emsp;&emsp;o	float maxFOV.<br><br>
-      		&emsp;•	Start.<br>
-      		&emsp;&emsp;o	Inicializar las variables maxFOV y currentFOV con el valor actual del FOV de la Camera.<br>   		
-      		&emsp;•	Update.<br>
-      		&emsp;&emsp;o Si le doy al botón derecho apuntando lo ponemos a true y hacemos visible la mirilla.<br>
-      		&emsp;&emsp;o	Y si lo suelto dejo de apuntar y hacemos invisible la mirilla.<br>
-      		&emsp;&emsp;o	Si apunto.<br>
-      		&emsp;&emsp;&emsp;-	Nos acercamos restando el currentFOV.<br>
-      		&emsp;&emsp;&emsp;- Y con el método Math.Max cojo el valor maximo para que no nos pasemos del valor minFOV
-      		 que definimos anteriormente.<br>
-      		&emsp;&emsp;o Si no apunto.<br>
-      		&emsp;&emsp;&emsp;-	Nos alejamos sumando el currentFOV.<br>
-      		&emsp;&emsp;&emsp;- Y con el método Math.Min cojo el valor mínimo para que no nos pasemos del valor maxFOV
-      		 que definimos anteriormente.<br><br>
-    	</p>
  			<p class="img_centrada"><img src="img/tema4/4-56.png" width="80%" alt=""></p> 
     
     	<p class="texto">
-    			Usaremos el Método OnMouseDown para cuando hagamos un click izquierdo que genere una rayo en la Escena
-    			 para saber si hemos tocado algún	objeto que tenga un collider.<br>
-     			&emsp;•	Recoger la dirección del puntoDisparo hacia delante.<br>
-     	</p>
-     			
-     	<p class="nota">		
-     			Cuidado con la dirección porque podra variar dependiendo de como se cree el objeto de puntoDisparo y hacia
-     			 donde mire.
+    		Haremos un Raycast para saber si hemos tocado algun objeto que tenga un collider con el Método OnMouseDown())
+    		 para cuando hagamos un click izquierdo que genere una rayo en la Escena.<br>
+     			&emsp;•	Recoger la dirección en un Vector3 del puntoDisparo hacia delante.<br>
+					&emsp;•	Crear el Rayo con Método Ray().<br>
+					&emsp;• Crear una variable de tipo RayCast (hitinfo) para recoger la información del impacto.<br>
+					&emsp;•	Physics.Raycast(rayo, out hitInfo, distancia) que recogera el impacto.<br>
+					&emsp;&emsp;o	Si hemos dado a un objeto con collider la dibujamos con DrawLine().<br>
 			</p>
-			
-			<p class="texto">
-					&emsp;•	Crear el Rayo desde la posición del puntoDisparo hacia delante.<br>
-					&emsp;•	Crear una variable que sera de tipo RaycastHit que recogera el impacto.<br>
-					&emsp;•	Hacemos un RayCast y lo recogemos sobre una variable bool para saber si le ha dado o no.<br>
-					&emsp;&emsp;o	Si hemos dado a un objeto con collider la dibujamos.<br>
-					&emsp;&emsp;o Y si no ponemos un print para que salga en la consola.
-			</p>
- 			<p class="img_centrada"><img src="img/tema4/4-57.png" width="80%" alt=""></p> 
 				
       <p class="texto">				
       <br><br>
