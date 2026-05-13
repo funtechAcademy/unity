@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="styles/style.css">
+   <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Sanchez&display=swap" rel="stylesheet">
+   <script src="js/scripts.js"></script>
+   <title>Joint</title>
+</head>
+<body>
+   <div id="cabecera">
+      <h1>Joint</h1>
+   </div>
+   <!-- INICIO_LOADER -->
+   <div id="pageloader">
+      <img src="img/LogoOjo_FTA.png" class="spining" width="100px">
+   </div>
+   <!-- FIN_LOADER -->
+   <div id="contenido">
+      <h2>Joint</h2>
+      <p class="texto">
+           Haremos un cañon y 3 letreros. Al dispararlos cada cartel se comportará de distinta manera.
+           Para ello necesitaremos una estructura de carpetas que tendrán el
+          contenido necesario para hacer el juego que lo iremos incluyendo poco a poco:<br><br>
+         _GameAssets<br>
+          &emsp;•	Materials.<br>
+         	&emsp;&emsp;o	Materiales que se crean a partir de Texturas poniendolos en el Albedo.<br>
+          &emsp;•	Prefab.<br>
+          &emsp;&emsp;o	Torreta.<br>
+          &emsp;&emsp;o	Proyectil.<br>
+          &emsp;•	Scenes.<br>
+          &emsp;&emsp;o	JointScene.<br>
+          &emsp;•	Scripts.<br>
+          &emsp;&emsp;o Torreta.cs.<br>
+          &emsp;•	Textures para la torreta, carteles, suelo.
+      </p>
+     
+      <h3>Escena</h3>
+      <p class="texto">
+         Tendremos que crear dentro de esta escena:<br>
+       	&emsp;•	Suelo.<br>
+				&emsp;•	Torreta.<br>
+				&emsp;•	SoporteFijo.<br>
+				&emsp;&emsp;o	Poste Vertical.<br>
+			  &emsp;&emsp;o	Poste Horizontal.<br>
+			  &emsp;•	CartelFijo.<br>
+			  &emsp;•	SoporteBisagra.<br>
+				&emsp;&emsp;o	Poste Vertical.<br>
+			  &emsp;&emsp;o	Poste Horizontal.<br>
+			  &emsp;•	CartelBisagra.<br>
+			  &emsp;•	SoporteMuelle.<br>
+				&emsp;&emsp;o	Poste Vertical.<br>
+			  &emsp;&emsp;o	Poste Horizontal.<br>
+		  	&emsp;•	CartelMuelle.<br>
+      </p>
+      <p class="img_centrada"><img src="img/tema5/5-2.png" width="80%" alt=""></p>
+ 			
+ 			<h3>Torreta</h3>
+      <p class="texto">
+ 				La Torreta mira hacia el forward (Z hacia delante). Será un cubo y contendrá:<br>
+					&emsp;•	BaseCanyon que sea una esfera.<br>
+					&emsp;&emsp;o  EjeCanyon GO vacio.<br>
+					&emsp;&emsp;&emsp;-	Canyon un cilindro.<br>
+					&emsp;&emsp;&emsp;&emsp;-	GeneradorProyectiles GO vacio.
+ 			</p>
+ 	
+				
+		<h3>Soportes</h3>
+      <p class="texto">
+ 				Cada Poste Horizontal tendrá distinto componente Joint. Pero todos deberán tener un Rigidbody:<br>
+				&emsp;• Poste Horizontal Fijo: Componente Fixed Joint. Restringe el movimiento de un objeto, 
+				haciendolo dependiente de otro.<br>
+				&emsp;• Poste Horizontal Bisagra: Componente Hinge Joint. Agrupa dos cuerpos rígidos. Ideal para
+				 puertas, pendulos…<br>
+				&emsp;• Poste Horizontal Muelle: 2 Componentes Spring Joint. Es una Junta elástica. Conecta dos 
+				cuerpos rígidos pero permite que la distancia entre ellos cambie como si estuvieran conectados
+				 como un resorte.
+ 			</p>
+				
+			<p class="nota">
+ 				¿Que les pasa a los Soportes cuando se ejecuta el juego?
+ 			</p>
+ 			
+ 			<h3>Torreta</h3>
+      <p class="texto">
+				Tendrá asociado un script Torreta.cs.<br>	
+				&emsp;•	Disparamos con el Espacio con: Input.GetKeyDown(KeyCode.Space) y generamos la bala en 
+				GeneradorProyectiles.<br>	
+				&emsp;•	Con las flechas movemos el cañon y el cilindro:<br>	
+				&emsp;&emsp;o	Para recoger las flechas del teclado en una variable con: Input.GetAxis en dos variables
+				 yR (Horizontal) y xR(Vertical).<br>	
+				&emsp;&emsp;o	BaseCanyon (es la esfera) se rota en Y (Horizontal) y EjeCanyon se rota en X (Vertical).<br><br>
+ 			
+				Haremos la Primera Parte y comprobaremos su funcionamiento y luego lo eliminaremos y haremos la
+				 Segunda Parte para controlar que no se nos pase de unos limites la Torreta:<br>
+				&emsp;•	Primera Parte.<br>
+				&emsp;&emsp;o Update.<br>
+				&emsp;&emsp;&emsp;-	Usaremos: Rotate(x,y,z).<br>
+				&emsp;&emsp;&emsp;-	BaseCanyon.Rotate rota en el eje yR (Input en Horizontal).<br>
+				&emsp;&emsp;&emsp;-	EjeCanyon.Rotate rota en el eje xR (Input Vertical).
+			</p>
+				
+			<p class="nota">
+ 				¿Que le pasa a la rotación del EjeCanyon cuando se ejecuta el juego?
+ 			</p>
+ 				
+ 			<p class="texto"> 
+ 				&emsp;•	Segunda Parte.
+ 			</p>
+ 					
+ 			<p class="nota">
+ 				Para hacer la Segunda Parte comentaremos lo anterior para que no interfiera.
+ 			</p> 
+ 				 
+ 			 <p class="texto">	 
+ 				 Si observamos se pasa la rotación así que tendremos que ajustarlo con unos límites. <br>	 
+ 					&emsp;•BaseCanyon:<br>							 
+ 					&emsp;&emsp;•	Start.<br>
+					&emsp;&emsp;&emsp;o	rotacionHorizontal = baseCanyon.rotation.y.<br>
+					&emsp;&emsp;•	Update.<br>
+					&emsp;&emsp;&emsp;o	rotacionHorizontal += yR es una Rotación acumulada en Horizontal.<br>
+					&emsp;&emsp;&emsp;o	Buscar método Clamp. Para que no se pase de -90 y 90.<br>
+					&emsp;&emsp;&emsp;o	baseCanyon = Quaternion.Euler y le ponemos la rotaciónHorizontal que hemos obtenido al 
+					resultado del Clamp.<br><br>
+
+					Lo mismo habría que hacer para el ejeCanyon pero con X. Cuidado porque ira al revés de las flechas.
+				</p>
+ 				
+ 				<p class="nota">
+ 					¿Qué pasa con el ejeCanyon cuando gira la baseCanyon?.
+ 				</p> 
+ 			
+      <p class="texto">				
+      <br><br>
+      <a class="texto volver" href="javascript:history.back(-1);">Volver al índice</a>
+   </div>
+   <div id="pie">
+      <h1> Fun Tech Academy - Calle Alcobendas, 23 Leganés 28914 Madrid - www.funtech.academy </h1>
+   </div>
+</body>
+</html>
