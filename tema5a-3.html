@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="styles/style.css">
+   <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Sanchez&display=swap" rel="stylesheet">
+   <script src="js/scripts.js"></script>
+   <title>Road</title>
+</head>
+<body>
+   <div id="cabecera">
+      <h1>Road</h1>
+   </div>
+   <!-- INICIO_LOADER -->
+   <div id="pageloader">
+      <img src="img/LogoOjo_FTA.png" class="spining" width="100px">
+   </div>
+   <!-- FIN_LOADER -->
+   <div id="contenido">
+      <h2>Road</h2>
+      <p class="texto">
+      		Tendremos un terreno o un plano y un coche con faros:<br>
+      		&emsp;• Tendrá un freno (tecla F) y al soltar el freno el coche podrá andar hacia delante con la
+      		 flecha hacia arriba.<br>
+      		&emsp;• Flecha atrás lo podremos parar y las luces se activarán.<br>
+      		&emsp;•	Usaremos las ruedas de delante para la dirección.<br>
+      		&emsp;• Y las ruedas de atrás para que avancen.<br>
+      	
+      		Y un Canvas para mostrar Texto Speed, Texto Freno de mano y Texto Marcha.<br
+      	
+          Para ello necesitaremos una estructura de carpetas que tendrán el
+          contenido necesario para hacer el juego que lo iremos incluyendo poco a poco:<br><br>
+         _GameAssets<br>
+          &emsp;•	Materials.<br>
+          &emsp;&emsp;o	Frenos.<br>
+         	&emsp;&emsp;o	Materiales que se crean a partir de Texturas poniendolos en el Albedo. (Si lo necesitamos)<br>
+          &emsp;•	Scenes.<br>
+          &emsp;&emsp;o	RoadScene.<br>
+          &emsp;•	Scripts.<br>
+          &emsp;&emsp;o Troncomovil.cs.<br>
+          &emsp;•	Textures para el suelo...
+      </p>
+     
+      <h3>Escena</h3>
+      <p class="texto">
+         Tendremos que crear dentro de esta escena:<br>
+       	&emsp;•	Terrain.<br>
+				&emsp;•	TroncoMovil.<br>
+				&emsp;&emsp;o	Main Camera. La pondremos en la parte de atrás del coche.<br>
+			  &emsp;&emsp;o	Chasis.<br>
+				&emsp;&emsp;o	Rueda FrontLeft.<br>
+			  &emsp;&emsp;o	Rueda FrontRight.<br>
+				&emsp;&emsp;o	Rueda BackLeft.<br>
+			  &emsp;&emsp;o	Rueda BackRight.<br>
+		 		&emsp;&emsp;o	PilotoFrenoDerecho.<br>
+		 		&emsp;&emsp;o	PilotoFrenoIzquierdo.<br>
+		 		&emsp;•	Canvas.<br>
+				&emsp;&emsp;o	TxtSpeed.<br>
+			  &emsp;&emsp;o	TxtFrenoMano.<br>
+				&emsp;&emsp;o	TxtMarcha.<br>
+      </p>
+      <p class="img_centrada"><img src="img/tema5/5-3.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema5/5-4.png" width="80%" alt=""></p>
+ 			    
+ 			<h3>TroncoMovil</h3>
+      <p class="texto">
+ 				El TroncoMovil mira hacia el forward (Z hacia delante). Componentes:<br>
+					&emsp;•	Script TroncoMovil.cs.<br>
+					&emsp;•	El Objeto Troncomovil tendra un RigidBody con una masa de 1000 y esta formado por:<br>
+					&emsp;&emsp;o Main Camera.<br>
+					&emsp;&emsp;o Chasis Cubo con un BoxCollider.<br>
+					&emsp;&emsp;o Las 4 Ruedas tienen un componente de WheelCollider. Con los valores que vienen por
+					 defecto.<br>
+					&emsp;&emsp;o Los 2 Pilotos de freno que tienen asociado un material que se modificara para que 
+					se vea más intenso.		
+ 			</p>
+ 	
+	
+	
+	
+		<h3>TroncoMovil.cs</h3>
+      <p class="texto">
+      	&emsp;•	Variables<br>
+				&emsp;&emsp;o	float vPos, hPos para recoger las flechas pulsadas.<br>
+				&emsp;&emsp;o	WheelCollider wcFrontL, wcFrontR, wcBackL, wcBackR.<br>
+				&emsp;&emsp;o	float fuerzaMaximaMotor = 300.<br>
+				&emsp;&emsp;o	float anguloMaximoRotacion = 20.<br>
+				&emsp;&emsp;o	float fuerzaFrenado = 10.<br>
+				&emsp;&emsp;o	int incrementoFrenado = 10.<br>
+				&emsp;&emsp;o	bool frenoManoActivo  = false.<br>
+				&emsp;&emsp;o	Textos para el canvas de Freno de Mano, Velocidad y Marcha.<br>
+				&emsp;&emsp;o	Float fSpeed.<br>
+				&emsp;&emsp;o	Material materialFreno.<br><br>
+   			&emsp;•	Start().<br>
+				&emsp;&emsp;o	Hay que recoger el WheelCollider las ruedas o las pasamos como parámetros.<br>
+				&emsp;&emsp;o	Texto Freno de Mano Off.<br>
+				&emsp;&emsp;o	Desactivar el materialFreno  modificando su material con DissableKeyword con _EMISSION.<br><br>
+   			&emsp;•	Update().<br>
+				&emsp;&emsp;o	Recoger en variable fSpeed el RigidBody de la velocity.magnitude y la mostramos en el Canvas.<br>
+				&emsp;&emsp;&emsp;-	La magnitud nos devuelve la longitud del vector. Es la distancia entre su punto de origen
+				 y su punto final del vector.<br>
+				&emsp;&emsp;o	Si le damos a la “F” activamos o desactivamos el Freno de mano para que se pueda mover o no el
+				 coche con GetKeyDown().<br>
+				&emsp;&emsp;&emsp;-	Variable bool frenoManoactivo y cambiar el texto del canvas.<br><br>
+				&emsp;•	FixedUpdate() Haremos el movimiento.<br>
+				&emsp;&emsp;o	Recoger el axis Vertical y Horizontal en variables hPos y vPos con GetAxis().<br><br>
+				&emsp;&emsp;o	Ruedas delanteras llevan la dirección. (flechas derecha e izquierda).<br>
+				&emsp;&emsp;&emsp;-	Modificamos el ángulo de giro y las multiplicamos por el axis horizontal.<br>
+				&emsp;&emsp;&emsp;-	wcFrontL y wcFrontR.steerAngle = anguloMaximoRotacion * hPos.<br><br>
+				&emsp;&emsp;o	Si no tiene el freno puesto.<br> 
+				&emsp;&emsp;&emsp;-	Si la vPos > 0.<br>
+				&emsp;&emsp;&emsp;&emsp;•	Texto Marcha adelante.<br>
+				&emsp;&emsp;&emsp;&emsp;•	Desactivar luz de frenado.<br>
+				&emsp;&emsp;&emsp;&emsp;•	Método para SoltarFreno().<br> 
+				&emsp;&emsp;&emsp;&emsp;•	Mover el coche hacia delante con la flecha hacia arriba. Dándole a las ruedas
+				 traseras el movimiento para que avance con motorTorque = fuerzaMaximaMotor * vPos.<br><br>
+				&emsp;&emsp;&emsp;-	Si vPos < 0 y fSpeed > 0.01 es que le he dado a la flecha hacia abajo la vPos será
+				 negativa y frenaremos el coche si está andando comprobando la velocidad.<br>
+				&emsp;&emsp;&emsp;&emsp;•	Texto Esta frenado.<br>
+				&emsp;&emsp;&emsp;&emsp;•	Activa luz de frenado.<br>
+				&emsp;&emsp;&emsp;&emsp;•	Método Frenar().<br><br>		
+				&emsp;&emsp;&emsp;-	Si vPos < 0 y fSpeed <= 0.01 es que le he dado a la flecha hacia abajo la VPos será
+				 negativa y si está frenado ira marcha atrás cuando le dé a las flechas derecha e izquierda.<br>
+				&emsp;&emsp;&emsp;&emsp;•	Texto Marcha atrás.<br>
+				&emsp;&emsp;&emsp;&emsp;•	Método SoltarFreno().<br>
+				&emsp;&emsp;&emsp;&emsp;•	Ruedas traseras .motorTorque = fuerzaMaximaMotor * vPos.<br><br>
+				&emsp;&emsp;o	Y si tiene el freno el coche se clava con el Método Frenar().<br><br>
+				&emsp;•	Tendremos 2 métodos:<br>
+				&emsp;&emsp;o	Frenar().<br>
+				&emsp;&emsp;&emsp;-	fuerzaFrenado += IncrementoFrenado;.<br>
+				&emsp;&emsp;&emsp;-	Le daremos una fuerza a la propiedad “brakeTorque” con la variable fuerzaFrenado a
+						 las 4 ruedas.<br>
+				&emsp;&emsp;o	SoltarFreno().<br>
+				&emsp;&emsp;&emsp;-	Le daremos 0 a la propiedad “brakeTorque” de las 4 ruedas. 				
+ 			</p>
+				
+			
+ 			
+ 		
+ 			
+      <p class="texto">				
+      <br><br>
+      <a class="texto volver" href="javascript:history.back(-1);">Volver al índice</a>
+   </div>
+   <div id="pie">
+      <h1> Fun Tech Academy - Calle Alcobendas, 23 Leganés 28914 Madrid - www.funtech.academy </h1>
+   </div>
+</body>
+</html>
