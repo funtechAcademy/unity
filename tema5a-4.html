@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="styles/style.css">
+   <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Sanchez&display=swap" rel="stylesheet">
+   <script src="js/scripts.js"></script>
+   <title>Space</title>
+</head>
+<body>
+   <div id="cabecera">
+      <h1>Space</h1>
+   </div>
+   <!-- INICIO_LOADER -->
+   <div id="pageloader">
+      <img src="img/LogoOjo_FTA.png" class="spining" width="100px">
+   </div>
+   <!-- FIN_LOADER -->
+   <div id="contenido">
+      <h2>Space</h2>
+      <p class="texto">
+      		Creamos planetas en posiciones aleatorias y el avión volará sobre ellos. Para ello necesitaremos:<br>
+      		
+      		Para ello necesitaremos una estructura de carpetas que tendrán el
+          contenido necesario para hacer el juego que lo iremos incluyendo poco a poco:<br><br>
+         _GameAssets<br>    		
+      	&emsp;•	Scenes.<br>
+				&emsp;&emsp;o	SpaceScene.<br>
+				&emsp;•	Materials.<br>
+				&emsp;&emsp;o	Todos los objetos tienen que tener su material.<br>
+				&emsp;•	Scripts.<br>
+				&emsp;&emsp;o	Avion.cs.<br>
+				&emsp;•	Planets. Es la carpeta donde estarán los planetas cuando lo descarguemos.<br>
+				&emsp;&emsp;o	Descargar de: https://assetstore.unity.com/packages/3d/poly-planets-34894
+				</p>  		
+      	
+      <h3>Escena</h3>
+      <p class="texto">
+         Tendremos que crear dentro de esta escena:<br>
+       	&emsp;•	Pista que será un plane. Scale 100 , 1 , 100.<br>
+				&emsp;•	Airplane.<br>
+				&emsp;&emsp;o	Armazon.<br>
+			  &emsp;&emsp;o	AlaDerecha.<br>
+				&emsp;&emsp;o	AlaIzquierda.<br>
+			  &emsp;&emsp;o	Camera.<br>
+				&emsp;•	X0Y0Z0.<br>
+				&emsp;•	X1.<br>
+				&emsp;•	Z1.<br>
+				&emsp;•	Y1.<br>
+				&emsp;•	GeneradorPlanetas.<br>
+      </p>
+      <p class="img_centrada"><img src="img/tema5/5-5.png" width="80%" alt=""></p>	    
+ 			    
+ 			<h3>Airplane</h3>
+      <p class="texto">
+ 				El Airplane mira hacia el forward (Z hacia delante). Componentes:<br>
+ 					&emsp;•	Character Controller. Este componente se usará más para un personaje que para un avión<br>
+					&emsp;•	Script Avion.cs.<br>
+					&emsp;•	El Objeto Troncomovil esta formado por:<br>
+					&emsp;&emsp;o Armazon.<br>
+					&emsp;&emsp;o AlaDerecha.<br>
+					&emsp;&emsp;o AlaIzquierda.<br>
+					&emsp;&emsp;o Camera. La posicionamos en la parte de atrás del Avión mirando hacia delante.		
+ 			</p>
+
+
+			<h3>Objetos que utilizamos para poder generar los planetas</h3>
+      <p class="texto">
+      		Tenemos 4 GO vacios y cada uno estara en posiciones distintas para poder generar los planetas en
+      		unas posiciones acotadas.<br>
+      		&emsp;•	X0Y0Z0 posicionado en -500, 0, -500 en X,Y,Z<br>
+					&emsp;•	X1 posicionado en 500, 0, -500<br>
+					&emsp;•	Z1 posicionado en -500, 0, 500<br>
+					&emsp;•	Y1 posicionado en -500, 500, 500<br><br>
+					GeneradorPlanetas	Go Vacio. Y está formado por:<br>
+					&emsp;•	Script GeneradorPlanetas.cs
+ 			</p>
+
+		<h3>Script Avion.cs</h3>
+      <p class="texto">
+      	&emsp;•	Variable<br>
+				&emsp;&emsp;o	int speed.<br><br>
+   			&emsp;•	Update().<br>
+				&emsp;&emsp;•	Para la dirección lo haremos con con Axis Vertical (Arriba y Abajo) y Horizontal
+				 (Derecha e Izquierda) (GetAxis).<br> 
+				&emsp;&emsp;• Para rotar usarmos Rotate() en los 3 ejes.<br>
+				&emsp;&emsp;•	Para avanzar sin pulsar nada usaremos el método Move() recogiendo el componente 
+				CharacterController y que vaya hacía delante.
+ 			</p>
+				
+			
+ 		<h3>Script GeneradorPlanetas.cs</h3>
+      <p class="texto">
+      	&emsp;•	Variables<br>
+				&emsp;&emsp;o	GameObject[] prefabPlaneta. Pasaremos por parámetro los planetas.<br>
+				&emsp;&emsp;o	Transform tX0Z0Y0, tX1, tZ1, tY1.<br>
+				&emsp;&emsp;o	int numMaxplanetas = 100.<br><br>
+				&emsp;•	Start().<br>
+				&emsp;&emsp;•	Recorrer el Array y llamar a un metodo GenerarPlaneta().<br><br>
+   			&emsp;•	GenerarPlaneta().<br>
+				&emsp;&emsp;o	Recogemos unas variables para saber dónde vamos a posicionar el planeta que vamos a crear.<br>
+				&emsp;&emsp;&emsp;-	float x = Random.Range entre la tX0Y0Z0.position.x y tX1.position.x.<br>
+				&emsp;&emsp;&emsp;-	float y = Random.Range entre la posicion y de X0Y0Z0 y la posicion y de Y1.<br>
+				&emsp;&emsp;&emsp;-	float z = Random.Range entre la posicion z de X0Y0Z0 y la posicion z de Z1.<br>
+				&emsp;&emsp;o	Seleccionamos un planeta de forma aleatoria del array de planetas.<br>
+				&emsp;&emsp;o	Creamos el planeta que hemos seleccionado.<br>
+				&emsp;&emsp;o	Y lo posicionamos en las variables x,y,z.<br>			
+ 			</p>	
+ 		  <p class="img_centrada"><img src="img/tema5/5-6.png" width="80%" alt=""></p>	    
+ 			  
+      <p class="texto">				
+      <br><br>
+      <a class="texto volver" href="javascript:history.back(-1);">Volver al índice</a>
+   </div>
+   <div id="pie">
+      <h1> Fun Tech Academy - Calle Alcobendas, 23 Leganés 28914 Madrid - www.funtech.academy </h1>
+   </div>
+</body>
+</html>
