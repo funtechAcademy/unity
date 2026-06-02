@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="styles/style.css">
+   <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Sanchez&display=swap" rel="stylesheet">
+   <script src="js/scripts.js"></script>
+   <title>Plataforma 2D</title>
+</head>
+<body>
+   <div id="cabecera">
+      <h1>Plataforma 2D</h1>
+   </div>
+   <!-- INICIO_LOADER -->
+   <div id="pageloader">
+      <img src="img/LogoOjo_FTA.png" class="spining" width="100px">
+   </div>
+   <!-- FIN_LOADER -->
+   <div id="contenido">
+      <h2>Plataforma 2D</h2>
+      <p class="texto">
+      	El Juego habrá que crearlo de tipo Universal2D (sin luces).<br>
+      	Características de un Juego 2D:<br>
+				&emsp;•	Son Sprites imágenes planas.<br>
+				&emsp;•	La forma de componer el escenario mediante Tilemaps (Azulejos).<br>
+				&emsp;•	Usaremos Cinemachine.<br><br>
+				En nuestro juego tendremos:<br>
+				&emsp;•	Player tendrá animaciones y que dispare.<br>
+				&emsp;•	Marcador de Vidas (corazones), objetos que tenga que recoger y que nos dé puntos, segundos, record……<br>
+				&emsp;•	Plataforma Móvil en horizontal y vertical, otra rebotona y que salga un objeto si le damos por debajo
+				 (con animación). <br>
+				&emsp;•	Plataformas con materiales físicos….<br>
+				&emsp;•	CheckPoint para que si llega a un punto determinado del juego y le matan vuelva a ese punto y no tenga
+				 que empezar de nuevo.<br>
+				&emsp;•	Enemigos que se mueven (con Joins o de un lado a otro…….) y otro estático para acabar el juego que nos 
+				dispara.<br><br>	
+				Descargas Fuentes y plataformas 2D: <br>
+				&emsp;•	Google Fonts, fontsquirrel.<br>
+				&emsp;•	https://es.cooltext.com/.<br>
+				&emsp;•	https://kenney.nl/assets.<br>
+				&emsp;• https://ansimuz.itch.io/.<br>	
+				&emsp;•	https://opengameart.org/content/platformer-art-complete-pack-often-updated.<br><br>
+				En _GameAssets crear carpetas de:<br>
+				&emsp;•	Animation.<br>
+				&emsp;•	Brushes.<br>
+				&emsp;•	Material.<br>	
+				&emsp;•	Paletas.<br>
+				&emsp;•	Physics.<br>
+				&emsp;•	Prefabs.<br>
+				&emsp;&emsp;o	Enemigos.<br>
+				&emsp;&emsp;o	Coleccionables.<br>
+				&emsp;&emsp;o	Plataformas.<br>
+				&emsp;&emsp;o	Player….<br>
+				&emsp;•	Scenes.<br>
+				&emsp;•	Scripts.<br>
+				&emsp;&emsp;o	Enemigos.<br>
+				&emsp;&emsp;o	Coleccionables……..<br>
+				&emsp;•	Sounds.<br>
+				&emsp;•	Sprites.<br>
+				&emsp;&emsp;o	Enemigos.<br>
+				&emsp;&emsp;o	Enviroment.<br>
+				&emsp;&emsp;o	Player.<br>
+				&emsp;•	Textures.<br>
+				&emsp;•	TileRules.<br>
+				&emsp;•	Tiles……
+      </p>
+     
+      <h3>Tiles</h3>
+      <p class="texto">
+         Lo primero que haremos es crear el entorno mediante las Tiles.<br>
+       </p>  
+      <p class="img_centrada"><img src="img/tema9/9-1.png" width="80%" alt=""></p>
+			
+      <p class="texto">
+	      	Necesitamos un *.png (Hoja con todos los sprites) y la arrastramos a una carpeta de 
+				_GameAssets/Sprites. Tenemos que trocearla. (Window/2D/Sprite Editor).<br><br>
+				Crear un TileMap/Rectangular lo llamaremos TileMapPlataformas (Window/2D/TileMap). Tendremos que arrastrar
+				 los Sprites al TileMap. Y desde aquí podremos ir dibujando nuestras plataformas.<br>
+				Tendremos que tener: Plataformas con Efectos, Rebotonas, con animaciones, con materiales físicos
+				 (deslizantes…). Pueden ser prefab que los incluiremos en Prefab Brushes.<br><br>
+	      	
+		 			Esto es una idea de lo que podemos utilizar:<br>
+					&emsp;•	TilemapPlataformas.<br>
+					&emsp;&emsp;o	Pintaremos las plataformas desde la paleta y añadiremos estos Prefabs que crearemos mediante
+					 los Brushes:<br>
+					&emsp;&emsp;&emsp;-	PlataformaHorizontalMovil con Animación.<br>
+					&emsp;&emsp;&emsp;-	PlataformaVerticalMovil	con Animación.<br>
+					&emsp;&emsp;&emsp;-	PlataformaInclinado con Material Fisico.<br>
+					&emsp;&emsp;&emsp;-	PlataformaRebotona.<br>
+					&emsp;&emsp;&emsp;&emsp;•	PuntoGeneracionCaramelo.<br>
+					&emsp;&emsp;&emsp;&emsp;•	Componente:<br>
+					&emsp;&emsp;&emsp;&emsp;&emsp;o	Script PlataformaRebotona.cs y AudioSource.<br>
+					&emsp;&emsp;&emsp;&emsp;&emsp;o	Si le damos por debajo tiene que hacer una animación hacia arriba y salir un caramelo ….
+					 Y recogerlo.<br><br>
+					&emsp;•	TilemapAgua Efecto BouyancyEffector2D (flota).<br><br>
+					&emsp;•	TilemapAguaDanyo Script Agua.cs.<br>
+					&emsp;&emsp;o	Prefab Agua…..<br><br>
+					&emsp;•	TilemapPasarela Efecto SurfaceEffector2D (cinta deslizadora) Script Pasarela.cs para que se 
+					active y desactive por tiempo el Tilemap.<br>
+					&emsp;&emsp;o	Prefab PlataformaPasarela.<br><br>
+ 			</p>
+ 			
+ 			 <ul> 
+					<li><a href="tema9a-1.html">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Como crear un TileMap</a></li>           
+       </ul> 
+       
+ 			<h3>Player</h3>
+      <p class="texto">
+					Necesitamos un Personaje 2D que tenga animaciones de Idle, Jump, Walk….<br><br>
+					Arrastrar el Sprite 2d de Idle a la Escena y se crea el Player.<br><br>
+					Necesitaríamos incluir en el Player:<br>
+					&emsp;•	El Player contendrá:<br>
+					&emsp;&emsp;o	PosicionPies GO vacío para saber si podemos saltar.<br>
+					&emsp;&emsp;o	PuntoGeneracionBala GO vacío.<br>
+					
+					&emsp;•	Componentes:<br>
+					&emsp;&emsp;o	RigidBody 2D, BoxCollider 2D, Animator, AudioSource.<br>
+					&emsp;&emsp;o	El Animator tendrá 3 Clips y mediante parámetros cambiaríamos de una animación a otra:<br>
+					&emsp;&emsp;&emsp;-	Idle.<br>
+					&emsp;&emsp;&emsp;-	Walk.<br>
+					&emsp;&emsp;&emsp;-	Jump.
+ 			</p>
+ 		
+ 			<h3>Script Player.cs</h3>
+ 			<p class="texto">
+	 				•	Variables:<br>
+					&emsp;o	De tipo: Enum EstadoPlayer {Pausa, AndandoDerecha, AndandoIzquierda, Saltando, Sufriendo}.<br>
+					&emsp;&emsp;-	Saltando cuando damos al Espacio.<br>
+					&emsp;&emsp;-	Sufriendo es cuando nos quitan vidas y no se moverá.<br>
+					&emsp;&emsp;-	Pausa es para solo saltemos 1 vez.<br>
+					&emsp;o	Inicializar EstadoPlayer estado = EstadoPlayer.Pausa;.<br>
+					&emsp;o	[SerializeField] LayerMask floorLayer; // Capa para las colisiones (Suelo).<br>
+					&emsp;o	Para la barra.<br>
+					&emsp;&emsp;-	vidaBarra = 1 Cuando esta la barra de vida entera.<br>
+					&emsp;&emsp;-	quitarVidaBarra = 0.2f quita vida de la barra cuando colisiona con el enemigo.<br>
+					&emsp;o	Para los corazones.<br>
+					&emsp;&emsp;-	saludMaxima = 100.<br>
+					&emsp;&emsp;-	vidaMaximaBarra = 100f.<br>
+			</p>
+			<p class="img_centrada"><img src="img/tema9/9-2.png" width="80%" alt=""></p>
+			<p class="nota">
+					En el Update recogeremos el estado y moveremos la bala del disparo. Y el movimiento físico lo haremos
+					en el FixedUpdate.
+			</p>
+			
+			<p class="texto">	
+				&emsp;•	Update.<br>
+				&emsp;&emsp;o	Espacio salta con el espacio (GetKeyDown(KeyCode.Space)).<br>
+				&emsp;&emsp;&emsp;-	Estado = estadoPlayer.Saltando.<br>
+						
+				&emsp;&emsp;o	Dispara con la Z (GetKeyDown(KeyCode.Z)) y si no está en Pausa.<br>
+				&emsp;&emsp;&emsp;-	Si estado = EstadoPlayer.AndandoIzquierda/AndandoDerecha el disparo saldrá a
+					 la Izquierda/Derecha con AddRelativeForce con sonido.<br>
+						
+				&emsp;&emsp;o	Si está sufriendo y toca el suelo (Método EstaEnElSuelo())) lo dejamos en pausa.<br>
+				&emsp;&emsp;&emsp;-	Método EstaEnElSuelo().<br>
+				&emsp;&emsp;&emsp;&emsp;•	Le hacemos un OverlapSphere muy pequeño y comprobamos si estoy chocando
+						 con el suelo Physics2D.OverlapCircle.<br><br>
+
+				&emsp;•	FixedUpdate Haremos los movimientos del Player.<br>	
+				&emsp;&emsp;o	Movimiento en Horizontal X con GetAxis. (xPos).<br>
+				&emsp;&emsp;o	ySpeedActual = rb2D.velocity.y la velocidad de Y que tiene actualmente.<br>
+				&emsp;&emsp;o	Si el Player está Sufriendo no se moverá.<br>
+				&emsp;&emsp;&emsp;- Esto lo hacemos para que no continue con el script poniendole un "return".<br><br> 
+						 
+						 
+				&emsp;&emsp;o	Primero comprobamos si tiene que andar.<br>
+				&emsp;&emsp;&emsp;-	Si Math.Abs(xPos) > 0.01f Anda y si no se para (animación).<br><br>
+
+				&emsp;&emsp;o	Si su estado es saltando.<br>
+				&emsp;&emsp;&emsp;-	EstadoPlayer.Pausa para que solo salte una vez.<br>
+				&emsp;&emsp;&emsp;-	Si EstaEnElSuelo() rb.velocity = new Vector2(xPos * speed , jumpForce).<br>
+				&emsp;&emsp;&emsp;-	Si no EstaEnElSuelo() rb.velocity = new Vector2(xPos * speed , ySpeedActual).<br><br>
+
+				&emsp;&emsp;o	Y Sino xPos > 0.01f Hacia la derecha.<br>
+				&emsp;&emsp;&emsp;-	Le damos su rb.velocity = new Vector2(xPos * speed , ySpeedActual).<br>
+				&emsp;&emsp;&emsp;-	Comprobar si esta su estado a la izquierda hay que rotar el player con localScale.<br
+				&emsp;&emsp;&emsp;-	Y Modificar el estado a derecha.<br><br>
+
+				&emsp;&emsp;o	Y Sino xPos < -0.01f Hacia la izquierda y hacer lo mismo que la derecha.
+			</p>		
+				
+			<p class="nota">		
+				Si vemos que la animación se desliza tenemos que chequear en la Animator del Player el Apply Root Motion
+					 y darle más fuerza para que se mueva.
+			</p>
+	
+			<p class="texto">	
+				&emsp;•	Métodos:<br>			
+				&emsp;&emsp;o	ContarSegundos.<br> 
+				&emsp;&emsp;&emsp;-	Tendremos un tiempo de 60 segundos.<br> 
+				&emsp;&emsp;&emsp;-	Y hay que llamar a este método cada segundo e ir restando ese tiempo al contador.<br><br>
+
+				&emsp;&emsp;o	QuitarVidas (quitar corazones).<br>
+				&emsp;&emsp;&emsp;-	Quitar vida.<br>
+				&emsp;&emsp;&emsp;-	Sonido.<br>
+				&emsp;&emsp;&emsp;-	Si vidas > 0.<br>
+				&emsp;&emsp;&emsp;&emsp;•	Llamar a Metodo UIScript.RestarVida() (explicado más adelante).<br>
+				&emsp;&emsp;&emsp;&emsp;•	Hay que volver a dejar la barra de vida entera.<br>
+				&emsp;&emsp;&emsp;-	Si vida = 0.<br>
+				&emsp;&emsp;&emsp;&emsp;•	Explosión del Player.<br>
+				&emsp;&emsp;&emsp;&emsp;•	Finalizar juego Menú portada.<br><br>
+
+				&emsp;&emsp;o	FinalizarJuego.<br> 
+				&emsp;&emsp;o	IncrementarPuntuacion.<br> 
+				&emsp;&emsp;o	RecibirSalud (int incrementoSalud) por parte de un personaje (barra).<br> 
+				&emsp;&emsp;&emsp;-	La salud nunca podrá sobrepasar a la saludMaxima.<br>
+				&emsp;&emsp;&emsp;-	vidaBarra += incrementoSalud / vidaMaximaBarra.<br>
+				&emsp;&emsp;&emsp;-	barraDeVida.fillAmount = vidaBarra.<br><br>
+
+				&emsp;&emsp;o	RecibirDanyo(int danyo) Cuando me tocan los enemigos.<br>
+				&emsp;&emsp;&emsp;-	vidaBarra += quitaVidaBarra.<br>
+				&emsp;&emsp;&emsp;-	barraDeVida.fillAmount = vidaBarra.<br>
+				&emsp;&emsp;&emsp;-	salud -= danyo;.<br>
+				&emsp;&emsp;&emsp;-	Si la salud <= 0.<br> 
+				&emsp;&emsp;&emsp;&emsp;•	QuitarVidas() Quitamos corazones.<br>
+				&emsp;&emsp;&emsp;&emsp;•	salud = saludMaxima (100) Volvemos a inicializar a 100 la salud.<br>
+				&emsp;&emsp;&emsp;-	CambiarPosicionPlayer().<br><br>
+
+				&emsp;&emsp;o	CambiarPosicionPlayer para cuando nos den ir hacia atrás o adelante dependiendo de
+				 hacia dónde mire el Player.<br>
+				&emsp;&emsp;&emsp;-	Comprobar estado del Player.<br> 
+				&emsp;&emsp;&emsp;-	AddRelativeForce (new Vector2( fuerzaImpactoX, fuerzaImpactoY),
+				 ForceMode2D.Impulse).<br>
+				&emsp;&emsp;&emsp;-	Estado Sufriendo.<br><br>
+			</p>	
+			
+			<p class="nota">	
+				ForceMode2D Añade un impulso de fuerza instantáneo al rigidbody2D, utilizando su masa.
+			</p>	
+			
+			<p class="texto">	
+				&emsp;o	GetVidas retornar las vidas.<br> 
+				&emsp;o	GetPuntos retornar los puntos.<br>
+				&emsp;o	SaltoAlVacio y obtenemos la posición que tenía nuestro Player.<br>
+				&emsp;&emsp;- GameControler.GetPosition(). Es un método del Script GameControler static (Lo veremos
+				más adelante).
+			</p>
+ 		
+ 			<h3>Input System</h3>
+ 			<p class="texto">	
+ 					El Input System es un paquete diseñado para gestionar las entradas de dispositivos (teclado, ratón,
+ 					 mandos, pantallas táctiles) en Unity. Permite mapear acciones (como "saltar" o "mover") a diferentes
+ 					botones físicos, facilitando el soporte multiplataforma, la reconfiguración de controles y la
+ 					detección automática de mandos. 
+ 				<ul> 
+					<li><a href="tema9a-3.html">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Input System</a></li>           
+      	</ul> 	  
+ 			</p>
+ 		
+ 			<h3>Resto Objetos</h3>
+ 			<p class="texto">	
+ 				&emsp;•	BackGround.<br>
+				&emsp;•	Música juego.<br>
+				&emsp;•	Caramelos (Coleccionables). Componentes:.<br>
+				&emsp;&emsp;o	OnCollisionEnter.<br>
+				&emsp;&emsp;&emsp;-	Player.IncrementarPuntuacion().<br>
+				&emsp;&emsp;o	ParticleSystem, AudioSource.<br><br>
+				
+				&emsp;•	Salud. Componentes:<br>
+				&emsp;&emsp;o	OnTriggerEnter.<br>
+				&emsp;&emsp;&emsp;- Player.RecibirSalud().<br>
+				&emsp;&emsp;o	ParticleSystem, AudioSource.<br><br>
+
+				&emsp;•	Enemigo móvil Será un prefab. Se moverá de izqda a derecha con unos limites.<br>
+				&emsp;&emsp;o	LimiteIzquierda y LimiteDerecha GO Vacio.<br>
+				&emsp;&emsp;o	Malo.<br>
+				&emsp;&emsp;&emsp;-	ColliderSuperior EnemigoSuperior.cs.<br>
+				&emsp;&emsp;&emsp;&emsp;•	Player.IncrementarPuntuacion() y se destruye el Enemigo.<br>
+				&emsp;&emsp;&emsp;-	ColliderInferior EnemigoInferior.cs.<br>
+				&emsp;&emsp;&emsp;&emsp;•	Si toca por los lados quitara vidas al Player.RecibirDanyo().<br>
+				&emsp;&emsp;&emsp;-	Componentes.<br>
+				&emsp;&emsp;&emsp;&emsp;•	Script Enemigo.cs. Pasaremos por parámetro:<br>
+				&emsp;&emsp;&emsp;&emsp;&emsp;o	Límites.<br>
+				&emsp;&emsp;&emsp;&emsp;&emsp;o	Se moverá con Translate.<br>
+				&emsp;&emsp;&emsp;&emsp;&emsp;o	Método CambiarOrientacion() usar sprite.flip.<br>
+				&emsp;&emsp;&emsp;&emsp;•	ParticleSystem.<br>	
+				&emsp;&emsp;&emsp;&emsp;•	Animación de movimiento.<br><br> 
+
+			</p>	
+			
+			<p class="nota">	
+				El ColliderSuperior será cuando lo toque por encima y el ColliderInferior si le toca por los lados.
+			</p>	
+			
+			<p class="texto">
+				&emsp;•	Enemigo estático que lanzará la bala hacia donde este el player. Componentes:<br> 
+				&emsp;&emsp;o	Script.<br> 
+				&emsp;&emsp;&emsp;-	Vector2 posicionPlayer = posición player – posición enemigo estático.<br> 
+				&emsp;&emsp;&emsp;-	La bala se lanzará con AddRelativeForce (posicionPlayer * potencia disparo).<br> 
+				&emsp;&emsp;&emsp;-	AudioSource.<br> 
+				&emsp;&emsp;o	Bala del enemigo estático..<br>  
+				&emsp;&emsp;&emsp;-	Si da al Player.QuitarVidas().<br> 
+				&emsp;&emsp;&emsp;-	Player.CambiarPosicionPlayer() para que se mueva hacia un lado.<br><br> 
+
+				&emsp;•	Mosca Se moverá de izqda a derecha con unos límites y tendrá un slider para las vidas.<br> 
+				&emsp;&emsp;o	Tendrá los limites y las colisiones como el Enemigo movil.<br> 
+				&emsp;&emsp;o	Malo.<br> 
+				&emsp;&emsp;&emsp;-	Canvas.<br> 
+				&emsp;&emsp;&emsp;&emsp;•	Slider.<br> 
+				&emsp;&emsp;&emsp;&emsp;&emsp;o	BackGround (rojo).<br> 
+				&emsp;&emsp;&emsp;&emsp;&emsp;o	Fill Area/Fill (verde).<br> 
+				&emsp;&emsp;&emsp;-	Componentes.<br> 
+				&emsp;&emsp;&emsp;&emsp;•	Script Mosca.cs. Pasaremos por parámetro:<br> 
+				&emsp;&emsp;&emsp;&emsp;&emsp;o	Limites.<br> 
+				&emsp;&emsp;&emsp;&emsp;&emsp;o	Se moverá con Translate.<br> 
+				&emsp;&emsp;&emsp;&emsp;&emsp;o	Método CambiarOrientacion().<br> 
+				&emsp;&emsp;&emsp;&emsp;&emsp;o	Método QuitarVida(). Cuando la bala del Player le dispare.<br> 
+				&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;- slider.value - 25 Valor inicial del slider 100.<br> 
+				&emsp;&emsp;&emsp;&emsp;•	Animación de movimiento.  
+			</p>		
+			<p class="img_centrada"><img src="img/tema9/9-3.png" width="80%" alt=""></p>
+			
+			<p class="texto">	
+				&emsp;•	CheckPoint	Guarda la posición del Player y recoge todas las puntuaciones que tengamos en ese
+				 momento, coleccionables… Y si volvemos a empezar no tendremos que volver a pasar todo el juego. 
+				 Componentes:<br>
+				&emsp;&emsp;o	Script CheckPoint.cs recoge todo y lo guarda en el Script GameController.cs (Lo veremos
+				más adelante).<br><br>
+				&emsp;•	Spider.<br>
+				&emsp;&emsp;o	CajaTelaSpider: Necesitamos poner una caja o algo que contenga un componente Spring Join
+				 2D para que en nuestro caso conecte con el RigidBody del Spider.<br>
+				&emsp;&emsp;o	TelaSpider es un objeto de tela de araña.<br>
+				&emsp;&emsp;o	SpideWeb GO vacío con un componente Line Renderer.<br>
+				&emsp;&emsp;&emsp;-	Para unir 2 o más puntos y que parezca el hilo del spider.<br>
+				&emsp;&emsp;&emsp;-	Contiene un Script Rope.cs.<br>
+				&emsp;&emsp;&emsp;&emsp;•	Pasamos por parámetro el transform del Spider.<br>
+				&emsp;&emsp;&emsp;&emsp;•	Recoger el componente LineRenderer.<br>
+				&emsp;&emsp;&emsp;&emsp;•	Y en el Update establece la posición del vértice en la línea
+				lr.SetPosition(1,spidertransform.position).<br>
+				&emsp;&emsp;o	Spider. Script Spride.cs.<br>
+				&emsp;&emsp;&emsp;-	Si colisiona con el Player.RecibirDanyo().<br><br>
+				&emsp;•	MargenIzquierdo.<br>
+				&emsp;•	MargenSuperior.<br>
+				&emsp;•	MargenDerecho.<br>
+				&emsp;•	MargenInferior con un Script MargenInferior.cs.<br>
+				&emsp;&emsp;o	Si el Player colisiona con el.<br> 
+				&emsp;&emsp;&emsp;-	Player.QuitarVida().<br>
+				&emsp;&emsp;&emsp;-	Player.SaltoAlVacio().<br><br>
+			</p>
+			<p class="img_centrada"><img src="img/tema9/9-4.png" width="80%" alt=""></p>
+			
+			<p class="texto">	
+				&emsp;•	Salida Script Exit.cs Vuelve a la Portada.
+			</p>
+				
+				
+			<h3>Script GameControler.cs</h3>
+ 			<p class="texto">		
+				Contendrá métodos y todos serán static para poder llamarlas sin necesidad de hacer referencias….<br>
+				&emsp;•	StorePosition guardamos la position x e y del Player.<br>
+				&emsp;•	GetPosition que retornara un Vector2 y cogemos el Script que pusimos en el Player.<br>
+				&emsp;•	StorePuntos.<br>
+				&emsp;•	GetPuntos.<br>
+				&emsp;•	StoreCaramelos.<br>
+				&emsp;•	PararAnimaciones Recoger todos los objetos que tengan un tag = “Animaciones” y guardarlos
+				 en un Array ya desactivarlos cuando el juego se pare.
+			</p>
+					
+			<h3>Canvas</h3>
+ 			<p class="texto">				
+					El Canvas contendrá lo siguiente:<br>
+					&emsp;•	Puntuación Texto.<br>
+					&emsp;•	BarraVidaAbajo Image.<br>
+					&emsp;•	BarraVidaArriba Image.<br>
+					&emsp;•	Panel Vidas (Corazones).<br>
+					&emsp;	&emsp;o	Componente Horizontal Layout Group para poner los corazones en horizontal.<br>
+					&emsp;•	Texto de Objetos recogidos Text.<br>
+					&emsp;•	Imagen del Objeto Recogido Image.<br>
+					&emsp;•	Tiempo Text.<br>
+					&emsp;•	GameOver Image.<br><br>
+				Barra de Salud con una saludmaxima de 100. Cuando no tenga Salud le quitaría 1 vida. Está 
+				formada por:<br>
+					&emsp;•	BarraVidaAbajo.<br> 
+					&emsp;	&emsp;o	Componente Image color naranja con Source Imagen a None.<br>
+					&emsp;•	BarraVidaArriba.<br> 
+					&emsp;&emsp;o	Componente Image color rojo con Source Imagen a Pixel (transparente).<br>
+					&emsp;&emsp;&emsp;-	Image Type Filled.<br>
+					&emsp;&emsp;&emsp;-	Fill Method Horizontal.<br>
+					&emsp;&emsp;&emsp;-	Fill Origin Left va hacia la izquierda.<br>
+					&emsp;&emsp;&emsp;-	Fill Amount 1.<br><br>
+					
+								
+					El Canvas tiene asociado un Script UIScript.cs. Pasaremos por parámetro:<br>
+					&emsp;•	ImágenesVida[] Contendrá todos los corazones nada más empezar el juego en el Start.<br>
+					&emsp;•	PrefabImagenVida será el corazón.<br>
+					&emsp;•	PlayerScript player para poder acceder a sus métodos para poder obtener la vida del Player
+					 y modificar los corazones.<br><br>
+					
+					&emsp;•	Método RestarVida.<br>
+					&emsp;&emsp;o	Recoger el número de vidas.<br> 
+					&emsp;&emsp;o	Habrá que recorrer el array ImagenesVida y poner los corazones un poco transparentes
+					 usando new Color32(160, 160, 160, 128).
+				</p>	
+				
+				<p class="nota">					 
+				En mi caso uso estos parámetros, eso no significa que lo tenéis que hacer igual. Dependerá de cómo
+				 lo queráis hacer.
+				</p>		
+					
+				<h3>Cinemachine</h3>
+      	<p class="texto">	
+					Descargar Package Cinemachine. Es una cámara virtual:<br>
+					&emsp;•	Cinemachine/2D Camera y aparecerá un nuevo objeto CM vcam1 y en la Main Camera
+					 aparecerá un icono.<br>
+					&emsp;•	CM vcam1:<br>
+					&emsp;&emsp;o	Game Windows Guides para que se vean las líneas (en Game) y ajustar mejor la cámara. 
+					Siempre que tengamos seleccionado la opción de Body.
+				</p>		
+ 				<ul> 
+					<li><a href="tema9a-2.html">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Cinemachine</a></li>           
+       </ul> 
+	
+			<h3>Portada</h3>
+			<p class="texto">	
+				&emsp;•	AudioSource.<br>
+				&emsp;•	Canvas.<br>
+				&emsp;&emsp;o	BackGround.<br>
+				&emsp;&emsp;o	Título (Image).<br>
+				&emsp;&emsp;o	Botón Reseteo Juego.(NO OBLIGATORIO Para resetear los PlayerPrefs)<br>
+				&emsp;&emsp;o	CanvasScriptContainer: PortadaScript.cs,<br>
+				&emsp;&emsp;o	Panel en vertical para poder poner 2 botones:<br>
+				&emsp;&emsp;&emsp;-	Start: Event Trigger.<br>
+				&emsp;&emsp;&emsp;-	Exit: Event Trigger.<br>
+				&emsp;&emsp;o	Imágenes de Canvas con Animaciones que vayan hacia la izquierda y vuelvan a empezar.
+			</p>	
+					
+					
+      <p class="texto">				
+      <br><br>
+      <a class="texto volver" href="javascript:history.back(-1);">Volver al índice</a>
+   </div>
+   <div id="pie">
+      <h1> Fun Tech Academy - Calle Alcobendas, 23 Leganés 28914 Madrid - www.funtech.academy </h1>
+   </div>
+</body>
+</html>

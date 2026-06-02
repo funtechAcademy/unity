@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="styles/style.css">
+   <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Sanchez&display=swap" rel="stylesheet">
+   <script src="js/scripts.js"></script>
+   <title>Incredible Machine</title>
+</head>
+<body>
+   <div id="cabecera">
+      <h1>Incredible Machine</h1>
+   </div>
+   <!-- INICIO_LOADER -->
+   <div id="pageloader">
+      <img src="img/LogoOjo_FTA.png" class="spining" width="100px">
+   </div>
+   <!-- FIN_LOADER -->
+   <div id="contenido">
+      <h2>Incredible Machine</h2>
+      <p class="texto">
+           Haremos un circuito con toboganes, balancin que tendrán cubos y esferas para que se deslicen.
+           Para ello necesitaremos una estructura de carpetas que tendrán el
+          contenido necesario para hacer el juego que lo iremos incluyendo poco a poco:<br><br>
+         _GameAssets<br>
+          &emsp;•	Materials.<br>
+          &emsp;&emsp;o	Todos los Objetos tienen que tener un material de color.<br>
+          &emsp;•	Physics.<br>
+          &emsp;&emsp;o	Ball.<br>
+          &emsp;&emsp;o	Caja.<br>
+          &emsp;&emsp;o	Rampa.<br>
+          &emsp;&emsp;o	RampaLenta. Con Friction para el Tobogan2 y la Rampa del balancin.<br>
+          &emsp;•	Scenes.<br>
+          &emsp;&emsp;o	IncredibleMachine.<br>
+      </p>
+     
+      <h3>Escena</h3>
+      <p class="texto">
+         Tendremos que crear dentro de esta escena:<br>
+       	&emsp;•	Plano.<br>
+				&emsp;•	Caja (Cubo). Que se deslizara por el tobogán<br>
+				&emsp;•	Pelota (Esfera). Que se deslizara por el tobogán.<br>
+				&emsp;•	Tobogan1.<br>
+				&emsp;&emsp;o	Rampa.<br>
+				&emsp;&emsp;o	Lateral Rampa1.<br>
+				&emsp;&emsp;o	Lateral Rampa2.<br>
+				&emsp;•	Tobogan2.<br>
+				&emsp;&emsp;o	Rampa.<br>
+				&emsp;&emsp;o	Lateral Rampa1.<br>
+				&emsp;&emsp;o	Lateral Rampa2.<br>
+				&emsp;•	Peloton. Esfera con más peso<br>
+				&emsp;•	Balancin.<br>
+				&emsp;&emsp;o	Rampa.<br>
+				&emsp;&emsp;o	Lateral Rampa1.<br>
+				&emsp;&emsp;o	Lateral Rampa2.<br>
+				&emsp;&emsp;o	Lateral Rampa3.<br>
+				&emsp;&emsp;o	Lateral Rampa4.<br>
+				&emsp;•	Soporte Balancin (Cilindro).<br>
+      </p> </p>
+      <p class="img_centrada"><img src="img/tema5/5-1.png" width="80%" alt=""></p>
+ 			
+ 			<h3>Objetivo</h3>
+      <p class="texto">
+ 				Cambiaremos las masas y jugaremos con los materiales físicos para ver su comportamiento.<br>
+ 				Pondremos un balancin y haremos que una pelota caiga a una altura con la gravedad.		
+ 			</p>
+ 			
+ 			
+ 			<h3>Tobogan1</h3>
+      <p class="texto">
+      	Es un GO vacio y está formado por una Rampa y los dos Laterales para que no se salga la pelota o la caja
+       de su recorrido.<br>
+       Crear un material físico:<br>
+       &emsp;• Dentro de la carpeta Physics hacemos click derecho. Y seleccionar Physic Material y le ponemos nombre 
+ 			</p>
+ 			<p class="img_centrada"><img src="img/tema5/5-7.png" width="80%" alt=""></p>
+ 			
+ 			<p class="texto"> dsfsdfs
+ 				 &emsp;El material fisico tiene varios parámetros:<br>
+ 				 &emsp;• Dynamic Friction es la resistencia al deslizarse cuando el objeto ya está en movimiento. Los valores
+ 				  cercanos a 0 son resbaladizos (como el hielo), y cercanos a 1 o más son rugosos.<br>
+ 				 &emsp;• Static Friction Resistencia al iniciar el movimiento desde el reposo.
+ 				 &emsp;• Bounciness (Rebote): Define cuánta energía conserva el objeto al chocar. Un valor de \(0\) significa que no hay rebote y el objeto cae muerto, mientras que un \(1\) produce un rebote perfecto (el objeto vuelve a la misma altura inicial).  
+ 				   &emsp;• Friction Combine (Combinación de Fricción): Determina cómo se calcula la fricción cuando dos objetos chocan (pueden promediarse, sumarse o elegir el valor mínimo/máximo de ambos).
+ 				    &emsp;• Bounce Combine (Combinación de Rebote): Determina cómo interactúan los rebotes de dos objetos colisionantes (ej. si uno tiene rebote \(0\) y otro \(0.5\), define si rebotan o no)
+ 				  
+ 				 
+ 		  </p>
+ 			
+ 			<p>			
+      <p class="texto">				
+      <br><br>
+      <a class="texto volver" href="javascript:history.back(-1);">Volver al índice</a>
+   </div>
+   <div id="pie">
+      <h1> Fun Tech Academy - Calle Alcobendas, 23 Leganés 28914 Madrid - www.funtech.academy </h1>
+   </div>
+</body>
+</html>
