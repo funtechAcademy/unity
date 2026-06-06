@@ -79,7 +79,7 @@
 	      	Necesitamos un *.png (Hoja con todos los sprites) y la arrastramos a una carpeta de 
 				_GameAssets/Sprites. Tenemos que trocearla. (Window/2D/Sprite Editor).<br><br>
 				Crear un TileMap/Rectangular lo llamaremos TileMapPlataformas (Window/2D/TileMap). Tendremos que arrastrar
-				 los Sprites al TileMap. Y desde aquí podremos ir dibujando nuestras plataformas.<br>
+				 los Sprites al TileMap. Y desde aquí podremos ir dibujando nuestras plataformas.<br><br>
 				Tendremos que tener: Plataformas con Efectos, Rebotonas, con animaciones, con materiales físicos
 				 (deslizantes…). Pueden ser prefab que los incluiremos en Prefab Brushes.<br><br>
 	      	
@@ -119,7 +119,8 @@
 					
 					&emsp;•	Componentes:<br>
 					&emsp;&emsp;o	RigidBody 2D, BoxCollider 2D, Animator, AudioSource.<br>
-					&emsp;&emsp;o	El Animator tendrá 3 Clips y mediante parámetros cambiaríamos de una animación a otra:<br>
+					&emsp;&emsp;o	El Animator tendrá 3 Clips y mediante parámetros en la animación cambiaríamos de una 
+						animación a otra:<br>
 					&emsp;&emsp;&emsp;-	Idle.<br>
 					&emsp;&emsp;&emsp;-	Walk.<br>
 					&emsp;&emsp;&emsp;-	Jump.
@@ -133,7 +134,8 @@
 					&emsp;&emsp;-	Sufriendo es cuando nos quitan vidas y no se moverá.<br>
 					&emsp;&emsp;-	Pausa es para solo saltemos 1 vez.<br>
 					&emsp;o	Inicializar EstadoPlayer estado = EstadoPlayer.Pausa;.<br>
-					&emsp;o	[SerializeField] LayerMask floorLayer; // Capa para las colisiones (Suelo).<br>
+					&emsp;o	[SerializeField] LayerMask floorLayer; // Capa para las colisiones (Suelo) para que sepamos
+					 si puede saltar o no.<br>
 					&emsp;o	Para la barra.<br>
 					&emsp;&emsp;-	vidaBarra = 1 Cuando esta la barra de vida entera.<br>
 					&emsp;&emsp;-	quitarVidaBarra = 0.2f quita vida de la barra cuando colisiona con el enemigo.<br>
@@ -157,9 +159,8 @@
 					 la Izquierda/Derecha con AddRelativeForce con sonido.<br>
 						
 				&emsp;&emsp;o	Si está sufriendo y toca el suelo (Método EstaEnElSuelo())) lo dejamos en pausa.<br>
-				&emsp;&emsp;&emsp;-	Método EstaEnElSuelo().<br>
-				&emsp;&emsp;&emsp;&emsp;•	Le hacemos un OverlapSphere muy pequeño y comprobamos si estoy chocando
-						 con el suelo Physics2D.OverlapCircle.<br><br>
+				&emsp;&emsp;&emsp;-	Método EstaEnElSuelo().<br><br>
+				
 
 				&emsp;•	FixedUpdate Haremos los movimientos del Player.<br>	
 				&emsp;&emsp;o	Movimiento en Horizontal X con GetAxis. (xPos).<br>
@@ -207,6 +208,9 @@
 
 				&emsp;&emsp;o	FinalizarJuego.<br> 
 				&emsp;&emsp;o	IncrementarPuntuacion.<br> 
+				&emsp;&emsp;o	EstaEnElSuelo.<br> 
+				&emsp;&emsp;&emsp;&emsp;•	Le hacemos un OverlapSphere muy pequeño y comprobamos si estoy chocando
+						 con el suelo Physics2D.OverlapCircle.<br><br>
 				&emsp;&emsp;o	RecibirSalud (int incrementoSalud) por parte de un personaje (barra).<br> 
 				&emsp;&emsp;&emsp;-	La salud nunca podrá sobrepasar a la saludMaxima.<br>
 				&emsp;&emsp;&emsp;-	vidaBarra += incrementoSalud / vidaMaximaBarra.<br>
@@ -241,7 +245,7 @@
 				más adelante).
 			</p>
  		
- 			<h3>Input System</h3>
+ 			<h3>Input System (Otra manera de hacer el movimiento del Player)</h3>
  			<p class="texto">	
  					El Input System es un paquete diseñado para gestionar las entradas de dispositivos (teclado, ratón,
  					 mandos, pantallas táctiles) en Unity. Permite mapear acciones (como "saltar" o "mover") a diferentes

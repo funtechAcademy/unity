@@ -108,7 +108,7 @@
 				&emsp;&emsp;o	Recoger el axis Vertical y Horizontal en variables hPos y vPos con GetAxis().<br><br>
 				&emsp;&emsp;o	Ruedas delanteras llevan la dirección. (flechas derecha e izquierda).<br>
 				&emsp;&emsp;&emsp;-	Modificamos el ángulo de giro y las multiplicamos por el axis horizontal.<br>
-				&emsp;&emsp;&emsp;-	wcFrontL y wcFrontR.steerAngle = anguloMaximoRotacion * hPos.<br><br>
+				&emsp;&emsp;&emsp;&emsp;-	wcFrontL y wcFrontR.steerAngle = anguloMaximoRotacion * hPos.<br><br>
 				&emsp;&emsp;o	Si no tiene el freno puesto.<br> 
 				&emsp;&emsp;&emsp;-	Si la vPos > 0.<br>
 				&emsp;&emsp;&emsp;&emsp;•	Texto Marcha adelante.<br>
@@ -116,12 +116,12 @@
 				&emsp;&emsp;&emsp;&emsp;•	Método para SoltarFreno().<br> 
 				&emsp;&emsp;&emsp;&emsp;•	Mover el coche hacia delante con la flecha hacia arriba. Dándole a las ruedas
 				 traseras el movimiento para que avance con motorTorque = fuerzaMaximaMotor * vPos.<br><br>
-				&emsp;&emsp;&emsp;-	Si vPos < 0 y fSpeed > 0.01 es que le he dado a la flecha hacia abajo la vPos será
+				&emsp;&emsp;&emsp;-	Else Si vPos < 0 y fSpeed > 0.01 es que le he dado a la flecha hacia abajo la vPos será
 				 negativa y frenaremos el coche si está andando comprobando la velocidad.<br>
 				&emsp;&emsp;&emsp;&emsp;•	Texto Esta frenado.<br>
 				&emsp;&emsp;&emsp;&emsp;•	Activa luz de frenado.<br>
 				&emsp;&emsp;&emsp;&emsp;•	Método Frenar().<br><br>		
-				&emsp;&emsp;&emsp;-	Si vPos < 0 y fSpeed <= 0.01 es que le he dado a la flecha hacia abajo la VPos será
+				&emsp;&emsp;&emsp;-	Else Si vPos < 0 y fSpeed <= 0.01 es que le he dado a la flecha hacia abajo la VPos será
 				 negativa y si está frenado ira marcha atrás cuando le dé a las flechas derecha e izquierda.<br>
 				&emsp;&emsp;&emsp;&emsp;•	Texto Marcha atrás.<br>
 				&emsp;&emsp;&emsp;&emsp;•	Método SoltarFreno().<br>

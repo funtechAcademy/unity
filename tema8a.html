@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="styles/style.css">
+   <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Sanchez&display=swap" rel="stylesheet">
+   <script src="js/scripts.js"></script>
+   <title>FPS</title>
+</head>
+<body>
+   <div id="cabecera">
+      <h1>FPS</h1>
+   </div>
+   <!-- INICIO_LOADER -->
+   <div id="pageloader">
+      <img src="img/LogoOjo_FTA.png" class="spining" width="100px">
+   </div>
+   <!-- FIN_LOADER -->
+   <div id="contenido">
+      <h2>FPS</h2>
+      <p class="texto">
+      		En principio pondremos un plano con 4 paredes. Necesitaremos el Paquete FirstPersonController.unitypackage.
+      </p>
+        
+      <h2>Player</h2>
+      <p class="texto">	    	
+      	•	Será un FirstPersonController que hemos descargado previamente.<br>
+				•	Tendrá asociado un script Player.cs.<br>
+				•	Con 4 armas:<br>
+				&emsp;o	Están dentro del Player/FirstPersonCharacter junto con su generador de munición.    
+      </p> 
+      <p class="img_centrada"><img src="img/tema8/8-1.png" width="30%" alt=""></p>
+      
+      <p class="texto">	  
+    	  •	Descargar 4 armas, 4 municiones y 4 sonidos de disparos.<br> 
+				•	Cada Arma tendrá asociado otro Script Arma.cs. Que es lo que pasaremos por parámetro al Player.cs en un
+				Array.
+ 			</p> 
+      
+      <p class="nota">	 
+     		 Crear un GO vacío para poder tener casi todos los sonidos SoundManager.cs. Tendrá un array AudioSource
+      	 y solo pasaremos el clip y el volumen. Lo haremos más adelante. 
+      </p> 
+      	
+      <h2>Script Player.cs</h2>
+      <p class="texto">	
+      	&emsp;• Variables más destacadas:<br>
+				&emsp;&emsp;o	Arma[] armas = new Arma[4].<br>
+				&emsp;&emsp;o	int armaActiva.<br>
+				&emsp;&emsp;o	Imagen[] imagen del Canvas.<br>
+				&emsp;&emsp;o	TextMeshProUGUI[] textoMunicion del Canvas.<br>
+				&emsp;&emsp;o	Imagen sangre.<br><br>
+				
+				&emsp;• Start.<br>
+				&emsp;&emsp;o Recoger los colores de la sangre (cuando tengamos el Canvas).<br>
+				&emsp;&emsp;o DesactivarArmas().<br>
+				&emsp;&emsp;o ActivarDesactivarImagenesCanvasArmas(false)<br><br>
+				
+				&emsp;• Update.<br>
+				&emsp;&emsp;o	Tecla Q para mostrar o no las armas del FPS.<br>
+				&emsp;&emsp;&emsp;-	La primera vez que damos a la Q aparecerá un Canvas con todas las Armas (el arma activa
+				 en color para saber que esta seleccionada), la munición que tiene por defecto y el arma activa en el FPS.
+			</p> 	
+      <p class="img_centrada"><img src="img/tema8/8-2.png" width="60%" alt=""></p>
+      
+      <p class="texto">	
+  	    &emsp;&emsp;o	Las armas las activaremos con números del 1 al 4 mediante Input.GetKeyDown(KeyCode.Alpha1)
+  	     Alpha1….Alpha4.<br>
+				&emsp;&emsp;&emsp;-	Usaremos Método ActivarArma con el parámetro del arma que esta activa. Primero se 
+				desactivarán todas las Armas y después el activamos el arma.<br>
+				&emsp;&emsp;o	Botón izquierdo ratón haremos el Disparar() con Input.GetMouseButtonDown(0)
+			</p> 	
+			
+			<p class="nota">	
+					NO podemos tener ningún valor (de tipo númerico, string…..) puesto en cualquier método. Todo tiene que 
+					estar parametrizado con variables para tenerlo todo más controlado.
+      </p> 
+      
+      <p class="texto">	
+      	&emsp;•	Métodos.<br>
+				&emsp;&emsp;&emsp;o	ActivarArma (int armaActiva).<br>
+				&emsp;&emsp;&emsp;&emsp;-	DesactivarArmas.<br>
+				&emsp;&emsp;&emsp;&emsp;-	Cambiar Color del Canvas del arma seleccionada.<br>
+				imagen[armaActiva].color = new Color(255, 0, 0, 255).<br>
+				&emsp;&emsp;&emsp;&emsp;-	Activar el Arma.<br><br>
+
+				&emsp;&emsp;o	DesactivarArmas.<br>
+				&emsp;&emsp;&emsp;-	Lo haremos con un foreach recorriendo todo su array.<br>
+				&emsp;&emsp;&emsp;-	Habrá que dejar las imágenes del Canvas con su color original.<br><br>
+				&emsp;&emsp;o	Disparar.<br>
+				&emsp;&emsp;&emsp;-	Dependiendo que munición sea ApretarGatillo ó ApretarGatilloBomba que son métodos
+				 que están en Arma.cs. Luego lo hacemos.<br><br>
+
+				&emsp;&emsp;o	IncrementarVida.<br>
+				&emsp;&emsp;&emsp;-	Incrementamos la vida a la variable VidaActual. Lo usaremos cuando recojamos las Cajas
+				 de Vida a lo largo del juego.<br>
+				&emsp;&emsp;&emsp;-	El Player siempre tendrá un número máximo de vidas.<br><br>
+				
+				&emsp;&emsp;o	RecibirDanyo (int danyo).<br>
+				&emsp;&emsp;&emsp;-	Recibirá por parámetro el daño que le da dependiendo de que Enemigo le toque.<br>
+				&emsp;&emsp;&emsp;-	Sonido de muerte del Player.<br>
+				&emsp;&emsp;&emsp;-	Mostrar la Imagen de Sangre del Canvas. En principio estará transparente (Canal Alpha
+				) e ira apareciendo poco a poco y luego desaparecerá poco a poco. Método MostrarSangre().<br>
+				&emsp;&emsp;&emsp;-	Si no tenemos vida llamar método Morir().
+			</p>
+			
+			<p class="nota">	
+					El RecibirDanyo lo llamaremos desde el Enemigo Movil cuando choque con el Player.
+      </p> 
+      
+      <p class="texto">	
+				&emsp;&emsp;o	IEnumerator MostrarSangre().<br>
+				&emsp;&emsp;&emsp;-	Usaremos 2 for.<br>
+				&emsp;&emsp;&emsp;&emsp;•	Uno para que aparezca poco a poco cambiando el canal Alpha a+=0.01.<br>
+				&emsp;&emsp;&emsp;&emsp;•	Y el otro para que desaparezca poco a poco cambiando el canal Alpha a-=0.01.<br> 
+				&emsp;&emsp;&emsp;&emsp;•	Y llamaremos Método CambiarColorSangre().<br><br>
+				
+				&emsp;&emsp;o	CambiarColorSangre().<br>
+				&emsp;&emsp;&emsp;-	Color c = new Color(r, g, b, a) r,g,b las recogeremos nada más empezar el juego.<br>
+				&emsp;&emsp;&emsp;-	Este color habría que asignárselo a la sangre.color,<br><br>
+				
+				&emsp;&emsp;o	Morir volvería a la escena.<br><br>
+
+				&emsp;&emsp;o	Disparar().<br>
+				&emsp;&emsp;&emsp;-	A una de las armas hare que no me deje disparar siempre mediante un bool
+				armas[armaActiva].ApretarGatillo().<br>
+				&emsp;&emsp;&emsp;-	Si tenemos un proyectil que sea una bomba podremos hacer 
+				armas[armaActiva].ApretarGatilloBomba().<br>			
+				&emsp;&emsp;o	ActivarDesactivarImagenesCanvasArmas(false/true). Va con parámetro.<br>
+				&emsp;&emsp;&emsp;-	Recorrer el Array imagen y textoMunicion activamos o desactivamos dependiendo del parámetro. 
+ 			</p> 
+        
+      <p class="nota">	
+					El ApretarGatillo y ApretarGatilloBomba lo haremos en el Script de Arma.cs.
+      </p> 
+      
+      <h2>SoundManager</h2>
+      <p class="texto">	       
+				&emsp;•	GO Vacio.<br>
+				&emsp;•	Tendrá asociado un script SoundManager.cs donde pondremos un parámetro que será un array con todos
+				 los sonidos que necesitamos.<br>
+				&emsp;•	Y un componente AudioSource.<br>
+				&emsp;•	Creamos un Método SeleccionAudio(int índice, float volumen).<br>
+				&emsp;&emsp;o	PlayOneShot. 
+ 			</p> 
+      
+      
+      <h2>Armas (Prefabs)</h2>
+      <p class="texto">	    
+				Cada Arma tendrá asociado un script Arma.cs (el mismo).<br>
+			
+				&emsp;• Variables más destacadas:.<br>
+				&emsp;&emsp;o	Quaternion[] bombas.<br>
+				&emsp;&emsp;o	int contadorBombas.<br><br>
+
+				&emsp;• Start.<br>
+				&emsp;Hay que crear un Array de bombas con una longitud de contadorBombas para que la podamos usar
+				 en el Método ApretarGatilloBomba.<br>
+				 &emsp;&emsp;o bombas = new Quaternion[contadorBombas]
+			</p> 	 
+			<p class="nota">	
+					Creamos un Array de bombas de tipo Quaternion para ir guardando sus rotaciones aleatorias.
+      </p> 		 
+		
+		   <p class="texto">	  		 
+		Método ApretarGatillo
+•	Si tengo munición se podrá disparar.
+•	Creo la munición y la lanzo. AddRelativeForce
+Método ApretarGatilloBomba saldrán varias bombas con rotaciones distintas
+•	Si tengo munición se podrá disparar.
+•	For hasta contadorMunicion
+o	bombas[i] = Random.rotacion 
+o	Crear la bomba en su punto de generación que llamare nuevaBomba
+o	Hay que ir destruyendo la nuevaBomba con un tiempo para que no se nos cargue la memoria
+o	A la nueva bomba se le da un giro distinto
+nuevaBomba.transform.rotation = Quaternion.RotateTowards(nuevaBomba.transform.rotation,
+                    bombas[i], esparcir)
+o	Se lanza con AddRelative Force
+Método ModificarMunicion
+Hay que quitar la munición y actualizarla en el Canvas.
+
+      
+      
+      
+      	
+      <p class="texto">				
+      <br><br>
+      <a class="texto volver" href="javascript:history.back(-1);">Volver al índice</a>
+   </div>
+   <div id="pie">
+      <h1> Fun Tech Academy - Calle Alcobendas, 23 Leganés 28914 Madrid - www.funtech.academy </h1>
+   </div>
+</body>
+</html>
