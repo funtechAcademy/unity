@@ -116,17 +116,17 @@
 				&emsp;&emsp;&emsp;&emsp;•	Método para SoltarFreno().<br> 
 				&emsp;&emsp;&emsp;&emsp;•	Mover el coche hacia delante con la flecha hacia arriba. Dándole a las ruedas
 				 traseras el movimiento para que avance con motorTorque = fuerzaMaximaMotor * vPos.<br><br>
-				&emsp;&emsp;&emsp;-	Else Si vPos < 0 y fSpeed > 0.01 es que le he dado a la flecha hacia abajo la vPos será
+				&emsp;&emsp;&emsp;-	Y sino vPos < 0 y fSpeed > 0.01 es que le he dado a la flecha hacia abajo la vPos será
 				 negativa y frenaremos el coche si está andando comprobando la velocidad.<br>
 				&emsp;&emsp;&emsp;&emsp;•	Texto Esta frenado.<br>
 				&emsp;&emsp;&emsp;&emsp;•	Activa luz de frenado.<br>
 				&emsp;&emsp;&emsp;&emsp;•	Método Frenar().<br><br>		
-				&emsp;&emsp;&emsp;-	Else Si vPos < 0 y fSpeed <= 0.01 es que le he dado a la flecha hacia abajo la VPos será
+				&emsp;&emsp;&emsp;-	Y sino  vPos < 0 y fSpeed <= 0.01 es que le he dado a la flecha hacia abajo la VPos será
 				 negativa y si está frenado ira marcha atrás cuando le dé a las flechas derecha e izquierda.<br>
 				&emsp;&emsp;&emsp;&emsp;•	Texto Marcha atrás.<br>
 				&emsp;&emsp;&emsp;&emsp;•	Método SoltarFreno().<br>
 				&emsp;&emsp;&emsp;&emsp;•	Ruedas traseras .motorTorque = fuerzaMaximaMotor * vPos.<br><br>
-				&emsp;&emsp;o	Y si tiene el freno el coche se clava con el Método Frenar().<br><br>
+				&emsp;&emsp;o	Y sino tiene el freno el coche se clava con el Método Frenar().<br><br>
 				&emsp;•	Tendremos 2 métodos:<br>
 				&emsp;&emsp;o	Frenar().<br>
 				&emsp;&emsp;&emsp;-	fuerzaFrenado += incrementoFrenado;.<br>
