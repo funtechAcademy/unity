@@ -37,7 +37,7 @@
       
       <p class="texto">	  
     	  •	Descargar 4 armas, 4 municiones y 4 sonidos de disparos.<br> 
-				•	Cada Arma tendrá asociado otro Script Arma.cs. Que es lo que pasaremos por parámetro al Player.cs en un
+				•	Cada Arma tendrá asociado otro Script Arma.cs. Que es lo que pasaremos por parámetro al Player.cs mediante un
 				Array.
  			</p> 
       
@@ -71,7 +71,7 @@
   	    &emsp;&emsp;o	Las armas las activaremos con números del 1 al 4 mediante Input.GetKeyDown(KeyCode.Alpha1)
   	     Alpha1….Alpha4.<br>
 				&emsp;&emsp;&emsp;-	Usaremos Método ActivarArma con el parámetro del arma que esta activa. Primero se 
-				desactivarán todas las Armas y después el activamos el arma.<br>
+				desactivarán todas las Armas y después el activamos el arma seleccionada.<br>
 				&emsp;&emsp;o	Botón izquierdo ratón haremos el Disparar() con Input.GetMouseButtonDown(0)
 			</p> 	
 			
@@ -93,7 +93,7 @@
 				&emsp;&emsp;&emsp;-	Habrá que dejar las imágenes del Canvas con su color original.<br><br>
 				&emsp;&emsp;o	Disparar.<br>
 				&emsp;&emsp;&emsp;-	Dependiendo que munición sea ApretarGatillo ó ApretarGatilloBomba que son métodos
-				 que están en Arma.cs. Luego lo hacemos.<br><br>
+				 que están en Arma.cs. (Luego lo hacemos).<br><br>
 
 				&emsp;&emsp;o	IncrementarVida.<br>
 				&emsp;&emsp;&emsp;-	Incrementamos la vida a la variable VidaActual. Lo usaremos cuando recojamos las Cajas
@@ -123,7 +123,7 @@
 				&emsp;&emsp;&emsp;-	Color c = new Color(r, g, b, a) r,g,b las recogeremos nada más empezar el juego.<br>
 				&emsp;&emsp;&emsp;-	Este color habría que asignárselo a la sangre.color,<br><br>
 				
-				&emsp;&emsp;o	Morir volvería a la escena.<br><br>
+				&emsp;&emsp;o	Morir volvería a la escena de inicio.<br><br>
 
 				&emsp;&emsp;o	Disparar().<br>
 				&emsp;&emsp;&emsp;-	A una de las armas hare que no me deje disparar siempre mediante un bool
@@ -131,7 +131,8 @@
 				&emsp;&emsp;&emsp;-	Si tenemos un proyectil que sea una bomba podremos hacer 
 				armas[armaActiva].ApretarGatilloBomba().<br>			
 				&emsp;&emsp;o	ActivarDesactivarImagenesCanvasArmas(false/true). Va con parámetro.<br>
-				&emsp;&emsp;&emsp;-	Recorrer el Array imagen y textoMunicion activamos o desactivamos dependiendo del parámetro. 
+				&emsp;&emsp;&emsp;-	Recorrer el Array imagen y textoMunicion activamos o desactivamos dependiendo del
+				 parámetro. 
  			</p> 
         
       <p class="nota">	
@@ -141,8 +142,8 @@
       <h2>SoundManager</h2>
       <p class="texto">	       
 				&emsp;•	GO Vacio.<br>
-				&emsp;•	Tendrá asociado un script SoundManager.cs donde pondremos un parámetro que será un array con todos
-				 los sonidos que necesitamos.<br>
+				&emsp;•	Tendrá asociado un script SoundManager.cs donde pondremos un parámetro de tipo AudioClip que será un 
+				array con todos los sonidos que necesitamos.<br>
 				&emsp;•	Y un componente AudioSource.<br>
 				&emsp;•	Creamos un Método SeleccionAudio(int índice, float volumen).<br>
 				&emsp;&emsp;o	PlayOneShot. 
@@ -159,7 +160,7 @@
 
 				&emsp;• Start.<br>
 				&emsp;Hay que crear un Array de bombas con una longitud de contadorBombas para que la podamos usar
-				 en el Método ApretarGatilloBomba.<br>
+				 en el Método ApretarGatilloBomba cuando seleccionemos un arma en concreto.<br>
 				 &emsp;&emsp;o bombas = new Quaternion[contadorBombas]
 			</p> 	 
 			<p class="nota">	
@@ -167,25 +168,61 @@
       </p> 		 
 		
 		   <p class="texto">	  		 
-		Método ApretarGatillo
-•	Si tengo munición se podrá disparar.
-•	Creo la munición y la lanzo. AddRelativeForce
-Método ApretarGatilloBomba saldrán varias bombas con rotaciones distintas
-•	Si tengo munición se podrá disparar.
-•	For hasta contadorMunicion
-o	bombas[i] = Random.rotacion 
-o	Crear la bomba en su punto de generación que llamare nuevaBomba
-o	Hay que ir destruyendo la nuevaBomba con un tiempo para que no se nos cargue la memoria
-o	A la nueva bomba se le da un giro distinto
-nuevaBomba.transform.rotation = Quaternion.RotateTowards(nuevaBomba.transform.rotation,
-                    bombas[i], esparcir)
-o	Se lanza con AddRelative Force
-Método ModificarMunicion
-Hay que quitar la munición y actualizarla en el Canvas.
+				&emsp;• Método ApretarGatillo().<br>
+				&emsp;&emsp;o	Si tengo munición.<br>
+				&emsp;&emsp;&emsp;- Se podrá disparar.<br>
+				&emsp;&emsp;&emsp;- ModificarMunicion().<br>
+				&emsp;&emsp;&emsp;-	Creo la munición y la lanzo. AddRelativeForce.<br><br>
+				&emsp;• Método ApretarGatilloBomba() saldrán varias bombas con rotaciones distintas.<br>
+				&emsp;&emsp;o	Si tengo munición.<br>
+				&emsp;&emsp;&emsp;- Se podrá disparar.<br>
+				&emsp;&emsp;&emsp;- ModificarMunicion().<br>
+				&emsp;&emsp;&emsp;-	For hasta contadorMunicion.<br>
+				&emsp;&emsp;&emsp;&emsp;• bombas[i] = Random.rotacion.<br> 
+				&emsp;&emsp;&emsp;&emsp;•	Crear la bomba en su punto de generación que llamare nuevaBomba.<br>
+				&emsp;&emsp;&emsp;&emsp;•	Hay que ir destruyendo la nuevaBomba con un tiempo para que no se nos cargue la memoria.<br>
+				&emsp;&emsp;&emsp;&emsp;•	A la nueva bomba se le da un giro distinto.<br>
+				&emsp;&emsp;&emsp;&emsp;&emsp;nuevaBomba.transform.rotation = Quaternion.RotateTowards(nuevaBomba.transform.rotation,
+				                    bombas[i], esparcir).<br>
+				&emsp;&emsp;&emsp;&emsp;•	Se lanza con AddRelative Force<br><br>
+				&emsp;• Método ModificarMunicion().<br>
+				&emsp;&emsp;Hay que quitar la munición y actualizarla en el Canvas.
+			</p> 
+      
+      
+      <p class="nota">	
+					Poner sonidos cuando lancemos la munición.
+      </p> 	
+      	
+     	<h2> Municiones (Prefabs)</h2>
+      <p class="texto">	      
+				&emsp;•	Tendrá asociado un script Proyectil.cs.<br>
+				&emsp;•	El Proyectil puede colisionar con:.<br>
+				&emsp;&emsp;o	Enemigos Tontos, Listos, Estático, Boss y se le quitara vida al Enemigo.<br>
+				&emsp;&emsp;o	Player si el EnemigoEstatico le dispara.<br>
+				&emsp;•	Cada proyectil hará un daño distinto a cada enemigo.
+		</p> 
+		
+		Enemigo Tonto
+		Importar EnemigoTonto.unitypackage ó creamos un Objeto (Esfera, capsula…. ) para simular el Enemigo Tonto que tenga alguna referencia más (Objeto como una nariz…) para saber si rota o no. Podemos utilizar partículas cuando se le ha quitado una vida.
 
-      
-      
-      
+		<p class="nota">
+         Para descargar los objetos necesarios para el juego, lo haremos desde este 
+         <a href="package/" download="PlasticOut"> link</a>. Lo descargaremos y lo descomprimimos 
+         en el directorio del alumno.
+		</p>
+		
+		
+	
+      	
+      	
+      	
+      	
+      	
+      	
+      	
+      	
+      	
       	
       <p class="texto">				
       <br><br>

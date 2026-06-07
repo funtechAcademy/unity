@@ -28,10 +28,13 @@
         al agrupar objetos y son ideales para juegos indies o de plataformas, ahorrando memoria y tiempo.<br><br>
       	
       	Para poder descargar unos extras tenemos que hacer lo siguiente:<br>
-				&emsp;•	Borro el paquete de 2D Extras de Packages que viene por defecto en Unity nada más abrir el Editor.<br>
 				&emsp;•	Instalar el Git desde https://github.com/Unity-Technologies/2d-extras seleccionando el branche de 
-				la versión que estamos trabajando 2021.1. y descargar el zip. Y lo guardamos dentro de _GameAssets.<br>
-				&emsp;•	Vuelvo a instalar el 2D Extras de Packages y ya me aparece en el menú Brushes…….<br><br>
+				la versión que estamos trabajando y descargar el zip:<br>
+				&emsp;• Descomprimir el Zip.<br>
+				&emsp;• Crear dentro de Packages un directorio: com.unity.2d.tilemap.extras.<br>
+				&emsp;• Guardar todos los archivos descomprimidos en ese directorio.<br>
+				&emsp;• Volver arrancar el Editor de Unity y ya nos aparecera dentro de Create/2D/Brushes las distintas
+				opciones. <br><br>
 
 				En _GameAssets crear carpetas:<br>
 				&emsp;•	Brushes.<br>
@@ -87,13 +90,13 @@
  			</p>
  			 
 		  <p class="nota"> 
-      	 Podemos crear todos los mapas que queramos y mediante el Sorting Layer o el Order Layer del inspector del
+      	 Podemos crear todos los mapas que queramos y mediante el Sorting Layer y/o el Order Layer del inspector del
       	 Tilemap podemos poner en que orden están. Si ponemos 0 es el más profundo.
       </p>
        
        
       <p class="nota">			
-					Se puede usar Assets/Create/2D/Atlas Sprites para empaquetar todos los Sprites que necesitemos y que el
+					Se puede usar Assets/Create/2D/Sprites Atlas para empaquetar todos los Sprites que necesitemos y que el
 				 rendimiento mejore.
 			</p>		
 			
