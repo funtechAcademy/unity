@@ -21,57 +21,63 @@
    </div>
    <!-- FIN_LOADER -->
    <div id="contenido">
-      <h2>Cinemachine</h2>
+     <h2>Cinemachine</h2>
       <p class="texto">
       	Cinemachine es una potente herramienta gratuita de Unity que permite crear sistemas de cámara complejos
       	y comportamientos de seguimiento dinámicos sin necesidad de escribir código. Se encarga 
      	 automáticamente de las matemáticas y la lógica del movimiento, enfoques y transiciones de cámara.<br><br>
-      	
-     		La cámara virtual tiene un componente "Follow" que sigue con la cámara el objeto asignado.<br>
-			
-				En Game para que aparezcan una zonas azules y rojas tenemos que desplegar la opción de Body.
-      </p>  	 
+     	 
+     	 Para crearla vamos a: Hierarchy click derecho y: Cinemachine/Cinemachine Camera:<br>
+     	 
+     	 &emsp;• Lens ajustamos el tamaño de la cámara.<br>
+     	 &emsp;• En Tracking Target arrastramos nuestro Player para que le siga.
+     	 </p>  	 
       <p class="img_centrada"><img src="img/tema9/9-2-1.png" width="80%" alt=""></p>
+     	      
+   	 
    
-    <p class="texto">
-   			En la Camara Virtual tenemos un componente CinemachineVirtualCamera y hay un atributo Body que veremos
-   		 las opciones más importantes:<br>	
-   			&emsp;• Damping: Para que la cámara nos siga con una pequeña sensibilidad. Si lo ponemos a 0 vendrá
-   			 directamente a nuestro player.<br>	
-				&emsp;• ScreenX y ScreenY: Para centrar la cámara a nuestro personaje más arriba/abajo ó más a la
-				 izquierda/derecha.<br>	
-				&emsp;• Dead Zone Witdth y Height: Aparece un cuadradito pequeño que es como mi zona de confor
+    	<p class="texto">
+   			En CinemachineCamera tenemos un componente Cinemachine Position Composer:<br>	
+   				&emsp;• Dead Zone X/Y: Aparece un cuadradito pequeño que es como mi zona de confor
 				 (zona muerta), se puede minimizar el tamaño para que me mueva y la cámara no se mueve en esa zona,
 				  pero si me salgo de ese cuadrado la cámara me seguirá.<br>
+				 	&emsp;• Hard Limits: La cámara no permitirá que el objetivo se encuentre fuera de los límites
+				 	 establecidos.<br>
+				 	&emsp;• Center On Activate: Cuando la cámara se activa, mueve la cámara para colocar el objetivo
+				 	 en el centro de la zona muerta.<br><br>
+				 	 
+				 	&emsp;• Target Tracking.<br>
+				 	&emsp;&emsp;• Target Offset: Posición en coordenadas locales del objetivo del punto de interés en el 
+				 	objetivo que se va a rastrear. 0, 0, 0 sería el origen del objetivo. Tiene un punto amarillo que se
+				 	 podrá modificar su posición.<br>
+				 	&emsp;&emsp;• Damping: Para que la cámara nos siga con una pequeña sensibilidad. Si lo ponemos a 0 vendrá
+   			 directamente a nuestro player.<br><br>
+   			 &emsp;• Lookahead:<br>
+   			 &emsp;&emsp;&emsp;o Time: Ajusta el desplazamiento de la cámara de Cinemachine con respecto al objetivo 
+   			 de seguimiento en función del movimiento de este.<br>
+   			 &emsp;&emsp;&emsp;o Smoothing: La suavidad del algoritmo de anticipación. Valores mayores suavizan las 
+   			 predicciones inestables y aumentan el retraso en la predicción.<br>
+   			 &emsp;&emsp;&emsp;o Ignore Y: Si está habilitada, ignore el movimiento a lo largo del eje Y para los
+   			  cálculos de anticipación.
+   			 
+   			 
+   			 
+   			
    		</p>  
  			<p class="img_centrada"><img src="img/tema9/9-2-2.png" width="80%" alt=""></p>
 
-
-    	<p class="texto">
-				&emsp;• LookaheadTime: Si me muevo rápido hacia la derecha o hacia la izquierda puedo tener muy poco
-				 margen de visión. Lo podre mejorar. Lo que hará es poner el punto amarillo que aparece sobre nuestro 
-				 Player nos lo pondrá más adelante (hacia la izquierda o derecha). La cámara prevé ese movimiento y
-				  se va a centrar mejor para que podamos ver la parte derecha o izquierda.<br>
-				&emsp;• LookaheadSmoothing como de abrupto es el movimiento hacia la izquierda o hacia la derecha.
-				 Lo ponemos a 5.6 y así tendré más margen de visión.<br>
-				&emsp;• LookaheadIgnoreY: También podremos ignorar la Y.
-  		</p>  
- 			<p class="img_centrada"><img src="img/tema9/9-2-3.png" width="80%" alt=""></p>
-  
-   		<h3>Extensión CinemachineConfinner</h3>
+      <h3>Extensión CinemachineConfinner</h3>
       <p class="texto">	
 				Con esto conseguimos que no se vea el espacio vacío que nos queda.<br>
 				Nos pide un Shape 2D. Asi que haremos lo siguiente:<br>
 				&emsp;•	Crear un GO vacio lo llamaremos MapConfiner lo reseteamos y lo colocamos.<br>
-				&emsp;&emsp;&emsp;o	Con un componente Polygon Collider 2D. Le modificamos al tamaño de nuestro
-				 TileMap.<br>
-				 &emsp;• Y arrastrarlo al parámetro de Bounding Shape 2D de la cámara virtual.<br><br>
+				&emsp;&emsp;&emsp;o	Con un componente Polygon Collider 2D, Box Collider 2D.... Le modificamos al
+				 tamaño de nuestro Tilemap.<br>
+				 &emsp;• Y arrastrar el MapConfiner al parámetro de Bounding Shape 2D de la cámara virtual.<br><br>
 				
 				Cuando ejecutamos vemos que el personaje se va fuera. Poner IsTrigger a true el componente del
 				 MapConfiner.
-			</p>  
-
-      	 
+			</p>   
       	  
       <p class="texto">				
       <br><br>
