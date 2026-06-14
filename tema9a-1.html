@@ -34,8 +34,15 @@
 				&emsp;• Crear dentro de Packages un directorio: com.unity.2d.tilemap.extras.<br>
 				&emsp;• Guardar todos los archivos descomprimidos en ese directorio.<br>
 				&emsp;• Volver arrancar el Editor de Unity y ya nos aparecera dentro de Create/2D/Brushes las distintas
-				opciones. <br><br>
-
+				opciones.
+			</p>
+				<p class="nota">
+         Para descargar un ejemplo de sprites, lo haremos desde este 
+         <a href="sprites/9-Plataforma2DSprites.zip" download="Plataforma2DSprites"> link</a>. Es un archivo
+          sprites que podemos usar a modo de ejemplo.
+        </p>
+          
+      <p class="texto">   
 				En _GameAssets crear carpetas:<br>
 				&emsp;•	Brushes.<br>
 				&emsp;•	Paletas.<br>
@@ -47,29 +54,42 @@
      
       <h3>Pasos</h3>
       <p class="texto">
-         Descargar un .png (carpeta Sprite) que sea un hoja (sheet) que contenga muchas tiles y en el abrir ventana 
-         de Sprite Editor para trocearlo.<br>
+         Descargar un .png (carpeta Sprite) que sea un hoja (sheet) que contenga muchas tiles y abrir una ventana 
+         de Window/2D/Sprite Editor para trocearlo. Pasos:<br>
+         &emsp;• Sprite Mode Multiple.<br>
+         &emsp;• Pixel per Unit a 32 (o lo que nos convenga 64.....) Multiple.<br>
+         &emsp;• Filter Mode Point(no filter).<br>
+         &emsp;• Compression None.<br>
+         &emsp;• Apply.<br>
+         A continuación hay que trocearlo en el botón de Slice. Puede ser Automático, por tamaño......
       </p>  
       <p class="img_centrada"><img src="img/tema9a/9-1-1.png" width="80%" alt=""></p>	
       
       <p class="texto">
-      	Crear un Mapa: GO 2D TileMap/Rectangular (Grid). La renombramos a Tilemap_Base.<br><br>
-      	Crear una la Paleta así que abrimos la Ventana Editor de Window/Tile Palette y que se llame Ground
-      	 (carpeta Paletas).
+      	Crear un Mapa desde Hierarchy: 2D Object/TileMap/Rectangular. Y aparece un Objeto Grid con un hijo Tilemap.
+      	La renombramos a Tilemap_Base.
+      </p>  
+      <p class="img_centrada"><img src="img/tema9a/9-1-2.png" width="80%" alt=""></p>	
+      
+      <p class="texto">
+      	Crear una Paleta así que abrimos la Ventana Editor de Window/Tile Palette y crear la Paleta que se llame
+      	 Ground (carpeta Paletas).
       </p>  	 
-       
+       <p class="img_centrada"><img src="img/tema9a/9-1-3.png" width="80%" alt=""></p>	
+      
       <p class="nota"> 
       	 Una paleta es una colección de mosaicos.
       </p>
         
       <p class="texto">
-      	Habría que arrastrar todos los mosaicos que se han creado al hacer el Apply que están dentro de Sprites.<br>
+      	Habría que arrastrar todos los mosaicos que se han creado al hacer el Apply que están dentro de Sprites 
+      	a la Paleta de Ground:<br>
       	&emsp;• Con Shift selecciono el primero me voy al final y selecciono el último y los arrastro a mi paleta
       	 (Tile Palette).<br>
       	&emsp;• Y lo guardamos dentro de Tiles/Ground Tiles y se importaran todos los mosaicos.<br>
       	&emsp;• Si esta desordenado habría que recolocarlo manualmente.<br><br>
       </p> 
-      <p class="img_centrada"><img src="img/tema9a/9-1-2.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema9a/9-1-4.png" width="80%" alt=""></p>
 			
 		 	<p class="texto">
 				Para recolocarlos o para generar nuestro mapa usaremos la barra de herramientas que esta en el Tile Palette:<br>
@@ -103,15 +123,15 @@
 			
       <h3>Mosaico Animado</h3>
       <p class="texto">
-         Crear un Tilemap Water con Waterfall.png (o con cualquier otro). Trocear el png a 64 (o lo que se considere) 
-         pixels.<br>
+         Crear un Tilemap Water teniendo seleccionado Grid y con Waterfall.png (o con cualquier otro). Trocear el png
+          a 64 (o lo que se considere) pixels.<br>
          En la carpeta Tiles: Create 2D/Tiles/Animated Tiled llamado Water Animado. Añadir los sprites que hemos separado
           anteriormente.<br>
 				Crear una Paleta Water y arrastrar el Water Animado.<br>
 				Hacer otro que sea la espuma.    
       </p>  
-      <p class="img_centrada"><img src="img/tema9a/9-1-3.png" width="80%" alt=""></p>
-      <p class="img_centrada"><img src="img/tema9a/9-1-4.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema9a/9-1-5.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema9a/9-1-6.png" width="80%" alt=""></p>
          
      <h3>Rule Tile</h3>
       <p class="texto">
@@ -121,7 +141,8 @@
 				 Tendremos que ir añadiendo los Sprites dando al “+”.<br>
 				 En la Ground Rule Tile ponemos por defecto una pieza central sheet_24 y ya podemos añadir la primera regla.
       </p>     
-      <p class="img_centrada"><img src="img/tema9a/9-1-5.png" width="80%" alt=""></p>    
+      <p class="img_centrada"><img src="img/tema9a/9-1-7.png" width="80%" alt=""></p>    
+       <p class="img_centrada"><img src="img/tema9a/9-1-8.png" width="80%" alt=""></p>  
       
       <p class="texto">
       	Condición:<br>
@@ -156,10 +177,12 @@
 				&emsp;•	Crear TileMap Corazon.<br>
 				&emsp;•	Crear Prefab Brush desde Project Create/2D/Brushes/Prefab Brush.<br>
 				&emsp;&emsp;o	Lo llamaremos Corazon Brush y lo guardamos en una carpeta de Brushes.<br>
-				&emsp;•	Y le añadimos el prefab Corazon al Corazon Brush.<br>	
+				&emsp;•	Y le arrastrar el prefab Corazon al Corazon Brush.<br>	
 				&emsp;•	Seleccionar en Tile Palette el Brush de Corazon Brush que aparece en la lista y lo pintamos en
 				 la escena.
-      </p>   
+      </p>     
+      <p class="img_centrada"><img src="img/tema9a/9-1-9.png" width="80%" alt=""></p>    
+      
        
       <p class="nota"> 
       	 Acordarse de tener seleccionado el TileMap sobre el que queremos pintar en Hierarchy.

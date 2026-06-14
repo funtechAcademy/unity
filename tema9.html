@@ -23,14 +23,12 @@
    <div id="contenido">
       <h2>Plataforma 2D</h2>
       <p class="texto">
-      	Haremos un Juego 2D de Plataformas con enemigos, plataformas rebotonas, con materiales fisicos...
-      	 Para ello necesitaremos una estructura de carpetas que tendrán el contenido necesario para hacer el
-      	 juego que lo iremos incluyendo poco a poco:<br><br>
+      	Haremos un Juego 2D de Plataformas con enemigos, plataformas rebotonas, con materiales fisicos...<br><br>
       	El Juego habrá que crearlo de tipo Universal 2D.<br>.<br>
       	Características de un Juego 2D:<br>
 				&emsp;•	Son Sprites imágenes planas.<br>
-				&emsp;•	La forma de componer el escenario mediante Tilemaps (Azulejos).<br>
-				&emsp;•	Usaremos Cinemachine.<br><br>
+				&emsp;•	La forma de componer el escenario mediante Tilemaps (Azulejos).<br><br>
+				Usaremos Cinemachine (Movimiento de la Cámara) e Input System (Movimiento del Player).<br><br>
 				En nuestro juego tendremos:<br>
 				&emsp;•	Player tendrá animaciones y que dispare.<br>
 				&emsp;•	Marcador de Vidas (corazones), objetos que tenga que recoger y que nos dé puntos, segundos, record……<br>
@@ -41,13 +39,15 @@
 				 que empezar de nuevo.<br>
 				&emsp;•	Enemigos que se mueven (con Joins o de un lado a otro…….) y otro estático para acabar el juego que nos 
 				dispara.<br><br>	
-				Descargas Fuentes y plataformas 2D: <br>
+				Podemos descargas las fuentes y plataformas 2D de: <br>
 				&emsp;•	Google Fonts, fontsquirrel.<br>
 				&emsp;•	https://es.cooltext.com/.<br>
 				&emsp;•	https://kenney.nl/assets.<br>
 				&emsp;• https://ansimuz.itch.io/.<br>	
 				&emsp;•	https://opengameart.org/content/platformer-art-complete-pack-often-updated.<br><br>
-				En _GameAssets crear carpetas para que este todo más ordenado de:<br>
+				
+				En _GameAssets necesitaremos una estructura de carpetas que tendrán el contenido necesario para hacer el
+      	 juego que lo iremos incluyendo poco a poco:<br>
 				&emsp;•	Animation.<br>
 				&emsp;•	Brushes.<br>
 				&emsp;•	Material.<br>	
@@ -73,14 +73,24 @@
       </p>
      
       <h3>Tiles</h3>
-      <p class="texto">
+       <p class="texto">
          Lo primero que haremos es crear el entorno mediante las Tiles.<br>
        </p>  
       <p class="img_centrada"><img src="img/tema9/9-1.png" width="80%" alt=""></p>
-			
+     
       <p class="texto">
-	      	Necesitamos un *.png (Hoja con todos los sprites) y la arrastramos a una carpeta de 
-				_GameAssets/Sprites. Tenemos que trocearla. (Window/2D/Sprite Editor).<br><br>
+      	Los sprites los podemos obtener de varias maneras:.<br>
+      	&emsp;• Mediante un sheet.png que es una Hoja con todos los sprites.
+			</p> 	
+			<ul> 
+					<li><a href="tema9a-1.html">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Como crear un TileMap</a></li>           
+       </ul> 
+       
+	     <p class="texto">
+					&emsp;• O Tiles ya separados. Donde ya no tendremos que trocearlo en el Sprite Editor pero si que habría
+					 que arrastrarlos en una Paleta dentro de Tile Palete como indicamos en el enlace anterior de "Como 
+					 crear un TileMap".<br><br>
+			
 				Crear un TileMap/Rectangular lo llamaremos TileMapPlataformas (Window/2D/TileMap). Tendremos que arrastrar
 				 los Sprites al TileMap. Y desde aquí podremos ir dibujando nuestras plataformas.<br><br>
 				Tendremos que tener: Plataformas con Efectos, Rebotonas, con animaciones, con materiales físicos
@@ -107,9 +117,11 @@
 					&emsp;&emsp;o	Prefab PlataformaPasarela.<br><br>
  			</p>
  			
+ 			
  			 <p class="nota">
          Se pueden poner Prefabs como la PlataformaPasarela o pintar mediante Brushes.
        </p>
+       <p class="img_centrada"><img src="img/tema9/9-2.png" width="80%" alt=""></p>
        
        <p class="nota">
          Si ponemos varias plataformas del mismo tipo habria que cambiar la animación si la tuviese ya que se 
