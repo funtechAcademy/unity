@@ -27,7 +27,7 @@
         gráficos repetibles llamados mosaicos (tiles). Permiten pintar niveles rápidamente, optimizan el rendimiento
         al agrupar objetos y son ideales para juegos indies o de plataformas, ahorrando memoria y tiempo.<br><br>
       	
-      	Para poder descargar unos extras tenemos que hacer lo siguiente:<br>
+      	Para poder descargar unos Paquetes extras tenemos que hacer lo siguiente:<br>
 				&emsp;•	Instalar el Git desde https://github.com/Unity-Technologies/2d-extras seleccionando el branche de 
 				la versión que estamos trabajando y descargar el zip:<br>
 				&emsp;• Descomprimir el Zip.<br>
@@ -54,8 +54,16 @@
      
       <h3>Pasos</h3>
       <p class="texto">
-         Descargar un .png (carpeta Sprite) que sea un hoja (sheet) que contenga muchas tiles y abrir una ventana 
-         de Window/2D/Sprite Editor para trocearlo. Pasos:<br>
+         Descargar un .png (en la carpeta Sprite) que sea un hoja (sheet) que contenga muchas tiles y abrir una ventana 
+         de Window/2D/Sprite Editor para trocearlo.
+      </p>   
+       <p class="nota">
+        Si los sprites ya estan separados no haria falta trocearlos en el Sprite Editor. Solo habria que incluirlos
+         en la Paleta.
+       </p>  
+       
+        <p class="texto">
+         Pasos:<br>
          &emsp;• Sprite Mode Multiple.<br>
          &emsp;• Pixel per Unit a 32 (o lo que nos convenga 64.....) Multiple.<br>
          &emsp;• Filter Mode Point(no filter).<br>
@@ -72,8 +80,8 @@
       <p class="img_centrada"><img src="img/tema9a/9-1-2.png" width="80%" alt=""></p>	
       
       <p class="texto">
-      	Crear una Paleta así que abrimos la Ventana Editor de Window/Tile Palette y crear la Paleta que se llame
-      	 Ground (carpeta Paletas).
+      	Crear una Paleta así que abrimos la Ventana de Window/2D/Tile Palette y crear la Paleta que se llame
+      	 Ground (guardarla en la carpeta Paletas).
       </p>  	 
        <p class="img_centrada"><img src="img/tema9a/9-1-3.png" width="80%" alt=""></p>	
       
@@ -100,8 +108,8 @@
 			 </p> 
 			
 			 <p class="texto">
-					Para poder pintar en la escena habrá que tener seleccionado el Tilemap_Base y seleccionar el pincel. El
-					Modo Lápiz tiene que estar desactivado.<br><br>
+					Para poder pintar en la escena hay tener seleccionado el Tilemap_Base en el que queremos pintar y seleccionar
+					el pincel del Tile Palette. El Modo Lápiz tiene que estar desactivado.<br><br>
 					Herramienta de Cuentagotas (5) para obtener tiles modificados a partir de los que ya están en la paleta.<br>
 					&emsp;•	Lápiz activado.<br>
 					&emsp;•	Seleccionar el Cuentagotas un tiles y lo pongo en otra posición de la paleta.<br>

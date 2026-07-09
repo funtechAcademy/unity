@@ -44,8 +44,10 @@
       
       <p class="texto">	  
       	  &emsp;• Crear carpeta de Inputs y crear un Input Actions. Lo renombramos a PlayerInputs.<br>
+      	  &emsp;• Damos doubleclick sobre PlayerInputs y abrira una ventana que la colocaremos donde nos 
+      	  convenga.<br>
 					&emsp;• En Actions Maps damos al botón “+” y crearemos un mapa que lo llamaremos Player.<br> 
-					&emsp;• Y ahora tenemos que añadir las Acciones dando al "+". Lo llamaremos Jump. 
+					&emsp;• Nos ha creado una Acción por defecto que llamaremos Jump. 
        </p>  	  
       <p class="img_centrada"><img src="img/tema9a/9-3-2.png" width="80%" alt=""></p>
       
@@ -56,21 +58,24 @@
 					  dónde se tiene que mover.<br>
 					&emsp;•	Button para botones donde se disparará una acción cada vez que es presionado.<br>
 					&emsp;• Pass Through cuando hay múltiples mandos conectados. (Más avanzado).<br><br>
-					
+					Para el Jump usaremos el Action Type Button.
+			</p> 		
+			<p class="img_centrada"><img src="img/tema9a/9-3-3.png" width="80%" alt=""></p>
+				
+			<p class="texto">	  	
 					Por defecto cuando se crea una acción se crea automaticamente un Binding. Se pueden crear los Bindings
 				 que necesitemos. El Binding nos permite vincular un dispositivo fisico con una acción.<br><br>
 				 Asignar el Espacio con el Jump.
 			</p> 
-			<p class="img_centrada"><img src="img/tema9a/9-3-3.png" width="80%" alt=""></p>
-      
-      <p class="nota">
-      	Cuando se modifica alguna Action del PlayerInputs puede ser que la referencia en Player Input no funcione. Habria que
-      	 volver a seleccionarlo en Actions.
-      </p>
+			<p class="img_centrada"><img src="img/tema9a/9-3-4.png" width="80%" alt=""></p>
       
       <h3>Player</h3>
       <p class="texto">
-      		&emsp;•	Componente Player Input. Asignarle:<br>
+      		&emsp;• Si tuviese un Script con el movimiento usando el Package Input Manager(old) tendriamos que
+      		 desactivarlo.<br>
+      		&emsp;• Crear otro Script llamado Player.cs para poder usar el Input System Package(new) y no machacar
+      		 el anterior sistema por si tenemos que volver al Input anterior.<br>
+      		&emsp;• Añadir un componente Player Input a nuestro Player. Y asignarle:<br>
 					&emsp;&emsp;o	PlayerInputs que hemos creado.<br>
 					&emsp;&emsp;o	Default Map será Player.<br><br>
 					El Behaviour es la forma mandamos notificaciones cuando ocurren eventos de input como accionar un control
@@ -78,14 +83,22 @@
 				 Hay 3 eventos que se pueden disparar:<br>
 					&emsp;•	Device Lost Even cuando se desconecta un mando.<br>
 					&emsp;• Device Regained Even cuando el dispositivo se vuelve a conectar.<br>
-					&emsp;• Controls Changed Event cuando hay un cambio de controles como pasar de teclado a gamepad o viceversa.<br><br>
+					&emsp;• Controls Changed Event cuando hay un cambio de controles como pasar de teclado a gamepad o
+					 viceversa.<br><br>
 					También nos aparece dentro de Events/Player el evento Jump.<br><br>
-					El Player tendrá un Script asignado. En ese Script crear un Método Jump(). Tendremos que asignar este Método
-					 al Player Input:<br>
+					El Player tendrá un Script asignado Player.cs. En ese Script crear un Método Jump(). Tendremos que
+					 asignar este Método al Player Input:<br>
 					 &emsp;• Le damos al “+”  y asignamos el Jump como hemos hecho alguna vez en los Canvas.
-				<p class="img_centrada"><img src="img/tema9a/9-3-4.png" width="80%" alt=""></p>
+				<p class="img_centrada"><img src="img/tema9a/9-3-5.png" width="80%" alt=""></p>
       </p> 
       	
+      </p> 
+      
+      <p class="nota">
+      	Cuando se modifica alguna Action del PlayerInputs puede ser que la referencia en Player Input no funcione. Habria que
+      	 volver a seleccionarlo en Actions.
+      </p>
+      
       	
       <h3>Script Player.cs - Método Jump (InputAction.CallbackContext callbackContext)</h3>
       <p class="texto">
@@ -127,10 +140,10 @@
       <h3>Script Player.cs - Método Move (InputAction.CallbackContext callbackContext)</h3>
       <p class="texto">	   
       	
-      	Probarlo, pero no funcionara bien:<br>
+      	Probarlo, pero no funcionará bien:<br>
 				&emsp;•	Crear un Método Move en el Script.<br>
 				&emsp;•	Añadir este Método en Evento Move en el Player del Editor.<br> 	
-      	&emsp;•	Recoger el valor con callbackcontext.ReadValue el valor float.<br>
+      	&emsp;•	Recoger el valor con input = callbackcontext.ReadValue y leemos un valor float.<br>
 				&emsp;•	rb.AddForce(new Vector2(input , 0) * force).<br><br>
 				
 				Si lo probamos con la presión de la tecla solo lo hace una vez. O sea que si mantengo una tecla apretada no
@@ -138,9 +151,9 @@
 				  hacer disparando eventos.<br><br>
 				  
 				Lo mejor es detectar el estado de los Inputs en el Update. Como lo hacíamos con el viejo Input Manager.
-				 Copiaríamos lo que contiene el Move en el Update. Da error intentar arreglarlo.<br>	
-				Necesitaremos una referencia al PlayerInput en el script (Update)….<br>
-				 &emsp;•	input = playerInput.actions["Move"].ReadValue<float>();<br><br>
+				 Copiaríamos lo que contiene el Move en el Update. Da error intentar arreglarlo:<br>	
+				&emsp;• Necesitaremos una referencia al PlayerInput en el script (Update).<br>
+				 &emsp;&emsp;o	input = playerInput.actions["Move"].ReadValue y leemos un valor float.<br><br>
 				
 				 Las físicas sería mejor hacerlas en el FixedUpdate().
   		</p>	
@@ -153,7 +166,7 @@
       <p class="texto">	   
       	Le agregamos una fuerza AddForce con el input que recogemos en el Update.
       	Los cambios de animación y la rotación lo haremos igual que en la anterior versión pero recogiendo
-      	 el input.
+      	 el input que recogemos en el Update.
       </p>	
       	
       <p class="texto">				

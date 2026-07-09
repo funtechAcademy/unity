@@ -78,7 +78,7 @@
       <p class="texto">
       	Necesitamos un *.png (Hoja con todos los sprites) y la arrastramos a una carpeta de 
 				_GameAssets/Sprites. Tenemos que trocearla. (Window/2D/Sprite Editor).<br><br>
-				Crear un TileMap/Rectangular lo llamaremos TileMapPlataformas (Window/2D/TileMap). Tendremos que arrastrar
+				Crear un TileMap/Rectangular lo llamaremos TileMapPlataformas (Window/2D/Tile Palette). Tendremos que arrastrar
 				 los Sprites al TileMap. Y desde aquí podremos ir dibujando nuestras plataformas.<br><br>
 				Tendremos que tener: Plataformas con Efectos, Rebotonas, con animaciones, con materiales físicos
 				 (deslizantes…). Pueden ser prefab que los incluiremos en Prefab Brushes.<br><br>
@@ -242,7 +242,7 @@
 				&emsp;&emsp;&emsp;-	barraDeVida.fillAmount = vidaBarra.<br><br>
 
 				&emsp;&emsp;o	RecibirDanyo(int danyo) Cuando me tocan los enemigos.<br>
-				&emsp;&emsp;&emsp;-	vidaBarra += quitaVidaBarra.<br>
+				&emsp;&emsp;&emsp;-	vidaBarra -= quitaVidaBarra (0.2).<br>
 				&emsp;&emsp;&emsp;-	barraDeVida.fillAmount = vidaBarra.<br>
 				&emsp;&emsp;&emsp;-	salud -= danyo;.<br>
 				&emsp;&emsp;&emsp;-	Si la salud <= 0.<br> 
@@ -363,9 +363,6 @@
 				lr.SetPosition(1,spidertransform.position).<br>
 				&emsp;&emsp;o	Spider. Script Spride.cs.<br>
 				&emsp;&emsp;&emsp;-	Si colisiona con el Player.RecibirDanyo().<br><br>
-				&emsp;•	MargenIzquierdo.<br>
-				&emsp;•	MargenSuperior.<br>
-				&emsp;•	MargenDerecho.<br>
 				&emsp;•	MargenInferior con un Script MargenInferior.cs.<br>
 				&emsp;&emsp;o	Si el Player colisiona con el.<br> 
 				&emsp;&emsp;&emsp;-	Player.QuitarVida().<br>
