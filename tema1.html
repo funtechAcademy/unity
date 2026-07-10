@@ -34,13 +34,21 @@
       <p class="img_centrada"><img src="img/tema1/1-1.png" width="80%" alt=""></p>
       <p class="texto">
          •	Y seleccionar la versión de Unity con la que vamos hacer el proyecto. En nuestro caso lo haremos con 
-            2021.3.3f1 LTS. El LTS significa que es una versión de Unity que ofrece soporte a largo plazo y máxima 
+            6000.3.17f1 LTS. El LTS significa que es una versión de Unity que ofrece soporte a largo plazo y máxima 
             estabilidad.
       </p>  
       <p class="img_centrada"><img src="img/tema1/1-2.png" width="80%" alt=""></p>    
       <p class="texto">
-         •	Y seleccionar que tipo de proyecto vamos hacer. Lo haremos 3D (Built-In Render Pipeline)
+         •	Y seleccionar que tipo de proyecto vamos hacer. Lo haremos Universal 3D.
       </p>
+      
+      <p class="nota">
+      	Al crear un proyecto con Universal 3D (URP) te proporciona una base moderna y altamente optimizada para un mejor
+      	rendimiento multiplataforma, efectos visuales avanzados y escalabilidad. En cambio, 3D (Built-in) es el motor
+       	de renderizado tradicional, que es más antiguo y menos personalizable, pero carece de la flexibilidad del
+         actual URP (URP está diseñado específicamente para equilibrar gráficos de alta calidad con buen rendimiento).
+       </p>
+       
       <p class="texto">
          •	En la parte de la derecha tendremos que poner su nombre y guardarlo en una carpeta. Y le damos a Crear el proyecto. 
       </p>
@@ -51,6 +59,18 @@
       </p>
       <p class="img_centrada"><img src="img/tema1/1-4.png" width="80%" alt=""></p>
 
+ 		 <p class="nota">
+				El Global Volume (Volumen Global) en los proyectos 3D de Unity que utilizan URP (Universal Render Pipeline) es
+				el objeto encargado de gestionar y aplicar los efectos visuales a toda la escena. Su función principal es 
+				controlar el postprocesado para toda la cámara sin importar dónde se encuentre:<br>
+				• Bloom: Hace que las luces intensas generen un efecto de resplandor realista.<br>
+				• Color Adjustments: Permite modificar el contraste, la saturación, el brillo o la temperatura de color de toda
+				 la imagen.<br>
+				• Vignette: Oscurece sutilmente los bordes de la pantalla para centrar la atención del jugador.<br>
+				• Tonemapping: Ajusta el rango dinámico de la imagen para que luzca más cinematográfica.<br><br>
+				En principio no lo usaremos asi que lo desactivamos en el Inspector.
+   	 </p>
+   	 
       <p class="texto">
          Herramientas de teclado que más usaremos:<br>
          •	Para poder orbirar en la escena lo haremos con el click derecho presionado.<br>
@@ -212,7 +232,7 @@
 
       <p class="texto">
          •	Y usamos la herramienta Rect Tool y modificamos sus tamaños. Podríamos usar una vista transparente para poder
-       verla malla y ajustarlo mejor y ver mejor los tamaños.
+       verla malla y ajustarlo mejor y ver mejor los tamaños (Wireframe Draw Mode).
       </p>
       <p class="img_centrada"><img src="img/tema1/1-27.png" width="80%" alt=""></p>
  
