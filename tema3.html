@@ -207,10 +207,19 @@
        </p>
       <p class="img_centrada"><img src="img/tema3/3-9.png" width="80%" alt=""></p>
     
-    
-    -----NOTA
-    Uso de transform.position:Acción: Teletransporta o asigna una coordenada exacta en el espacio global del juego.Rotación: No la tiene en cuenta. Si sumas Vector3.right (derecha), el objeto siempre se moverá hacia el este, sin importar hacia dónde mire.Código: transform.position = new Vector3(x, y, z); o transform.position += Vector3.right * speed * Time.deltaTime;.Uso de transform.Translate():Acción: Es un método que desplaza (traslada) el objeto una distancia determinada.
-    ----
+     <p class="nota"> 
+    		Uso de transform.position:<br>
+    		•	Acción: Teletransporta o asigna una coordenada exacta en el espacio global del
+    		 juego.<br>
+    		•	 Rotación: No la tiene en cuenta. Si sumas Vector3.right (derecha), el objeto siempre se moverá hacia 
+    		 la derecha, sin importar hacia dónde mire.<br>
+    		•	 Código:<br>
+    		 &emsp;o transform.position = new Vector3(x, y, z); <br>
+    		 &emsp;o transform.position += Vector3.right * speed * Time.deltaTime;<br><br>
+    		 Uso de transform.Translate():<br>
+    		 •	Acción: Es un método que desplaza (traslada) el objeto una distancia determinada.
+      </p>
+      
       <p class="texto">
          •	Con Translate
       </p>
@@ -472,7 +481,7 @@
 
       <p class="texto">
        &emsp;•	Update<br>
-      &emsp;&emsp;o	Preguntamos si estamos Jugando (método estatico de GameConfig.cs).<br>
+      &emsp;&emsp;o	Preguntamos si estamos Jugando (método static de GameConfig.cs).<br>
       &emsp;&emsp;o	Y si es así hacemos que se mueva hacia la izquierda con el Translate.<br>
       &emsp;&emsp;o	Haremos un método TuberiasSubirYBajar para que esten continuamente subiendo y bajando.<br>
       &emsp;&emsp;o	Si llega a una determinada posición X destruimos la Tuberia
