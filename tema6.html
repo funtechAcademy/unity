@@ -23,82 +23,157 @@
    <div id="contenido">
       <h2>Cámaras</h2>
       <p class="texto">
-          Este proyecto nos enseñara como tener varias cámaras y que podamos verlas a la vez.
-					Tendremos un personaje que se moverá con las flechas y con el espacio para saltar hacia delante. La cámara del juego que apunta solo al objeto (prefab) que hemos creado y la cámara del personaje que solo se verá ese personaje. Esto lo haremos mediante el Tag que tengan asignados los objetos.
-					Ambas cámaras serán Ortográficas. 
-					<br>
-       </p>   
-          
-      <h3>Materiales</h3>
-       <p class="texto">
-      	Le pondremos materiales físicos con rebotes, fricciones...... a nuestro tobogán. Y lanzaremos las pelotas
-       por los toboganes y comprobaremos como funcionan.
-    	 </p> 
-    	    
-       <p class="nota">     
-           Los materiales físicos se utilizan para ajustar la fricción y el rebote (elasticidad) de los objetos
-           que chocan. Sirven para que un objeto interactúe de forma realista (por ejemplo, que una pelota bote
-           o que un coche patine), y son independientes de los materiales visuales.
-        </p> 
-        
-        <ul> 
-					<li><a href="tema5-1.html">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Materiales</a></li>    
-        </ul>   
-         
-       <h3>Articulaciones</h3>
-        <p class="texto">     
-          Tendremos carteles a los que podramos disparar con un cañon y se comportarán de distinta
-           manera dependiendo de que tipo de Joint tenga asociado cada cartel. El cañon tendrá unos limites 
-           de giro.
-        </p>
-           
-        <p class="nota">   
-           Un Joint (articulación) es un componente de físicas que permite unir dos objetos (Rigidbodies) o un 
-           objeto a un punto fijo del espacio. Sirve para simular movimientos mecánicos y naturales, como bisagras,
-           cuerdas, resortes, ruedas o cadenas, añadiendo restricciones de movimiento realistas.
-        </p>
-        
-        <ul> 
-			 		<li><a href="tema5-2.html">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Articulaciones</a></li>         
-       	</ul> 
-           
-       <h3>Movimiento</h3>
-        <p class="texto">   
-           Haremos un coche con las ruedas que se mueva sobre un terreno o un plano. Las ruedas de adelante
-           llevarán la dirección y las de atrás la fuerza.<br>
-        </p>
-            
-        <p class="nota">   
-           El Wheel Collider es un componente físico especializado en Unity diseñado para simular el comportamiento
-           de ruedas y neumáticos en vehículos terrestres. Integra detección de colisiones, simulación de suspensión
-           y un modelo avanzado de fricción de deslizamiento, lo que permite crear coches y motos de forma rápida
-           y realista.
-        </p>
-        
-        <ul> 
-					<li><a href="tema5-3.html">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Movimiento</a></li>           
-       </ul> 
-        
-       <h3>Vuelo</h3> 
-        <p class="texto">    
-          Haremos un avión que se mueva alrededor de planetas que generaremos. Los planetas se generan entre
-           un rango de posiciones.
-        </p>
-        
-        <p class="nota">    
-           El Character Controller de Unity es un componente diseñado específicamente para mover personajes de forma
-           ágil y precisa, sin depender de la gravedad ni de las leyes físicas complejas del motor. Sirve para crear
-           el movimiento de jugadores en primera o tercera persona en juegos que requieren un control directo, como
-           plataformas y shooters.<br>
-           Aunque nosotros lo haremos en un avión para poder moverlo.
-        </p>
-        
-       <ul>   
-					<li><a href="tema5-4.html">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Vuelo</a></li>          
-       </ul> 
+        Este proyecto nos enseñara como tener varias cámaras y que podamos verlas a la vez.<br>
+         Tendremos un Pollo que se moverá con las flechas y con el espacio para saltar hacia delante.<br><br>
+         La cámara del juego que apunta solo al objeto Árbol que será un prefab y el Pollo tendrá una
+          camára que verá todo menos al Árbol.  Ambas cámaras serán Ortográficas.<br><br>
+         Esto lo haremos mediante el Layer que tengan asignados los objetos.<br><br>
+         Cuando el Árbol toque al Pollo desaparecerá y hara un sonido.<br><br>
+          Para ello necesitaremos una estructura de carpetas que tendrán el
+          contenido necesario para hacer el juego que lo iremos incluyendo poco a poco:<br><br>
+         _GameAssets<br>	          
+         &emsp;• Audio<br>
+         &emsp;&emsp;o	Hit.wav.<br>
+         &emsp;• Materiales.<br> 
+         &emsp;• Prefabs.<br>
+         &emsp;&emsp;o Arbol (Capsule).<br>
+         &emsp;• Scenes.<br>
+         &emsp;&emsp;o	Camaras.<br>
+         &emsp;• Scrips.<br>
+         &emsp;&emsp;o Arbol.cs.<br>
+         &emsp;&emsp;o Pollo.cs.<br>
+         &emsp;• Materiales.<br>
+         &emsp;• Textures para el suelo.   
        
-      </p> 
-      <p class="texto">				
+      <h3>Escena Juego</h3>
+      <p class="texto">
+         Tendremos que crear dentro de esta escena:<br>
+         •	Suelo.<br>
+         •	Pollo.<br>
+         •	Arbol1 (prefab).<br>
+         •	Arbol2 (prefab).<br>
+         •	Arbol3 (prefab).
+      </p>     
+                
+      <h3>CamaraCentral</h3>
+      <p class="texto">
+      		La cámara solo podra ver la capa Defaul y Personajes (Layer del Árbol). 
+    	</p> 
+    	 
+      <p class="img_centrada"><img src="img/tema6/6-1.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema6/6-2.png" width="80%" alt=""></p>
+        
+      <p class="texto">
+      	Por lo tanto hay que crear otro Layer que se llame Personajes desde Layer.
+    	 </p> 
+      <p class="img_centrada"><img src="img/tema6/6-3.png" width="80%" alt=""></p>
+      
+      <h3>Suelo</h3>
+      <p class="texto">
+      		Será un plano con una textura. Crearemos otro Layer que se llame Terreno.<br>
+      		Tendrá un componente AudioSource para que nada más empezar se oiga como golpea el Pollo el suelo
+      		por la caida de la gravedad:<br>
+      		&emsp;• Play On Awake Chequeado.
+    	</p>    
+   		<p class="img_centrada"><img src="img/tema6/6-4.png" width="80%" alt=""></p>
+       
+      <h3>Pollo</h3>
+      <p class="texto">
+      		Lo primero que haremos es crear nuestro personaje que será un pollo hecho con los objetos primitivos 3D:
+          Cubos, esferas...<br>
+      		&emsp;• Pollo (Cubo) Mirando hacia la Z (adelante). Componentes:<br>
+      		&emsp;&emsp;o Mesh Renderer desactivado para que no se vea el cuadrado.<br>
+      		&emsp;&emsp;o BoxCollider.<br>
+      		&emsp;&emsp;o RigidBody.<br>
+      		&emsp;&emsp;o Script Pollo.cs.
+    	</p>    
+   		<p class="img_centrada"><img src="img/tema6/6-5.png" width="80%" alt=""></p>
+       
+      <p class="texto">
+      	El Pollo tendrá las rotaciones del Rigidbody bloqueadas y estará formado por los siguientes objetos:<br>
+      	&emsp;• Modelo GO vacío.<br>
+      	&emsp;&emsp;o Cuerpo.<br>
+      	&emsp;&emsp;o Cabeza.<br>
+      	&emsp;&emsp;o Cresta.<br>
+      	&emsp;&emsp;o Pico1 y Pico2.<br>
+      	&emsp;&emsp;o Ojo1 y Ojo2.<br>
+      	&emsp;&emsp;o Ala1 y Ala2.<br>
+      	&emsp;&emsp;o Pata1 y Pata2.<br>
+      	&emsp;&emsp;o Base.   
+      </p>  
+      <p class="img_centrada"><img src="img/tema6/6-6.png" width="80%" alt=""></p> 
+      
+      <p class="texto">
+        &emsp;• Camera con el Culling Mask a Mixed y Projection Orthographic.
+      </p>
+      <p class="img_centrada"><img src="img/tema6/6-7.png" width="80%" alt=""></p> 
+       
+      <p class="texto">
+        &emsp;• PosicionPatas que será un GO vacío y la posicionaremos a la altura de las patas para
+        saber si estamos tocando el suelo para poder saltar con el espacio.<br>
+      </p>
+      <p class="img_centrada"><img src="img/tema6/6-8.png" width="80%" alt=""></p> 
+      
+      <h3>Script Pollo.cs</h3>
+      <p class="texto">
+      	Necesitamos variables que pasaremos por parámetro y una variable para recoger el Rigidbody:<br>
+      	&emsp;• float distanciaDeteccion.<br>
+        &emsp;• int fuerza.<br>
+   	    &emsp;• Transform posPatas.<br><br>
+   	    Start().<br>
+   	    &emsp;• Recogemos el Rigidbody del Pollo.
+   	    Update().<br>
+   	    &emsp;• Si damos al espacio y EstoyEnSuelo().<br>
+   	    &emsp;&emsp;o Añadir una fuerza hacia arriba (Y) y hacia delante(Z) por la fuerza.<br>
+   	    &emsp;• Si da tecla izquierda.<br>
+   	    &emsp;&emsp;o Añadir una fuerza hacia izquierda en negativo (X) y hacia arriba(Y) por la fuerza.<br>
+   	    &emsp;• Si da tecla derecha.<br>
+   	    &emsp;&emsp;o Añadir una fuerza hacia derecha en positivo (X) y hacia arriba(Y) por la fuerza.<br>
+   	    &emsp;• Si da tecla abajo.<br>
+   	    &emsp;&emsp;o Añadir una fuerza hacia atrás en negativo (Z) y hacia arriba(Y) por la fuerza. 	    
+    	</p>
+      <p class="img_centrada"><img src="img/tema6/6-9.png" width="80%" alt=""></p>
+      
+      <p class="texto">
+      	Método EstoyEnSuelo().<br>
+      	Si estoy tocando el Suelo podre saltar cuando le de al espacio. Se podría hacer de dos maneras:<br>
+      	1ª Manera:<br>
+      	&emsp;• Recoger la capa del suelo.<br>
+      	&emsp;• Inicializar variable enSuelo a false.<br>
+      	&emsp;• Hacemos una esfera con Physics.CheckSphere desde la posicion de las patas con una cierta
+      	 distancia y la capa que recogimos.<br>
+        &emsp;• Y retornamos la variable enSuelo y si es true es que lo estoy tocando.<br><br>
+        2ª Manera:<br>
+        &emsp;•	Recoger todos los Collider en un array con Physics.OverlapSphere .<br>
+        &emsp;• Y si la longitud > 0 en senSuelo sera true y se retornamos el valor.
+      </p>
+      <p class="img_centrada"><img src="img/tema6/6-10.png" width="80%" alt=""></p>
+      	
+      	
+      <h3>Árbol</h3>
+      <p class="texto">	
+      	 Haremos un objeto para que cuando el Pollo se choque con él se destruira el objeto y hara un sonido. Le 
+      	 hacemos como Prefab para poner varios en el plano.<br>
+      	 Tendrá un componente de Capsule Collider con el IsTrigger chequeado.<br><br>
+      	 En el Layer del Arbol añadimos un Layer que se llame "Personajes".
+      </p>
+      <p class="nota">	
+      	 Cuando tenemos el IsTrigger chequeado nos deja atravesar al objeto con el que colisionamos.
+   		 </p>	
+      <p class="img_centrada"><img src="img/tema6/6-11.png" width="80%" alt=""></p>
+      	
+      <p class="texto">	
+      	 Tiene asociado un script Arbol.cs:<br>
+      	 Start().<br>
+      	 &emsp;• Recoger el AudioSource.<br>
+      	 OnTriggerEnter().<br>
+      	 &emsp;• Hacemos un sonido.<br>
+      	 &emsp;• Y llamamos con el Invoke a un método DestruirObjeto() al cabo de 1 segundo que destruira
+      	  el objeto.<br>
+      </p>
+      <p class="img_centrada"><img src="img/tema6/6-12.png" width="80%" alt=""></p>
+      			
+      	 
       <br><br>
       <a class="texto volver" href="javascript:history.back(-1);">Volver al índice</a>
    </div>
