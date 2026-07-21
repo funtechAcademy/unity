@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="styles/style.css">
+   <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Sanchez&display=swap" rel="stylesheet">
+   <script src="js/scripts.js"></script>
+   <title>Terrenos</title>
+</head>
+<body>
+   <div id="cabecera">
+      <h1>Terrenos</h1>
+   </div>
+   <!-- INICIO_LOADER -->
+   <div id="pageloader">
+      <img src="img/LogoOjo_FTA.png" class="spining" width="100px">
+   </div>
+   <!-- FIN_LOADER -->
+   <div id="contenido">
+      <h2>Terrenos</h2>
+      <p class="texto">
+      	Creamos un proyecto Universal 3D SRP(Universal Render Pipeline).<br>
+      	Necesitaremos varios Assets:<br>
+      	Package FirstPersonController (Lo facilitamos nosotros).<br>
+      	https://assetstore.unity.com/packages/3d/environments/low-poly-environment-nature-free-lowpoly-medieval
+      	-fantasy-series-187052.<br>
+      	https://assetstore.unity.com/packages/2d/textures-materials/sky/allsky-free-10-sky-skybox-set-146014.<br><br> 	
+      	Y en cada uno damos al botón de: Agregar a mis activos. Nos abre el Package Manager de Unity lo descargamos
+      	e importamos.
+      </p>
+      <p class="img_centrada"><img src="img/tema7/7-1.png" width="50%" alt=""></p>
+      
+       
+      <p class="texto">
+      	 Y nos aparecera en Projects/Assets los 3 Assets que hemos descargado.
+      </p>
+      <p class="img_centrada"><img src="img/tema7/7-2.png" width="80%" alt=""></p>
+        
+     <h3>Crear un Terreno</h3>   
+     <p class="texto">	
+      	Para crear un terreno en nuestra jerarquía damos click derecho 3D Object/Terrain y nos alejamos
+      	un poco para verlo desde más arriba con la rueda del ratón.  	
+     </p>
+      <p class="img_centrada"><img src="img/tema7/7-4.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema7/7-5.png" width="80%" alt=""></p>
+       
+    <h3>Montañas</h3>   
+    	<p class="texto">    	
+      	• Seleccionar Paint Terrain.<br>
+      	• Y en el desplegable seleccionar Raise or Lower Terrain.
+     </p>
+     <p class="img_centrada"><img src="img/tema7/7-6.png" width="80%" alt=""></p>
+     <p class="img_centrada"><img src="img/tema7/7-7.png" width="80%" alt=""></p>
+        
+     <p class="texto">	
+      	• Ajustar el Brush Size y el Opacity.
+     </p>
+     
+     <p class="nota">	
+      	No pasaros con el Opacity porque las montañas quedarian muy escarpadas y puede quedar un poco raro.
+     </p>
+     <p class="img_centrada"><img src="img/tema7/7-8.png" width="80%" alt=""></p>
+        
+     <p class="texto">	
+      	Ir dibujando y cambiando de Brushes. Con el click izquierdo sube y si queremos bajar la montaña damos
+       al SHIFT más el click izquierdo.
+     </p> 			
+      <p class="img_centrada"><img src="img/tema7/7-9.png" width="80%" alt=""></p>
+      
+      <h3>Texturas</h3>           
+     <p class="texto">	
+       Cambiamos el desplegable a Paint Texture.
+     </p> 			
+      <p class="img_centrada"><img src="img/tema7/7-10.png" width="80%" alt=""></p>
+       
+     <p class="texto">	
+       Seleccionamos el botón Edit Terrain Layers/Add Layer y añadimos una nueva layer.
+     </p> 			
+     <p class="img_centrada"><img src="img/tema7/7-11.png" width="80%" alt=""></p>
+     <p class="img_centrada"><img src="img/tema7/7-12.png" width="80%" alt=""></p> 
+     
+     <p class="texto">	
+       Y seleccionamos el verde.
+     </p> 		
+     
+     <p class="nota">	
+      Se puede ajustar el color en Color Tint.
+     </p>   
+     	
+     <p class="img_centrada"><img src="img/tema7/7-13.png" width="80%" alt=""></p>
+     <p class="img_centrada"><img src="img/tema7/7-14.png" width="80%" alt=""></p>
+        
+     <p class="texto">	
+       Podemos crear una nueva Layer para añadiendo un poco de marrón. Y podemos ajustar el Brush Size y el 
+       Opacity para generar zonas más marrones.
+     </p> 			
+     <p class="img_centrada"><img src="img/tema7/7-15.png" width="80%" alt=""></p> 
+     
+      <h3>Hierba</h3>   
+     <p class="texto">	
+       Añadir la hierba en Paint Details. Damos al botón Edit Details/Add Grass Texture.
+     </p> 			
+     <p class="img_centrada"><img src="img/tema7/7-16.png" width="80%" alt=""></p> 
+     <p class="img_centrada"><img src="img/tema7/7-17.png" width="80%" alt=""></p>   
+     <p class="img_centrada"><img src="img/tema7/7-18.png" width="80%" alt=""></p>   
+     
+     <p class="texto">	
+       Aparece un ventana pequeña.
+     </p> 
+     <p class="img_centrada"><img src="img/tema7/7-19.png" width="80%" alt=""></p>
+     
+     <p class="texto">	
+      Y en Detail Texture buscamos Grass y seleccionamos una.
+     </p>    
+     <p class="img_centrada"><img src="img/tema7/7-20.png" width="80%" alt=""></p>   	 
+       	 
+     <p class="texto">	
+      Podemos ajustar el Detail density, el Max y Min Height del grass e incluso el color. Y le damos Add.
+     </p>    
+     <p class="img_centrada"><img src="img/tema7/7-21.png" width="80%" alt=""></p>   	  	
+     
+     <p class="texto">	
+      Nos acercamos y podemos empezar a poner hierba.
+     </p>    
+     <p class="img_centrada"><img src="img/tema7/7-22.png" width="80%" alt=""></p>   	  	 
+     
+     <p class="nota">	
+      Si no lo veis bien tendreis que ajustar en Terrain Settings el Detail Distance. El botón que está al
+      lado de Paint Details. Dependera también del ordenador para que vaya más rápido o despacio.
+     </p>   
+     
+     <h3>Árboles</h3>   
+     <p class="texto">	
+       Primero vamos a Polytope Studio/Lowpoly_Environments/URP y seleccionamos el último e importar.<br>
+     </p> 			
+     <p class="img_centrada"><img src="img/tema7/7-23.png" width="80%" alt=""></p>  
+      
+      <p class="texto">	
+       Y ahora podemos añadir árboles en Paint Trees.<br>
+     </p> 			
+     <p class="img_centrada"><img src="img/tema7/7-24.png" width="80%" alt=""></p>   
+     
+     <p class="texto">	
+       Edit Trees/Add Tree. Y buscar tree en la ventana pequeña que aparece. Se puede bajar el Tree Density y
+       subir el Brush Size.<br>
+     </p> 			
+     <p class="img_centrada"><img src="img/tema7/7-25.png" width="80%" alt=""></p>   
+     <p class="img_centrada"><img src="img/tema7/7-26.png" width="80%" alt=""></p>   
+     <p class="img_centrada"><img src="img/tema7/7-27.png" width="80%" alt=""></p>   
+     
+     <p class="texto">	
+      Vamos añadir otro tipo de árboles, roca, setas, troncos<br>
+     </p> 			
+     <p class="img_centrada"><img src="img/tema7/7-28.png" width="80%" alt=""></p>   
+      
+     <p class="texto">	
+      Si la hierba está muy alta se puede reducir dando a Edit.<br>
+     </p> 			
+     <p class="img_centrada"><img src="img/tema7/7-29.png" width="80%" alt=""></p>    	 
+          
+     <h3>Cielo</h3>   
+     <p class="texto">	
+      Window/Rendering/Lighting/Enviroment:<br>
+      • Environment/SkyBox Material seleccionamos el cielo.
+     </p> 			
+     <p class="img_centrada"><img src="img/tema7/7-30.png" width="80%" alt=""></p>
+     <p class="img_centrada"><img src="img/tema7/7-31.png" width="80%" alt=""></p>   
+       
+      <p class="texto">	
+       Other Settings/Fog (niebla), podemos jugar con sus atributos.<br>  
+     </p> 	
+      <p class="img_centrada"><img src="img/tema7/7-32.png" width="80%" alt=""></p> 
+       
+     <h3>Directional Light</h3>   
+     <p class="texto">	
+      • Podemos modificar su Rotación para cambiar las sombras.<br>
+      • Cambiar la Temperatura al escenario.<br>
+      • Y la Intensidad para que parezca que halla un poco más de sol.
+     </p> 	
+      <p class="img_centrada"><img src="img/tema7/7-33.png" width="80%" alt=""></p> 
+       
+     <h3>Prefabs</h3>
+      <p class="texto">	
+         Podemos añadir prefabs de rocas.. Polytope Studio/Lowpoly_Environments/Prefabs.
+     </p> 	
+     <p class="img_centrada"><img src="img/tema7/7-34.png" width="80%" alt=""></p> 
+            
+    <h3>Main Camera</h3>   
+     <p class="texto">	
+     	Seleccionar Main Camera para poder añadir efectos de Post Processing:<br>
+     	 • Activar Post Processing
+     </p> 	
+     <p class="img_centrada"><img src="img/tema7/7-34.png" width="80%" alt=""></p> 
+           
+     <h3>Global Volumen</h3>   
+     <p class="texto">	
+     	Global Volumen haremos algunos cambios:<br>
+     	 • Bloom aumentamos para que las cosas que tengan ilumnación brillen más.<br>
+     </p> 	
+     <p class="img_centrada"><img src="img/tema7/7-35.png" width="80%" alt=""></p> 
+
+     <p class="texto">	
+      	 • Podemos añadir en Add Override un Color Adjustments.
+     </p> 
+     
+     <p class="nota">	
+      	 Esta dentro de Post-processing ó lo podemos buscar en la lupa.
+     </p> 	
+     	
+     <p class="img_centrada"><img src="img/tema7/7-36.png" width="80%" alt=""></p> 
+     
+     <p class="texto">	
+      	 • Podemos añadir en Add Override un Chanel Mixer para cambiar el color rojo para darle una tonalidad
+      	 más calida.
+     </p> 	
+     <p class="img_centrada"><img src="img/tema7/7-37.png" width="80%" alt=""></p> 
+     <p class="img_centrada"><img src="img/tema7/7-38.png" width="80%" alt=""></p> 
+
+     <p class="texto">	
+      	 • Podemos añadir en Add Override un Lift Gamma Gane para cambiar un poco el color de la escena. Se
+      	 selecciona y se pincha en el centro y se arrastra.
+     </p> 	
+     <p class="img_centrada"><img src="img/tema7/7-39.png" width="80%" alt=""></p> 
+     <p class="img_centrada"><img src="img/tema7/7-40.png" width="80%" alt=""></p> 
+
+     <h3>Añadir al Player</h3>   
+     <p class="texto">	
+     		Vamos a la carpeta donde este el Prefab Player y lo arrastramos a la escena:<br>
+     		 • Subimos la Y para que no se quede debajo del terreno
+     </p> 	
+     <p class="img_centrada"><img src="img/tema7/7-41.png" width="80%" alt=""></p> 
+      
+     <p class="texto">	
+     		 • Eliminamos la Main Camera.<br>
+     	   • Dentro de FirstPersonCharacter le añadimos el Post Processing.<br><br>		
+   
+     		 Podriamos ejecutar y movernos dentro de nuestro escenario.
+     </p> 
+        	 
+     <p class="nota">	
+      	 Existe otro paquete que es Terrain Tools que tendriais que instalar si quereis. Tiene más pinceles
+      	 y es muy parecido.<br>
+      	 Para crearlo Window/Terrain/Terrain Toolbox.
+     </p> 
+        	     	 
+     <p class="nota">	
+      	 En nuestro ejemplo lo instale pero no cree ningún terreno.
+     </p> 
+        	   	     	 
+        	      	     	 
+      <br><br>
+      <a class="texto volver" href="javascript:history.back(-1);">Volver al índice</a>
+   </div>
+   <div id="pie">
+      <h1> Fun Tech Academy - Calle Alcobendas, 23 Leganés 28914 Madrid - www.funtech.academy </h1>
+   </div>
+</body>
+</html>

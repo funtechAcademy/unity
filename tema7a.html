@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="styles/style.css">
+   <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Sanchez&display=swap" rel="stylesheet">
+   <script src="js/scripts.js"></script>
+   <title>Terrenos</title>
+</head>
+<body>
+   <div id="cabecera">
+      <h1>Terrenos</h1>
+   </div>
+   <!-- INICIO_LOADER -->
+   <div id="pageloader">
+      <img src="img/LogoOjo_FTA.png" class="spining" width="100px">
+   </div>
+   <!-- FIN_LOADER -->
+   <div id="contenido">
+      <h2>Terrenos</h2>
+      <p class="texto">
+      	Creamos un proyecto Universal 3D SRP(Universal Render Pipeline).<br>
+      	Necesitaremos varios Assets:<br>
+        Package FirstPersonController (Os lo facilitamos nosotros).<br>
+      	https://assetstore.unity.com/packages/3d/environments/low-poly-environment-nature-free-lowpoly-medieval
+      	-fantasy-series-187052.<br>
+      	https://assetstore.unity.com/packages/2d/textures-materials/sky/allsky-free-10-sky-skybox-set-146014.<br><br> 	
+      </p>
+      <p class="img_centrada"><img src="img/tema7/7-33.png" width="80%" alt=""></p>
+           
+     <h3>Crear un Terreno</h3>   
+     <p class="texto">	
+      	Para crear un terreno en nuestra jerarquía damos click derecho 3D Object/Terrain.
+     </p>
+      <p class="img_centrada"><img src="img/tema7/7-4.png" width="80%" alt=""></p>
+   
+     <p class="texto">
+     		En el Terrain tenemos varios botones para poder dibujar.
+     </p>	
+     <p class="img_centrada"><img src="img/tema7/7-43.png" width="40%" alt=""></p>  
+   
+   	<p class="texto">
+     		Create Neighbor Terrains, para poder crear terrenos vecinos.<br>
+     		Paint Terrain, tiene un desplegable para poder levantar o bajar el terreno, hacer agujeros, poner texturas...<br>
+     		Paint Trees, para dibujar arboles.<br>
+     		Paint Details, para dibujar cesped.<br>
+     		Terrain Settings podemos poner el tamaño del terreno, el viento del cesped...
+     </p>	
+   
+   		<h3>Texturas</h3>           
+     <p class="texto">	
+       Cambiamos el desplegable a Paint Texture.
+     </p> 			
+      <p class="img_centrada"><img src="img/tema7/7-10.png" width="80%" alt=""></p>
+       
+     <p class="texto">	
+       Seleccionamos el botón Edit Terrain Layers/Add Layer y añadimos una nueva layer.
+     </p> 			
+     <p class="img_centrada"><img src="img/tema7/7-11.png" width="80%" alt=""></p>
+     <p class="img_centrada"><img src="img/tema7/7-12.png" width="80%" alt=""></p> 
+     
+     <p class="texto">	
+       Y seleccionamos el verde y dibujamos. Podemos seleccionar Brushes para pintar.
+     </p> 		
+     
+     <p class="nota">	
+      Se puede ajustar el color en Color Tint.
+     </p>   
+     	
+     <p class="img_centrada"><img src="img/tema7/7-13.png" width="80%" alt=""></p>
+     <p class="img_centrada"><img src="img/tema7/7-14.png" width="80%" alt=""></p>
+        
+     <p class="texto">	
+       Podemos crear una nueva Layer para añadiendo un poco de marrón. Y podemos ajustar el Brush Size y el 
+       Opacity para generar zonas más marrones.
+     </p> 	
+   
+   		<p class="nota">	
+      	Se haria muy parecido para hacer los árboles y el cespéd.
+     	</p>  
+     
+     <p class="nota">	
+      Si no lo veis bien tendreis que ajustar en Terrain Settings el Detail Distance. Dependera también del
+       ordenador para que vaya más rápido o despacio.
+     </p>   
+     
+          
+     <h3>Cielo</h3>   
+     <p class="texto">	
+      Window/Rendering/Lighting/Enviroment:<br>
+      • Environment/SkyBox Material seleccionamos el cielo.
+     </p> 			
+     <p class="img_centrada"><img src="img/tema7/7-30.png" width="80%" alt=""></p>
+     <p class="img_centrada"><img src="img/tema7/7-31.png" width="80%" alt=""></p>   
+       
+      <p class="texto">	
+      Other Settings/Fog (niebla), podemos jugar con sus atributos.<br>
+     </p> 	
+          
+     <h3>Directional Light</h3>   
+     <p class="texto">	
+      • Podemos modificar su Rotación para cambiar las sombras.<br>
+      • Cambiar la Temperatura al escenario.<br>
+      • Y la Intensidad para que parezca que halla un poco más de sol.
+     </p> 	
+      <p class="img_centrada"><img src="img/tema7/7-33.png" width="80%" alt=""></p> 
+       
+     <h3>Prefabs</h3>
+      <p class="texto">	
+         Podemos añadir prefabs de rocas.. Polytope Studio/Lowpoly_Environments/Prefabs o los que querais.
+     </p> 	
+            
+    <h3>Main Camera</h3>   
+     <p class="texto">	
+     	Seleccionar Main Camera para poder añadir efectos de Post Processing hay que activar Post Processing.
+     </p> 	
+           
+     <h3>Global Volumen</h3>   
+     <p class="texto">	
+     	Global Volumen haremos algunos cambios:<br>
+     	 • Bloom aumentamos para que las cosas que tengan ilumnación brillen más.<br>
+       • Podemos añadir en Add Override:<br>
+       &emsp;o Color Adjustments.<br>
+       &emsp;o Chanel Mixer para cambiar el color rojo para darle una tonalidad más calida.<br>
+       &emsp;o Lift Gamma Gane para cambiar un poco el color de la escena.
+     </p> 
+     
+     <p class="nota">	
+      	 Esta dentro de Post-processing ó lo podemos buscar en la lupa.
+     </p> 	  
+     <p class="img_centrada"><img src="img/tema7/7-39.png" width="80%" alt=""></p> 
+     <p class="img_centrada"><img src="img/tema7/7-40.png" width="80%" alt=""></p> 
+
+     <h3>Añadir al Player</h3>   
+     <p class="texto">	
+     		Vamos a la carpeta donde este el Prefab Player y lo arrastramos a la escena:<br>
+     		 • Eliminamos la Main Camera.<br>
+     	   • Dentro de FirstPersonCharacter le añadimos el Post Processing.<br><br>		
+     		 Podriamos ejecutar y movernos dentro de nuestro escenario.
+     </p> 
+       
+     <p class="nota">	
+      	 Existe otro paquete que es Terrain Tools que tendriais que instalar si quereis. Tiene más pinceles
+      	 y es muy parecido.<br>
+      	 Para crearlo Window/Terrain/Terrain Toolbox.
+     </p> 
+        	     	  
+       
+        	     	 
+      <br><br>
+      <a class="texto volver" href="javascript:history.back(-1);">Volver al índice</a>
+   </div>
+   <div id="pie">
+      <h1> Fun Tech Academy - Calle Alcobendas, 23 Leganés 28914 Madrid - www.funtech.academy </h1>
+   </div>
+</body>
+</html>
