@@ -21,30 +21,40 @@
    </div>
    <!-- FIN_LOADER -->
    <div id="contenido">
-      <h2>FPS REPASAR</h2>
+      <h2>FPS</h2>
       <p class="texto">
-      		En principio pondremos un plano con 4 paredes. Necesitaremos el Paquete FirstPersonController.unitypackage.
+      		Será un juego Universal 3D y en principio pondremos un plano con 4 paredes. Necesitaremos el Paquete 
+      		FirstPersonController.unitypackage que será nuestro Player.<br><br>
+					El FPS tendrá 4 Armas distintas y cada una lanzará una munición distinta y hará un daño distinto a
+					 cada enemigo.<br>
+					Cada enemigo también tendrá un numero de vidas.<br><br>
+					Tendremos que poner un Canvas con las vidas del player, puntos, enemigos que quedan, imagen de cada
+					arma con su munición. Se podrá activar/desactivar las armas dando a la tecla Q.<br><br>
+					Y una escena Portada con 2 botones Play y Exit.
       </p>
+      	
+      <p class="nota">	
+      	El alumno tendrá que hacer un plano con paredes para que no se escapen los enemigos cuando los vayamos poniendo.
+      	Y cuando tenga los enemigos terminados ya podrá cambiarlos por personajes de Mixamo.... y generar su 
+      	propio entorno.	
+       </p> 	 
+       <p class="img_centrada"><img src="img/tema8/8-1.png" width="80%" alt=""></p> 
         
+       <p class="nota">	
+      	Hay que modificar en Edit/Project Settings/Player/Configuration-Activate Input Handling a Both para que el
+      	 Player funcione correctamente y no de errores. Al hacer el Apply Unity se vuelve a reiniciar.
+       </p>
+       
       <h2>Player</h2>
       <p class="texto">	    	
-      	•	Será un FirstPersonController que hemos descargado previamente.<br>
+      	•	Será un FirstPersonController que hemos descargado previamente y ponemos el Prefab Player en la Escena.<br>
 				•	Tendrá asociado un script Player.cs.<br>
-				•	Con 4 armas:<br>
-				&emsp;o	Están dentro del Player/FirstPersonCharacter junto con su generador de munición.    
+				•	Con 4 armas que estarán dentro del Player/FirstPersonCharacter junto con su generador de munición. Asi
+			   que teneis que descargar 4 armas, 4 municiones (si puede ser low poly) y 4 sonidos de disparos.	   
       </p> 
-      <p class="img_centrada"><img src="img/tema8/8-1.png" width="30%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema8/8-2.png" width="80%" alt=""></p>
+     
       
-      <p class="texto">	  
-    	  •	Descargar 4 armas, 4 municiones y 4 sonidos de disparos.<br> 
-				•	Cada Arma tendrá asociado otro Script Arma.cs. Que es lo que pasaremos por parámetro al Player.cs mediante un
-				Array.
- 			</p> 
-      
-      <p class="nota">	 
-     		 Crear un GO vacío para poder tener casi todos los sonidos SoundManager.cs. Tendrá un array AudioSource
-      	 y solo pasaremos el clip y el volumen. Lo haremos más adelante. 
-      </p> 
       	
       <h2>Script Player.cs</h2>
       <p class="texto">	
@@ -65,7 +75,7 @@
 				&emsp;&emsp;&emsp;-	La primera vez que damos a la Q aparecerá un Canvas con todas las Armas (el arma activa
 				 en color para saber que esta seleccionada), la munición que tiene por defecto y el arma activa en el FPS.
 			</p> 	
-      <p class="img_centrada"><img src="img/tema8/8-2.png" width="60%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema8/8-3.png" width="60%" alt=""></p>
       
       <p class="texto">	
   	    &emsp;&emsp;o	Las armas las activaremos con números del 1 al 4 mediante Input.GetKeyDown(KeyCode.Alpha1)
@@ -148,11 +158,17 @@
 				&emsp;•	Creamos un Método SeleccionAudio(int índice, float volumen).<br>
 				&emsp;&emsp;o	PlayOneShot. 
  			</p> 
-      
+      <h2>SoundManager</h2>  
+      <p class="texto">	 
+     		 GO vacío para poder tener casi todos los sonidos con un script: SoundManager.cs. Tendrá un array AudioSource
+      	 y solo pasaremos el clip y el volumen. Lo haremos más adelante. 
+      </p> 
       
       <h2>Armas (Prefabs)</h2>
       <p class="texto">	    
 				Cada Arma tendrá asociado un script Arma.cs (el mismo).<br>
+				•	Cada Arma tendrá asociado otro Script Arma.cs. Que es lo que pasaremos por parámetro al Player.cs mediante un
+				Array.
 			
 				&emsp;• Variables más destacadas:.<br>
 				&emsp;&emsp;o	Quaternion[] bombas.<br>
