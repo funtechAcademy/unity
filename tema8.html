@@ -35,6 +35,7 @@
       	
       <p class="nota">	
       	El alumno tendrá que hacer un plano con paredes para que no se escapen los enemigos cuando los vayamos poniendo.
+      	Los enemigos se los daremos nosotros mediante un package
       	Y cuando tenga los enemigos terminados ya podrá cambiarlos por personajes de Mixamo.... y generar su 
       	propio entorno.	
        </p> 	 
@@ -45,34 +46,180 @@
       	 Player funcione correctamente y no de errores. Al hacer el Apply Unity se vuelve a reiniciar.
        </p>
        
-      <h2>Player</h2>
+      <h3>Player</h3>
       <p class="texto">	    	
       	•	Será un FirstPersonController que hemos descargado previamente y ponemos el Prefab Player en la Escena.<br>
 				•	Tendrá asociado un script Player.cs.<br>
 				•	Con 4 armas que estarán dentro del Player/FirstPersonCharacter junto con su generador de munición. Asi
-			   que teneis que descargar 4 armas, 4 municiones (si puede ser low poly) y 4 sonidos de disparos.	   
+			   que hay que descargar 4 armas, 4 municiones (Low Poly y siempre mirando hacia delante Z) y 4 sonidos de
+			    disparos :<br>
+			   &emsp;o  Cada arma tiene un Generador que será un GO vacío para que cuando disparemos la bala salga en
+			   ese punto. Siempre mirando hacia delante.  
       </p> 
       <p class="img_centrada"><img src="img/tema8/8-2.png" width="80%" alt=""></p>
-     
-      
+         
       	
-      <h2>Script Player.cs</h2>
+      <h3>Script Player.cs</h3>
       <p class="texto">	
-      	&emsp;• Variables más destacadas:<br>
-				&emsp;&emsp;o	Arma[] armas = new Arma[4].<br>
-				&emsp;&emsp;o	int armaActiva.<br>
-				&emsp;&emsp;o	Imagen[] imagen del Canvas.<br>
-				&emsp;&emsp;o	TextMeshProUGUI[] textoMunicion del Canvas.<br>
-				&emsp;&emsp;o	Imagen sangre.<br><br>
+      	Una vez que tengamos las Armas colocadas dentro del Player vamos a manejarlas con los números del 
+      	1 al 4 para que se escondan y que aparezcan.<br>
+      	Variables:<br>
+      	&emsp;• private const int NUM_ARMAS = 4. <br>
+      	&emsp;• [SerializeField] int armaActiva = 0. Para saber que arma esta activa<br>
+				&emsp;•	[SerializeField] Arma[] armas = new Arma[NUM_ARMAS].<br>
+				&emsp;• bool esconderArma = true.<br><br>	
+				Crear un Script Arma.cs (aunque de momento no lo usemos para que no de error) y asignarsela a cada
+				una de las Armas que tenemos en el Player.<br>
+				Y arrastrar cada Arma al array de Arma del Player para que recoja ese script.	Inicializarlo a 4.
+			 </p> 	
+			 
+			 <p class="nota">	
+      	La variable Arma[] es el Script Arma.cs que hemos creado.
+       </p>   
+			 
+			 <p class="img_centrada"><img src="img/tema8/8-3.png" width="80%" alt=""></p>
+			 <p class="img_centrada"><img src="img/tema8/8-4.png" width="80%" alt=""></p> 
+			 
+			 <p class="texto">	 
+				 Start().<br>
+				 &emsp;• DesactivarArmas(). Crear método para esconder todas las armas nada más empezar.<br>
+				 Método DesactivarArmas():<br>
+				 &emsp;• Recorrer mediante un foreach el array arma y desactivarlas.
+			 </p> 				
+			 <p class="img_centrada"><img src="img/tema8/8-5.png" width="80%" alt=""></p>
 				
-				&emsp;• Start.<br>
-				&emsp;&emsp;o Recoger los colores de la sangre (cuando tengamos el Canvas).<br>
-				&emsp;&emsp;o DesactivarArmas().<br>
-				&emsp;&emsp;o ActivarDesactivarImagenesCanvasArmas(false)<br><br>
+			 <p class="texto">		
+				Update().<br>
+				&emsp;•	Tecla Q para mostrar (Método ActivarArma) o no las armas del FPS (Método DesactivarArmas).<br>
+				&emsp;&emsp;o Al poner "!" lo que hace es poner el valor contrario del que tenga el booleno esconderArma.<br>
+				&emsp;&emsp;&emsp;- Si esconderArma es true llamamos a DesactivarArmas() para que todo se esconda.<br>
+				&emsp;&emsp;&emsp;- Si esconderArma es false llamamos a ActivarArma() con un parámetro para saber que 
+				arma tengo que activar. Por defecto ponemos a 0 armaActiva que es la primera que tengo en el FPS.<br>
+				&emsp;&emsp;o Sino tengo escondida el arma la muestro dependiendo del número que selecciono mediante
+				 Input.GetKeyDown(KeyCode.Alpha1...Aplha4) y llamaremos ActivarArma().
+			</p> 				
+			 <p class="img_centrada"><img src="img/tema8/8-6.png" width="80%" alt=""></p>
+			 
+			<p class="nota">	
+      	Los Arrays empiezan en el elemento 0, por eso ponemos armaActiva a 0.
+       </p> 
 				
-				&emsp;• Update.<br>
-				&emsp;&emsp;o	Tecla Q para mostrar o no las armas del FPS.<br>
-				&emsp;&emsp;&emsp;-	La primera vez que damos a la Q aparecerá un Canvas con todas las Armas (el arma activa
+			 <p class= "texto">		
+			 	 Método ActivarArmas(int armaActiva):<br>
+				 &emsp;• Primero DesactivarArmas().<br>
+				 &emsp;• Activo el elemento del array del arma que he pasado por parámetro.
+			 </p> 				
+			 <p class="img_centrada"><img src="img/tema8/8-7.png" width="80%" alt=""></p>
+					
+			 <p class= "texto">		
+					Vamos hacer que cada arma dispare un munición distinta cuando no esta escondida el arma.<br>
+					Update().<br>
+					&emsp;• Botón izquierdo ratón haremos el Método Disparar() con Input.GetMouseButtonDown(0)
+					<br>
+			 </p> 				
+			 <p class="img_centrada"><img src="img/tema8/8-8.png" width="80%" alt=""></p>
+			 
+			 <p class= "texto">		
+					Método Disparar():<br>
+					&emsp;• Llamamos Método ApretarGatillo() del armaActiva que estára en el Script Arma.cs.
+			 </p> 		
+			 <p class="img_centrada"><img src="img/tema8/8-9.png" width="80%" alt=""></p>
+			
+			<h3>Script Arma.cs</h3>
+      <p class="texto">	
+				Necesitamos tener variables públicas para poder arrastrarlas desde el Editor:<br>
+				&emsp;• puntoGeneracion.<br>
+				&emsp;• prefabBala.<br>
+				&emsp;• municionMaxima.<br>
+				&emsp;• potenciaDisparo.<br>
+				Tenemos que arrastrar estos objetos en cada una de las Armas.	
+			 </p> 		
+			 <p class="img_centrada"><img src="img/tema8/8-10.png" width="80%" alt=""></p>
+				
+			 <p class="texto">	 
+				 Start().<br>
+				 &emsp;• Recoger el AudioSource.<br><br>
+				 Método ApretarGatillo(). Dispara si tenemos munición.<br>
+				 &emsp;• Método ModificarMunicion() resta la munición.<br>
+				 &emsp;• Crear munición en la posición del puntoGeneración.<br>
+				 &emsp;• Sonido de la munición.<br>
+				 &emsp;• La munición se lanza con AddRelativeForce siempre hacia delante * potenciaDisparo.<br>	
+			 </p> 		
+			 <p class="img_centrada"><img src="img/tema8/8-11.png" width="80%" alt=""></p>
+				
+			 <p class= "texto">		
+					Método ModificarMunicion():<br>
+					&emsp;• Restar la municionMaxima.
+			 </p> 		
+			 <p class="img_centrada"><img src="img/tema8/8-12.png" width="80%" alt=""></p>
+				
+			<h3>Script Player.cs</h3>
+			 <p class= "texto">	
+			 		Método Disparar(). Vamos hacer varios tipos de disparo:<br>	
+					&emsp;• Cuando disparemos el arco lo hara una si y otra no con un bool.<br>	
+					&emsp;• Si dispara el CargadorFrontal lanzara varias Bombas a la vez y cada una
+					se lanzara con una rotación distinta. Al hacerlo con instantiates consumira más memoria que si
+					lo hacemos con Partículas.<br>	
+					&emsp;• Y el resto de la armas dispara cuando hacemos el click.<br><br>	
+					Necesitamos una variable bool disparo para saber si hemos disparado o no.<br><br>
+			
+					Disparo del Arco: armaActiva = 0.<br>
+					&emsp;• Si disparo llamamos al Método ApretarGatillo().<br>
+					&emsp;&emsp;o disparo = false. Para que no dispare seguido.	<br>
+				  &emsp;• Y si no disparo ponemos disparo = true para que la siguiente vez que quiera disparar lo puede
+				   hacer.<br><br>
+				   
+				  Disparo del CargadorFrontal: armaActiva = 2.<br>
+					&emsp;• Método ApretarGatilloBomba() (Pendiente).<br>
+					&emsp;• disparo = false.<br><br>
+					
+					Disparo del Resto de las armas:<br>
+					&emsp;• Método ApretarGatillo().<br>
+					&emsp;• disparo = false.<br><br>		
+				</p> 		
+			 <p class="img_centrada"><img src="img/tema8/8-13.png" width="80%" alt=""></p>
+			
+			
+			
+			<h3>Script Arma.cs</h3>
+			<p class= "texto">	
+				Variables:<br>
+				&emsp;• contadorBombas para saber cuantas bombas saldrán cuando haga un disparo.<br>
+				&emsp;• tiempoVida para que se destruyan al cabo de unos segundos.<br>
+				&emsp;• Quaternion[] bombas representa las rotaciones de las bombas.<br>
+				&emsp;• esparcir
+			</p> 		
+			<p class="img_centrada"><img src="img/tema8/8-14.png" width="80%" alt=""></p>
+				
+		  <p class= "texto">	
+			  Método ApretarGatilloBomba(). Dispara si tenemos munición.<br>
+				 &emsp;• Método ModificarMunicion() resta la munición.<br>
+				 &emsp;• Sonido de la munición.<br>
+				 &emsp;• for hasta el contadorBombas.<br>
+				 &emsp;&emsp;o Le pone a la bomba una rotacion aleatoria.<br>
+				 &emsp;&emsp;o Instantiate del prefabBala desde la posición y rotación del GO Generación.<br>
+				 &emsp;&emsp;o Destruir al cabo de unos segundos.<br>
+				 &emsp;&emsp;o A la nueva bomba le damos un giro distinto con Quaternion.RotateTowards(). <br>
+				 &emsp;&emsp;o Lanzar la bomba con un AddRelativeForce hacia delante. 
+			</p> 		
+			
+			<p class= "nota">	
+					Quaternion.RotateTowards gira un objeto desde una rotación inicial hacia una rotación objetivo
+					 usando un paso máximo en grados, sin pasarse del límite establecido.
+			</p> 		
+			<p class="img_centrada"><img src="img/tema8/8-15.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema8/8-16.png" width="80%" alt=""></p>
+			
+			<h3>Canvas</h3>
+			<p class= "texto">	
+			
+				</p>
+			
+			
+			--------------------------	
+			 </p> 			
+			 <p class="texto">		
+				&emsp;&emsp;o	La primera vez que damos a la Q aparecerá un Canvas con todas las Armas (el arma activa
 				 en color para saber que esta seleccionada), la munición que tiene por defecto y el arma activa en el FPS.
 			</p> 	
       <p class="img_centrada"><img src="img/tema8/8-3.png" width="60%" alt=""></p>
@@ -165,16 +312,15 @@
       </p> 
       
       <h2>Armas (Prefabs)</h2>
-      <p class="texto">	    
-				Cada Arma tendrá asociado un script Arma.cs (el mismo).<br>
-				•	Cada Arma tendrá asociado otro Script Arma.cs. Que es lo que pasaremos por parámetro al Player.cs mediante un
-				Array.
+      <p class="texto">	 
+				Cada Arma tendrá asociado otro Script Arma.cs. Que es lo que pasaremos por parámetro al Player.cs mediante un
+				Array.<br>
 			
 				&emsp;• Variables más destacadas:.<br>
 				&emsp;&emsp;o	Quaternion[] bombas.<br>
 				&emsp;&emsp;o	int contadorBombas.<br><br>
 
-				&emsp;• Start.<br>
+				&emsp;• Start().<br>
 				&emsp;Hay que crear un Array de bombas con una longitud de contadorBombas para que la podamos usar
 				 en el Método ApretarGatilloBomba cuando seleccionemos un arma en concreto.<br>
 				 &emsp;&emsp;o bombas = new Quaternion[contadorBombas]
