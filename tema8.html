@@ -32,6 +32,12 @@
 					arma con su munición. Se podrá activar/desactivar las armas dando a la tecla Q.<br><br>
 					Y una escena Portada con 2 botones Play y Exit.
       </p>
+      
+      <!--<p class="nota Pendiente">
+        Para descargar los objetos necesarios para el juego, lo haremos desde este 
+        <a href="package/" download="sdfdsf"> link</a>. Lo descargaremos y lo descomprimimos 
+         en el directorio del alumno.
+		  </p>-->
       	
       <p class="nota">	
       	El alumno tendrá que hacer un plano con paredes para que no se escapen los enemigos cuando los vayamos poniendo.
@@ -211,47 +217,166 @@
 			<p class="img_centrada"><img src="img/tema8/8-16.png" width="80%" alt=""></p>
 			
 			<h3>Canvas</h3>
-			<p class= "texto">	
 			
-				</p>
-			
-			
-			--------------------------	
-			 </p> 			
-			 <p class="texto">		
-				&emsp;&emsp;o	La primera vez que damos a la Q aparecerá un Canvas con todas las Armas (el arma activa
-				 en color para saber que esta seleccionada), la munición que tiene por defecto y el arma activa en el FPS.
-			</p> 	
-      <p class="img_centrada"><img src="img/tema8/8-3.png" width="60%" alt=""></p>
+			 <p class="img_centrada"><img src="img/tema8/8-17.png" width="60%" alt=""></p>
+			  
+  		 <p class="texto">		
+				La primera vez que damos a la Q aparecerá también un Canvas con todas las Armas (el arma activa
+				 en color para saber que esta seleccionada), la munición que tiene por defecto y el arma activa la
+				 mostraremos en el FPS.<br><br>
+
+				En el Canvas tendremos lo siguiente:<br>
+				&emsp;• Enemigos (TextMeshPro).<br>
+				&emsp;• Vidas del Player (TextMeshPro).<br>
+				&emsp;• Sangre (Image).<br> 
+				&emsp;• Arco (Image) y TextoArco(TextMeshPro).<br>
+			  &emsp;• Cuhillo (Image) y TextoCuchillo(TextMeshPro).<br>
+				&emsp;• CargadorFontal (Image) y TextoCargadorFrontal(TextMeshPro).<br>
+			  &emsp;• ArmaCorta (Image) y TextoArmaCorta(TextMeshPro).<br>
+		  </p>
       
-      <p class="texto">	
-  	    &emsp;&emsp;o	Las armas las activaremos con números del 1 al 4 mediante Input.GetKeyDown(KeyCode.Alpha1)
-  	     Alpha1….Alpha4.<br>
-				&emsp;&emsp;&emsp;-	Usaremos Método ActivarArma con el parámetro del arma que esta activa. Primero se 
-				desactivarán todas las Armas y después el activamos el arma seleccionada.<br>
-				&emsp;&emsp;o	Botón izquierdo ratón haremos el Disparar() con Input.GetMouseButtonDown(0)
-			</p> 	
+      <p class= "nota">	
+					Tenemos que buscar sprites para las armas y la sangre e incluirlas en una carpeta de Sprites.
+					Y haremos lo siguiente. Pej Sangre:<br>	
+				&emsp;•  Cambiar Texture Type a Sprite (2D and UI) para poder asignarselo a la imagen.<br>
+				&emsp;•  Sprite Mode Single.<br>
+				&emsp;&emsp;o Apply.<br>
+				Una vez que hagamos esto ya se puede incluir en la imagen del Canvas.
+			</p> 
+			<p class="img_centrada"><img src="img/tema8/8-18.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema8/8-19.png" width="80%" alt=""></p>
 			
-			<p class="nota">	
-					NO podemos tener ningún valor (de tipo númerico, string…..) puesto en cualquier método. Todo tiene que 
-					estar parametrizado con variables para tenerlo todo más controlado.
+			<h3>Como hacer que aparezcan las 4 Armas en el Canvas y el texto de las municiones - Script Player.cs</h3>
+			
+      <p class="texto">	
+      	 Vamos hacer que aparezca el Canvas con las 4 armas y sus municiones y que cuando este seleccionada
+      	 el arma se ponga en el Canvas de otro color.<br><br>
+      	 Variables:<br>
+      	 &emsp;• Image[] imagen. Es un array con las imagenes de las armas del Canvas que tendremos que arrastrar en 
+      	 el Editor.<br>
+				 &emsp;• TextMeshProUGUI[] textoMunicion. Es un array con los textos de las municiones del Canvas que también
+				  tendremos que arrastrar en el Editor.	
       </p> 
+			<p class="img_centrada"><img src="img/tema8/8-20.png" width="80%" alt=""></p>
+      	
+      <p class="texto">		
+      	  Hay que añadir un nuevo Método ActivarDesactivarImagenesCanvasArmas().<br><br>
+      	 Método ActivarDesactivarImagenesCanvasArmas(bool activar). Recorrer el array con la variable NUM_ARMAS<br>
+				 &emsp;• Dejar el color original de las imagenes a 255 los atributos de r,g,b,a (canal alpha).<br>
+				 &emsp;• Activar/Desactivar la imagen.<br>
+				 &emsp;• Activar/Desactivar el texto de la munición.<br>
+			</p> 
+			<p class="img_centrada"><img src="img/tema8/8-21.png" width="80%" alt=""></p>
+			
+			<p class= "nota">	
+					Activa o Desactiva dependiendo del parámetro activar que pasamos al método.
+			</p> 
+	
+		  <p class="texto">	
+			 	Método Start():<br>
+			 	 &emsp;• Llamamos al Método ActivarDesactivarImagenesCanvasArmas(false) para que no aparezcan las armas.<br><br>
+			
+			 	Método Update():<br>
+			 	 &emsp;• Llamamos al Método ActivarDesactivarImagenesCanvasArmas(true) para que aparezcan las armas
+			 	 cuando demos a la tecla Q. Y ya no se quitaran las armas del Canvas.
+			 </p>  		
+				<p class="img_centrada"><img src="img/tema8/8-22.png" width="80%" alt=""></p> 
+				
+			 <p class="texto">	
+			 	Método DesactivarArmas():<br>
+			 	 &emsp;• Inicializar la i.<br>
+			 	 &emsp;• Volvemos a poner la imagen del arma a su color original.<br>
+				 &emsp;• Y aumentamos la i para hacer lo mismo en la siguiente vuelta de i.
+			 </p>  		
+				<p class="img_centrada"><img src="img/tema8/8-23.png" width="80%" alt=""></p> 
+				
+				<p class= "nota">	
+					Podriamos cambiar el FOREACH por FOR.
+				</p> 
+	
+	    <p class="texto">	
+			 	Método ActivarArma(int ArmaActiva):<br>
+			 	 &emsp;• Ponemos el arma que está activa en color rojo.
+			</p>  		
+			<p class="img_centrada"><img src="img/tema8/8-24.png" width="80%" alt=""></p> 
+			<p class="img_centrada"><img src="img/tema8/8-25.png" width="80%" alt=""></p> 
+				
+				
+			<p class="texto">	
+			 	Añadiremos en el Canvas la vida de Player...... asi que necesitamos variables:<br>
+			 	&emsp;• int vidaActual, vidaMaxima.<br>
+			 	&emsp;• public static bool estaVivo.<br>
+			 	&emsp;• TextMeshProUGUI vidas, numeroEnemigos.
+			</p>  
+			<p class="img_centrada"><img src="img/tema8/8-26.png" width="80%" alt=""></p> 
+			
+			<p class= "nota">	
+			Una variable static en Unity sirve para compartir un mismo valor entre todos los objetos de un script
+			 y permite acceder a él directamente desde cualquier parte sin necesidad de crear una referencia o
+			  buscar el objeto en la escena.		
+  		</p>
+  
+    <p class="texto">	
+			 	Método Update():<br>
+			 	 &emsp;• Haremos todo el Update pero siempre que el Player este vivo.<br>
+			 	 &emsp;• Y mostramos las vidas del Player.
+  	</p>
+  	<p class="img_centrada"><img src="img/tema8/8-27.png" width="80%" alt=""></p> 
+  	<p class="img_centrada"><img src="img/tema8/8-28.png" width="80%" alt=""></p> 
+  	
+  	<p class= "nota">	
+			Hay que acordarse de arrastrar los textos Vida y Enemigos del Canvas en el Editor sino dara error.	
+  	</p>
+  	
+  	 <h3>Añadir texto de la munición en el Canvas</h3>
+  	 <p class="texto">	
+			 	Necesitamos añadir una nueva variable a Arma.cs y asi podemos arrastrar el Texto del Canvas que corresponda
+			 	 a cada una de ellas:<br>
+			 	&emsp;• TextMeshProUGUI textoMunicion.	
+		</p>
+  	<p class="img_centrada"><img src="img/tema8/8-29.png" width="80%" alt=""></p>  	
+  	<p class="img_centrada"><img src="img/tema8/8-30.png" width="80%" alt=""></p>  	
+  	
+  	<p class="texto">	
+  		Y en el Método Start() ponemos la municionMaxima al textoMunicion.		 
+  	 </p>
+  	<p class="img_centrada"><img src="img/tema8/8-31.png" width="80%" alt=""></p>  	
+  	<p class="img_centrada"><img src="img/tema8/8-32.png" width="80%" alt=""></p>  	
+  	
+
+  	 <h3>Mostrar la munición que tenemos en el Canvas</h3>
+  	 <p class="texto">	
+			 Una vez que ya tenemos el Canvas con las Armas (Imagenes) y Munición (Text) podemos mostrar la munición
+			 que nos queda cada vez que disparamos. Lo haremos en el Script Arma.cs:<br>
+			 Método ModificarMunición:<br>
+			 &emsp;• Mostramos la munición que nos queda en el texto del arma que tengamos seleccionada.<br>
+			 Este método tendremos que llamarlo tanto en ApretarGatillo() y ApretarGatilloBomba().	 
+		</p>
+  	<p class="img_centrada"><img src="img/tema8/8-33.png" width="80%" alt=""></p>  	
+  	<p class="img_centrada"><img src="img/tema8/8-34.png" width="80%" alt=""></p>  	
+  	
+  	<p class= "nota">	
+			El método ToString transforma un valor númerico en un string.
+  	</p>
+  	 
+  	 
+  	 <h3>Enemigos</h3>
+  	 <p class="texto">	
+  	   	Tendremos distintos tipos de Enemigos: EnemigoTonto, EnemigoListo, EnemigoEstático y EnemigoBoss.<br>
+  	    De momento haremos un EnemigoTonto y que funcione y acontinuación usaremos herencias a nivel de Scripts.
+  	 	  Tenemos un EnemigoTonto.unitypackage que os dejare en un link....y lo descargaremos. Para ello necesitamos
+  	 	  crear otra carpeta dentro de Prefabs/Enemigos.<br>
+  	 	  Para descargar un Paquete:<br>
+  	 	  &emsp;• Assets/Import Package/Custom Package.<br>
+  	 	  &emsp;• Y seleccionamos el package EnemigoTonto.unitypackage.<br>
+  	 </p> 
+  	 <p class="img_centrada"><img src="img/tema8/8-34.png" width="80%" alt=""></p>  
+  	 
+  	 
+      ------------------------------------------------------
       
-      <p class="texto">	
-      	&emsp;•	Métodos.<br>
-				&emsp;&emsp;&emsp;o	ActivarArma (int armaActiva).<br>
-				&emsp;&emsp;&emsp;&emsp;-	DesactivarArmas.<br>
-				&emsp;&emsp;&emsp;&emsp;-	Cambiar Color del Canvas del arma seleccionada.<br>
-				imagen[armaActiva].color = new Color(255, 0, 0, 255).<br>
-				&emsp;&emsp;&emsp;&emsp;-	Activar el Arma.<br><br>
-
-				&emsp;&emsp;o	DesactivarArmas.<br>
-				&emsp;&emsp;&emsp;-	Lo haremos con un foreach recorriendo todo su array.<br>
-				&emsp;&emsp;&emsp;-	Habrá que dejar las imágenes del Canvas con su color original.<br><br>
-				&emsp;&emsp;o	Disparar.<br>
-				&emsp;&emsp;&emsp;-	Dependiendo que munición sea ApretarGatillo ó ApretarGatilloBomba que son métodos
-				 que están en Arma.cs. (Luego lo hacemos).<br><br>
-
+      
+    
 				&emsp;&emsp;o	IncrementarVida.<br>
 				&emsp;&emsp;&emsp;-	Incrementamos la vida a la variable VidaActual. Lo usaremos cuando recojamos las Cajas
 				 de Vida a lo largo del juego.<br>
@@ -311,51 +436,13 @@
       	 y solo pasaremos el clip y el volumen. Lo haremos más adelante. 
       </p> 
       
-      <h2>Armas (Prefabs)</h2>
-      <p class="texto">	 
-				Cada Arma tendrá asociado otro Script Arma.cs. Que es lo que pasaremos por parámetro al Player.cs mediante un
-				Array.<br>
-			
-				&emsp;• Variables más destacadas:.<br>
-				&emsp;&emsp;o	Quaternion[] bombas.<br>
-				&emsp;&emsp;o	int contadorBombas.<br><br>
-
-				&emsp;• Start().<br>
-				&emsp;Hay que crear un Array de bombas con una longitud de contadorBombas para que la podamos usar
-				 en el Método ApretarGatilloBomba cuando seleccionemos un arma en concreto.<br>
-				 &emsp;&emsp;o bombas = new Quaternion[contadorBombas]
-			</p> 	 
-			<p class="nota">	
-					Creamos un Array de bombas de tipo Quaternion para ir guardando sus rotaciones aleatorias.
-      </p> 		 
-		
-		   <p class="texto">	  		 
-				&emsp;• Método ApretarGatillo().<br>
-				&emsp;&emsp;o	Si tengo munición.<br>
-				&emsp;&emsp;&emsp;- Se podrá disparar.<br>
-				&emsp;&emsp;&emsp;- ModificarMunicion().<br>
-				&emsp;&emsp;&emsp;-	Creo la munición y la lanzo. AddRelativeForce.<br><br>
-				&emsp;• Método ApretarGatilloBomba() saldrán varias bombas con rotaciones distintas.<br>
-				&emsp;&emsp;o	Si tengo munición.<br>
-				&emsp;&emsp;&emsp;- Se podrá disparar.<br>
-				&emsp;&emsp;&emsp;- ModificarMunicion().<br>
-				&emsp;&emsp;&emsp;-	For hasta contadorMunicion.<br>
-				&emsp;&emsp;&emsp;&emsp;• bombas[i] = Random.rotacion.<br> 
-				&emsp;&emsp;&emsp;&emsp;•	Crear la bomba en su punto de generación que llamare nuevaBomba.<br>
-				&emsp;&emsp;&emsp;&emsp;•	Hay que ir destruyendo la nuevaBomba con un tiempo para que no se nos cargue la memoria.<br>
-				&emsp;&emsp;&emsp;&emsp;•	A la nueva bomba se le da un giro distinto.<br>
-				&emsp;&emsp;&emsp;&emsp;&emsp;nuevaBomba.transform.rotation = Quaternion.RotateTowards(nuevaBomba.transform.rotation,
-				                    bombas[i], esparcir).<br>
-				&emsp;&emsp;&emsp;&emsp;•	Se lanza con AddRelative Force<br><br>
-				&emsp;• Método ModificarMunicion().<br>
-				&emsp;&emsp;Hay que quitar la munición y actualizarla en el Canvas.
-			</p> 
       
       
-      <p class="nota">	
-					Poner sonidos cuando lancemos la munición.
-      </p> 	
-      	
+      
+      
+      
+      
+     ------------------------------ 	
      	<h2> Municiones (Prefabs)</h2>
       <p class="texto">	      
 				&emsp;•	Tendrá asociado un script Proyectil.cs.<br>
@@ -365,14 +452,16 @@
 				&emsp;•	Cada proyectil hará un daño distinto a cada enemigo.
 		</p> 
 		
-		Enemigo Tonto
-		Importar EnemigoTonto.unitypackage ó creamos un Objeto (Esfera, capsula…. ) para simular el Enemigo Tonto que tenga alguna referencia más (Objeto como una nariz…) para saber si rota o no. Podemos utilizar partículas cuando se le ha quitado una vida.
 
-		<p class="nota">
-         Para descargar los objetos necesarios para el juego, lo haremos desde este 
-         <a href="package/" download="PlasticOut"> link</a>. Lo descargaremos y lo descomprimimos 
-         en el directorio del alumno.
-		</p>
+		
+		------------
+		<h2>Enemigo Tonto</h2>
+		<p class="texto">	
+			Importar EnemigoTonto.unitypackage ó creamos un Objeto (Esfera, capsula…. ) para simular el Enemigo Tonto
+			 que tenga alguna referencia más (como una nariz…) para saber si rota o no. Podemos utilizar partículas
+			  cuando se le ha quitado una vida.
+
+		</p> 
 		
 		
 	

@@ -26,6 +26,12 @@
       		En principio pondremos un plano con 4 paredes. Necesitaremos el Paquete FirstPersonController.unitypackage.
       </p>
         
+      <!--<p class="nota Pendiente">
+        Para descargar los objetos necesarios para el juego, lo haremos desde este 
+        <a href="package/" download="sdfdsf"> link</a>. Lo descargaremos y lo descomprimimos 
+         en el directorio del alumno.
+		  </p>-->
+		
       <h2>Player</h2>
       <p class="texto">	    	
       	•	Será un FirstPersonController que hemos descargado previamente.<br>
@@ -42,8 +48,8 @@
  			</p> 
       
       <p class="nota">	 
-     		 Crear un GO vacío para poder tener casi todos los sonidos SoundManager.cs. Tendrá un array AudioSource
-      	 y solo pasaremos el clip y el volumen. Lo haremos más adelante. 
+     		 Crear un GO vacío para poder tener casi todos los sonidos que tendra asociado un Script SoundManager.cs.
+     		  Tendrá un array AudioSource y solo pasaremos el clip y el volumen. Lo haremos más adelante. 
       </p> 
       	
       <h2>Script Player.cs</h2>
@@ -141,7 +147,7 @@
       
       <h2>SoundManager</h2>
       <p class="texto">	       
-				&emsp;•	GO Vacio.<br>
+				Será un GO Vacio:<br>
 				&emsp;•	Tendrá asociado un script SoundManager.cs donde pondremos un parámetro de tipo AudioClip que será un 
 				array con todos los sonidos que necesitamos.<br>
 				&emsp;•	Y un componente AudioSource.<br>
@@ -152,7 +158,7 @@
       
       <h2>Armas (Prefabs)</h2>
       <p class="texto">	    
-				Cada Arma tendrá asociado un script Arma.cs (el mismo).<br>
+				Cada Arma tendrá asociado un script Arma.cs (es el mismo para todas las armas).<br>
 			
 				&emsp;• Variables más destacadas:.<br>
 				&emsp;&emsp;o	Quaternion[] bombas.<br>
@@ -203,14 +209,13 @@
 				&emsp;•	Cada proyectil hará un daño distinto a cada enemigo.
 		</p> 
 		
-		Enemigo Tonto
-		Importar EnemigoTonto.unitypackage ó creamos un Objeto (Esfera, capsula…. ) para simular el Enemigo Tonto que tenga alguna referencia más (Objeto como una nariz…) para saber si rota o no. Podemos utilizar partículas cuando se le ha quitado una vida.
-
-		<p class="nota">
-         Para descargar los objetos necesarios para el juego, lo haremos desde este 
-         <a href="package/" download="PlasticOut"> link</a>. Lo descargaremos y lo descomprimimos 
-         en el directorio del alumno.
+		<h2>Enemigo Tonto</h2>
+			Importar EnemigoTonto.unitypackage ó creamos un Objeto (Esfera, capsula…. ) para simular el Enemigo Tonto
+			que tenga alguna referencia más (como una nariz…) para saber si rota o no. Podemos utilizar
+		  partículas cuando se le ha quitado una vida.
 		</p>
+		 	
+		
 		
 		
 	
