@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="styles/style.css">
+   <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Sanchez&display=swap" rel="stylesheet">
+   <script src="js/scripts.js"></script>
+   <title>Vuelo</title>
+</head>
+<body>
+   <div id="cabecera">
+      <h1>Vuelo</h1>
+   </div>
+   <!-- INICIO_LOADER -->
+   <div id="pageloader">
+      <img src="img/LogoOjo_FTA.png" class="spining" width="100px">
+   </div>
+   <!-- FIN_LOADER -->
+   <div id="contenido">
+      <h2>Vuelo</h2>
+      <p class="texto">
+       		Creamos planetas en posiciones aleatorias y el avión volará sobre ellos.<br>
+      		
+           Para ello necesitaremos una estructura de carpetas que tendrán el
+          contenido necesario para hacer el juego que lo iremos incluyendo poco a poco:<br><br>
+         _GameAssets<br>
+          &emsp;•	Materials.<br>
+          &emsp;&emsp;o	Todos los Objetos tienen que tener un material de color.<br>
+          &emsp;•	Scenes.<br>
+          &emsp;&emsp;o	Vuelo.<br>
+          &emsp;•	Scripts.<br>
+          &emsp;&emsp;o	Avion.cs.
+      </p>
+     
+      <h3>Escena</h3>
+      <p class="texto">
+         Tendremos que crear dentro de esta escena:<br>
+       	&emsp;•	Pista (Plano). Transform Position 0,0,0. Scale 100, 1, 100<br>
+				&emsp;•	Airplane.<br>
+				&emsp;• 4 GO vacío. Cada GO estará posicionado en distintas coordenadas para que los planetas tengán un 
+				rango a la hora de crearlos.<br>
+				&emsp;&emsp;o X0Y0Z0. Transform Position -500, 0, -500.<br>
+				&emsp;&emsp;o X1. Transform Position 500, 0, -500.<br>
+				&emsp;&emsp;o Z1. Transform Position -500, 0, 500.<br>
+				&emsp;&emsp;o Y1. Transform Position -500, 500, -500.<br>
+				&emsp;• GeneradorPlanetas GO vacío con GeneradorPlanetas.cs.
+      </p>
+      <p class="img_centrada"><img src="img/tema5/5-35.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema5/5-36.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema5/5-37.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema5/5-38.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema5/5-39.png" width="80%" alt=""></p>
+ 			
+ 			<h3>Objetivo</h3>
+      <p class="texto">
+ 				El avión se moverá con las flechas utilizando un CharacterController:<br>
+ 				&emsp;• Flecha arriba ira bajando.<br>
+ 				&emsp;• Flecha abajo ira subiendo.<br>
+ 				&emsp;• Flecha derecha e izquierda haran los giros.
+ 			</p>
+ 			
+ 			<p class="nota"> 
+ 				No controlaremos las colisiones del avión con los planetas.
+ 			</p>
+ 			
+ 			<h3>Airplane</h3>
+      <p class="texto">
+      	EL Airplane será un GO vacío y tiene que mirar hacia la Z.  Está formado por los siguientes componentes:<br>
+      	&emsp;• CharacterController.<br>
+       	&emsp;• Un Script Avion.cs (lo veremos más adelante).
+      </p>
+      
+      <p class="nota"> 	 
+				Un CharacterController te permite realizar fácilmente movimientos restringidos por colisiones sin tener que
+				lidiar con un rigidbody.<br>
+				Un CharacterController no se ve afectado por fuerzas y solo se moverá cuando llames a la función Move.
+ 			</p>
+ 			<p class="img_centrada"><img src="img/tema5/5-40.png" width="80%" alt=""></p>	    	 
+      	 
+      <p class="texto"> 	    
+       &emsp;• Armazon (Cube).<br>
+       &emsp;• AlaDerecha (Cube).<br>
+       &emsp;• AlaIzquierda (Cube).<br>
+       &emsp;• Camera la pondremos en la parte de atrás del avión.<br>
+ 			</p>
+ 			<p class="img_centrada"><img src="img/tema5/5-41.png" width="80%" alt=""></p>
+ 				
+ 		<h3>Script Avion.cs</h3>
+ 		 <p class="texto"> 	 
+        Necesitamos una variables speed del avión.<br>
+       	Método Update():<br>
+       	&emsp;• Recoger las flechas en Vertical(vPos) y Horizontal (hPos).<br>
+       	&emsp;• Cogemos el componente CharacterController y usando el método Move(). Ira hacia 
+       	delante * Time.deltaTime * speed.<br>
+       	&emsp;• Rotate creando un new Vector3:<br>
+       	&emsp;&emsp;o X ira en vPos.<br>
+       	&emsp;&emsp;o Y ira en hPos.<br>
+       	&emsp;&emsp;o Z ira en hPos*-1.
+ 			</p>
+ 			<p class="img_centrada"><img src="img/tema5/5-42.png" width="80%" alt=""></p>
+ 			
+ 			<h3>Planetas</h3>
+ 			 <p class="texto"> 	 
+ 					Descargar de: https://assetstore.unity.com/packages/3d/poly-planets-34894.
+ 			</p>
+ 				
+ 		<h3>Script GeneradorPlanetas.cs</h3>
+ 		 <p class="texto"> 
+ 		 	  <p class="texto">
+      	&emsp;•	Variables<br>
+				&emsp;&emsp;o	GameObject[] prefabPlaneta. Pasaremos por parámetro los planetas.<br>
+				&emsp;&emsp;o	Transform tX0Z0Y0, tX1, tZ1, tY1.<br>
+				&emsp;&emsp;o	int numMaxplanetas = 100.<br><br>
+				&emsp;•	Start().<br>
+				&emsp;&emsp;•	Recorrer el Array y llamar a un metodo GenerarPlaneta().<br><br>
+   			&emsp;•	GenerarPlaneta().<br>
+				&emsp;&emsp;o	Recogemos unas variables para saber dónde vamos a posicionar el planeta que vamos a crear.<br>
+				&emsp;&emsp;&emsp;-	float x = Random.Range entre la tX0Y0Z0.position.x y tX1.position.x.<br>
+				&emsp;&emsp;&emsp;-	float y = Random.Range entre la posicion y de X0Y0Z0 y la posicion y de Y1.<br>
+				&emsp;&emsp;&emsp;-	float z = Random.Range entre la posicion z de X0Y0Z0 y la posicion z de Z1.<br>
+				&emsp;&emsp;o	Seleccionamos un planeta de forma aleatoria del array de planetas.<br>
+				&emsp;&emsp;o	Creamos el planeta que hemos seleccionado.<br>
+				&emsp;&emsp;o	Y lo posicionamos en las variables x,y,z.<br>			
+ 			</p>	
+ 			<p class="img_centrada"><img src="img/tema5/5-43.png" width="80%" alt=""></p>
+ 		  <p class="img_centrada"><img src="img/tema5/5-6.png" width="80%" alt=""></p>	    
+ 		 	 
+ 			<p>			
+      <p class="texto">				
+      <br><br>
+      <a class="texto volver" href="javascript:history.back(-1);">Volver al índice</a>
+   </div>
+   <div id="pie">
+      <h1> Fun Tech Academy - Calle Alcobendas, 23 Leganés 28914 Madrid - www.funtech.academy </h1>
+   </div>
+</body>
+</html>

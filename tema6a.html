@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="styles/style.css">
+   <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Sanchez&display=swap" rel="stylesheet">
+   <script src="js/scripts.js"></script>
+   <title>Cámaras</title>
+</head>
+<body>
+   <div id="cabecera">
+      <h1>Cámaras</h1>
+   </div>
+   <!-- INICIO_LOADER -->
+   <div id="pageloader">
+      <img src="img/LogoOjo_FTA.png" class="spining" width="100px">
+   </div>
+   <!-- FIN_LOADER -->
+   <div id="contenido">
+      <h2>Cámaras</h2>
+      <p class="texto">
+         Este proyecto nos enseñara como tener varias cámaras y que podamos verlas a la vez.<br>
+         Tendremos un Pollo que se moverá con las flechas y con el espacio para saltar hacia delante.<br><br>
+         La cámara del juego que apunta solo al objeto Árbol que será un prefab y el Pollo tendrá una
+          camára que verá todo menos al Árbol.  Ambas cámaras serán Ortográficas.<br><br>
+         Esto lo haremos mediante el Layer que tengan asignados los objetos.<br><br>
+         Cuando el Árbol toque al Pollo desaparecerá y hara un sonido.<br><br> 	
+          Para ello necesitaremos una estructura de carpetas que tendrán el
+          contenido necesario para hacer el juego que lo iremos incluyendo poco a poco:<br><br>
+         _GameAssets<br>	          
+         &emsp;• Audio<br>
+         &emsp;&emsp;o	Hit.wav.<br>
+         &emsp;• Materiales.<br> 
+         &emsp;• Prefabs.<br>
+         &emsp;&emsp;o Arbol (Capsule).<br>
+         &emsp;• Scenes.<br>
+         &emsp;&emsp;o	Camaras.<br>
+         &emsp;• Scrips.<br>
+         &emsp;&emsp;o Arbol.cs.<br>
+         &emsp;&emsp;o Pollo.cs.<br>
+         &emsp;• Materiales.<br>
+         &emsp;• Textures para el suelo.   
+       
+      <h3>Escena Juego</h3>
+      <p class="texto">
+         Tendremos que crear dentro de esta escena:<br>
+         •	Suelo.<br>
+         •	Pollo.<br>
+         •	Arbol1 (prefab).<br>
+         •	Arbol2 (prefab).<br>
+         •	Arbol3 (prefab).
+      </p>     
+                   
+      <h3>Cámaras</h3>
+      <p class="texto">
+      	Tendremos 2 cámaras:<br>
+				&emsp;•	CámaraCentral apuntará solo al Layer Default y Personajes (es el prefab que creamos).<br>
+				&emsp;•	Cámara del Pollo verá todo menos el Layer de Personajes que la incluiremos cuando hagamos 
+				el Pollo.<br><br>	
+				Para poder decidir que trozo de Layer reproduce las cámaras usaremos un parámetro de
+				 la cámara: Culling Mask. 
+      </p> 
+      <p class="img_centrada"><img src="img/tema6/6-7.png" width="80%" alt=""></p>  
+          
+      <h3>Suelo</h3>
+      <p class="texto">
+      		•	Será un plano con una textura.<br>
+					•	En el Layer ponemos “Terreno”.<br>
+					•	Componente AudioSource ponemos en AudioClip un sonido de golpe hit nada más empezar el juego.
+    	</p>    
+         	
+      <h3>Árbol</h3>
+      <p class="texto">	
+      	•	Será una Cápsula.<br> 
+      	•	Puede ser atravesado por el Pollo.<br> 
+				•	Lo haremos un prefab para poder poner varios.<br> 
+				•	En el Layer ponemos “Personajes” para que la CameraCentral lo detecte.<br>
+				•	Tiene un Script Arbol.cs.<br>
+				&emsp;&emsp;o Cuando el Pollo choque con el Arbol se destruira al cabo de unos segundos.<br>
+				&emsp;&emsp;o Y hara un sonido.<br>		
+				•	Componente AudioSource ponemos en AudioClip un sonido de golpe hit.
+      </p>
+          
+      <h3>Pollo</h3>
+      <p class="texto">
+      	Pollo (Cubo) Mirando hacia la Z (adelante)<br>
+      	&emsp;• Modelo GO vacío.<br>
+      	&emsp;&emsp;o Cuerpo.<br>
+      	&emsp;&emsp;o Cabeza.<br>
+      	&emsp;&emsp;o Cresta.<br>
+      	&emsp;&emsp;o Pico1 y Pico2.<br>
+      	&emsp;&emsp;o Ojo1 y Ojo2.<br>
+      	&emsp;&emsp;o Ala1 y Ala2.<br>
+      	&emsp;&emsp;o Pata1 y Pata2.<br>
+      	&emsp;&emsp;o Base.<br> 
+      	&emsp;• Camera con el Culling Mask a Mixed y Projection Orthographic.<br>
+      	&emsp;• PosicionPatas que será un GO vacío y la posicionaremos a la altura de las patas para
+        saber si estamos tocando el suelo para poder saltar con el espacio.<br><br>
+        No puede rotar en ningún eje.<br>
+        Tiene un Script Pollo.cs.
+      </p>  
+      <p class="img_centrada"><img src="img/tema6/6-6.png" width="80%" alt=""></p> 
+          
+      <h3>Script Pollo.cs</h3>
+      <p class="texto">
+      	&emsp;•	Parámetros:<br> 
+				&emsp;&emsp;o	rb será una variable de tipo RigidBody.<br>
+				&emsp;&emsp;o	distancia de detección = 0.1f.<br>
+				&emsp;&emsp;o	fuerza = 100.<br>
+				&emsp;&emsp;o	Transform de PosicionPatas.<br><br>
+				&emsp;•	Update.<br>
+				&emsp;&emsp;o	Si pulsamos.<br>
+				&emsp;&emsp;&emsp;-	Espacio (Input.GetKeyDown) y estamos tocando el Suelo haremos una fuerza al rb
+				 con AddForce para que vaya hacia arriba y hacia delante * fuerza.<br>
+				&emsp;&emsp;&emsp;-	Tecla Izquierda y tocando Suelo haremos fuerza izquierda y hacia arriba * fuerza.<br>
+				&emsp;&emsp;&emsp;-	Tecla Derecha y tocando Suelo haremos fuerza a la derecha y hacia arriba * fuerza.<br>
+				&emsp;&emsp;&emsp;-	Tecla Abajo y tocando Suelo haremos fuerza hacia atrás y hacia arriba * fuerza.<br><br>
+
+				Método EstoyEnSuelo() Lo puedo hacer de 2 maneras:<br>
+				&emsp;•	1ª Manera:<br>
+				&emsp;&emsp;o	Recoger el LayerMask.GetMask(“Terreno”).<br> 
+				&emsp;&emsp;o	Hacemos que se cree una una Esfera usando el método Physics.CheckSphere y parámetros de 
+				PosicionPatas, distancia y el layer del terreno y si da true es que estoy tocando suelo.<br>
+				&emsp;•	2ª Manera:<br>
+				&emsp;&emsp;o	Recojo todos los Collider en un array con Physics.OverlapSphere y si la longitud del
+				 array es Z 0 dara true y será que estoy tocando suelo.<br>
+				&emsp;•	Este método devolverá un booleano true si toca el suelo y false si no lo toca.
+ 			</p>  
+ 			
+ 			<p class="texto">
+				El CheckSphere devuelve un bool y el OverlapSphere devuelve un array con todos los colisionadores dentro del 
+				radio. Arbol.cs:<br>
+				Cuando el Pollo lo toque sonará un sonido y se destruirá.
+			</p>  
+ 			
+      	
+      	
+      	
+      	
+      	
+      	
+      	
+      <h3>Árbol</h3>
+      <p class="texto">	
+      	 Haremos un objeto para que cuando el Pollo se choque con él se destruira el objeto y hara un sonido. Le 
+      	 hacemos como Prefab para poner varios en el plano.<br>
+      	 Tendrá un componente de Capsule Collider con el IsTrigger chequeado.<br><br>
+      	 En el Layer del Arbol añadimos un Layer que se llame "Personajes".
+      </p>
+      <p class="nota">	
+      	 Cuando tenemos el IsTrigger chequeado nos deja atravesar al objeto con el que colisionamos.
+   		 </p>	
+      <p class="img_centrada"><img src="img/tema6/6-11.png" width="80%" alt=""></p>
+      	
+      <p class="texto">	
+      	 Tiene asociado un script Arbol.cs:<br>
+      	 Start().<br>
+      	 &emsp;• Recoger el AudioSource.<br>
+      	 OnTriggerEnter().<br>
+      	 &emsp;• Hacemos un sonido.<br>
+      	 &emsp;• Y llamamos con el Invoke a un método DestruirObjeto() al cabo de 1 segundo que destruira
+      	  el objeto.<br>
+      </p>
+      <p class="img_centrada"><img src="img/tema6/6-12.png" width="80%" alt=""></p>
+      			
+      	 
+      <br><br>
+      <a class="texto volver" href="javascript:history.back(-1);">Volver al índice</a>
+   </div>
+   <div id="pie">
+      <h1> Fun Tech Academy - Calle Alcobendas, 23 Leganés 28914 Madrid - www.funtech.academy </h1>
+   </div>
+</body>
+</html>

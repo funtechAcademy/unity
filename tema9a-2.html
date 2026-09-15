@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="styles/style.css">
+   <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Sanchez&display=swap" rel="stylesheet">
+   <script src="js/scripts.js"></script>
+   <title>Cinemachine</title>
+</head>
+<body>
+   <div id="cabecera">
+      <h1>Cinemachine</h1>
+   </div>
+   <!-- INICIO_LOADER -->
+   <div id="pageloader">
+      <img src="img/LogoOjo_FTA.png" class="spining" width="100px">
+   </div>
+   <!-- FIN_LOADER -->
+   <div id="contenido">
+     <h2>Cinemachine</h2>
+      <p class="texto">
+      	Cinemachine es una potente herramienta gratuita de Unity que permite crear sistemas de cámara complejos
+      	y comportamientos de seguimiento dinámicos sin necesidad de escribir código. Se encarga 
+     	 automáticamente de las matemáticas y la lógica del movimiento, enfoques y transiciones de cámara.<br><br>
+     	 
+     	 Para crearla vamos a: Hierarchy click derecho y: Cinemachine/Cinemachine Camera:<br>
+     	 
+     	 &emsp;• Lens ajustamos el tamaño de la cámara.<br>
+     	 &emsp;• En Tracking Target arrastramos nuestro Player para que le siga.<br>
+     	 &emsp;• Procedural Componens/Position control seleccionar Position Componer y aparece un nuevo componente
+     	 de Cinemachine.
+     	 </p>  	 
+      <p class="img_centrada"><img src="img/tema9a/9-2-1.png" width="80%" alt=""></p>
+     	      
+   	 <p class="nota">					 
+				En la escena tenemos un Overlay Menu es una barra de herramientas que se puede situar en cualquier zon de
+				la escena y uno de los iconos es la Cámara para poder ver el juego con la Cámara que tenga seleccionada.
+		</p>		
+					
+   
+    	<p class="texto">
+   			En CinemachineCamera tenemos un componente Cinemachine Position Composer:<br>	
+   				&emsp;• Dead Zone X/Y: Aparece un cuadradito pequeño que es como mi zona de confor
+				 (zona muerta), se puede minimizar el tamaño para que me mueva y la cámara no se mueve en esa zona,
+				  pero si me salgo de ese cuadrado la cámara me seguirá.<br>
+				 	&emsp;• Hard Limits: La cámara no permitirá que el objetivo se encuentre fuera de los límites
+				 	 establecidos.<br>
+				 	&emsp;• Center On Activate: Cuando la cámara se activa, mueve la cámara para colocar el objetivo
+				 	 en el centro de la zona muerta.<br><br>
+				 	 
+				 	&emsp;• Target Tracking.<br>
+				 	&emsp;&emsp;• Target Offset: Posición en coordenadas locales del objetivo del punto de interés en el 
+				 	objetivo que se va a rastrear. 0, 0, 0 sería el origen del objetivo. Tiene un punto amarillo que se
+				 	 podrá modificar su posición.<br>
+				 	&emsp;&emsp;• Damping: Para que la cámara nos siga con una pequeña sensibilidad. Si lo ponemos a 0 vendrá
+   			 directamente a nuestro player.<br><br>
+   			 &emsp;• Lookahead:<br>
+   			 &emsp;&emsp;&emsp;o Time: Ajusta el desplazamiento de la cámara de Cinemachine con respecto al objetivo 
+   			 de seguimiento en función del movimiento de este.<br>
+   			 &emsp;&emsp;&emsp;o Smoothing: La suavidad del algoritmo de anticipación. Valores mayores suavizan las 
+   			 predicciones inestables y aumentan el retraso en la predicción.<br>
+   			 &emsp;&emsp;&emsp;o Ignore Y: Si está habilitada, ignore el movimiento a lo largo del eje Y para los
+   			  cálculos de anticipación.
+   			 
+   			 
+   			 
+   			
+   		</p>  
+ 			<p class="img_centrada"><img src="img/tema9a/9-2-2.png" width="80%" alt=""></p>
+
+      <h3>Extensión CinemachineConfinner</h3>
+      <p class="texto">	
+				Con esto conseguimos que no se vea el espacio vacío que nos queda.<br>
+				Nos pide un Shape 2D. Asi que haremos lo siguiente:<br>
+				&emsp;•	Crear un GO vacio lo llamaremos MapConfiner lo reseteamos y lo colocamos.<br>
+				&emsp;&emsp;&emsp;o	Con un componente Polygon Collider 2D, Box Collider 2D.... Le modificamos al
+				 tamaño de nuestro Tilemap.<br>
+				 &emsp;• Y arrastrar el MapConfiner al parámetro de Bounding Shape 2D de la cámara virtual.<br><br>
+				
+				Cuando ejecutamos vemos que el personaje se va fuera. Poner IsTrigger a true el componente del
+				 MapConfiner.
+			</p>   
+      	  
+      <p class="texto">				
+      <br><br>
+      <a class="texto volver" href="javascript:history.back(-1);">Volver al índice</a>
+   </div>
+   <div id="pie">
+      <h1> Fun Tech Academy - Calle Alcobendas, 23 Leganés 28914 Madrid - www.funtech.academy </h1>
+   </div>
+</body>
+</html>

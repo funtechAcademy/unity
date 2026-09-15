@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="styles/style.css">
+   <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Sanchez&display=swap" rel="stylesheet">
+   <script src="js/scripts.js"></script>
+   <title>Articulaciones</title>
+</head>
+<body>
+   <div id="cabecera">
+      <h1>Articulaciones</h1>
+   </div>
+   <!-- INICIO_LOADER -->
+   <div id="pageloader">
+      <img src="img/LogoOjo_FTA.png" class="spining" width="100px">
+   </div>
+   <!-- FIN_LOADER -->
+   <div id="contenido">
+      <h2>Articulaciones</h2>
+      <p class="texto">
+           Haremos un circuito con toboganes, balancin que tendrán cubos y esferas para que se deslicen.
+           Para ello necesitaremos una estructura de carpetas que tendrán el
+          contenido necesario para hacer el juego que lo iremos incluyendo poco a poco:<br><br>
+         _GameAssets<br>
+          &emsp;•	Materials.<br>
+          &emsp;&emsp;o	Todos los Objetos tienen que tener un material de color.<br>
+          &emsp;•	Prefabs.<br>
+          &emsp;&emsp;o	Proyectil.<br>
+          &emsp;&emsp;o	Torreta.<br>   
+          &emsp;•	Scenes.<br>
+          &emsp;&emsp;o	Articulaciones.<br>
+          &emsp;•	Scripts.<br>
+          &emsp;&emsp;o	Torreta.cs.<br>
+      </p>
+     
+      <h3>Escena</h3>
+      <p class="texto">
+         Tendremos que crear dentro de esta escena:<br>
+       	&emsp;•	Suelo.<br>
+				&emsp;•	Torreta.<br>
+				&emsp;• SoporteFijo.<br>
+				&emsp;• CartelFijo.<br>
+				&emsp;• SoporteBisagra.<br>
+				&emsp;• CartelBisagra.<br>
+				&emsp;• SoporteMuelle.<br>
+				&emsp;• CartelMuelle.
+      </p>
+      <p class="img_centrada"><img src="img/tema5/5-2.png" width="80%" alt=""></p>
+ 			
+ 			<h3>Objetivo</h3>
+      <p class="texto">
+ 				Tendremos una Torreta que se moverá de derecha a izquierda y de arriba a abajo y disparará a los carteles
+ 				con el espacio.<br>
+ 				Los postes tienen unos carteles que se unen mediantes unos Joint y se comportarán de distinta manera cuando 
+ 				sean tocado por la bala.
+ 			</p>
+ 			
+ 			<h3>Torreta</h3>
+      <p class="texto">
+      	Tiene que mirar hacia la Z. Está formado por los siguientes componentes:<br>
+       &emsp;•  Torreta (Cubo). Script Torreta.cs.<br>
+       &emsp;&emsp;o BaseCanyon (Esfera).<br>
+       &emsp;&emsp;&emsp;- EjeCanyon (GO vacío).<br>
+       &emsp;&emsp;&emsp;&emsp;• Canyon (Cilindro).<br>
+       &emsp;&emsp;&emsp;&emsp;&emsp;o GeneracionProyectiles.
+ 			</p>
+ 			<p class="img_centrada"><img src="img/tema5/5-13.png" width="80%" alt=""></p>
+ 			
+ 			<h4>Script Torreta.cs</h4>
+      <p class="texto">
+      	Tendremos unas variables que pasaremos por parámetro desde el Editor:<br>
+      	&emsp;• [SerializeField] GameObject prefabProyectil.<br>
+      	&emsp;• [SerializeField] Transform puntoGeneracion.<br>
+      	&emsp;• [SerializeField] Transform baseCanyon.<br>
+      	&emsp;• [SerializeField] Transform ejeCanyon.<br>
+      	&emsp;• [SerializeField] float fuerza = 100.<br>
+      	&emsp;• Y para poder recoger la rotación horizontal y vertical: float rotacionHorizontal, rotacionVertical.<br><br>
+      </p>
+      
+       <p class="nota">
+       	Acordarse de arrastrar estos parámetros desde el Editor cuando lo vayamos teniendo creados.
+       </p> 
+       <p class="img_centrada"><img src="img/tema5/5-14.png" width="80%" alt=""></p>
+       
+       <p class="texto">	
+      	Primero haremos el movimiento de la Torreta. Eventos:<br>
+      	&emsp;• Start:<br>
+      	&emsp;&emsp;o Recoger la rotacionHorizontal de la baseCanyon.rotation.y.<br>
+      	&emsp;&emsp;o Recoger la rotacionVertical de ejeCanyon.rotation.x.<br>
+      	&emsp;• Update:<br>
+      	&emsp;&emsp;o Recoger las flechas con Input.Getaxis las flechas con Vertical/Horizontal.<br>
+      	&emsp;&emsp;o BaseCanyon rotamos en Y recogiendo la flechas en Horizontal.<br>
+      	&emsp;&emsp;o EjeCanyon rotamos en X recogiendo la flechas en Vertical pero también ponemos la Horizontal
+      	porque sino se comporta de forma extraña.<br>
+   		</p>
+ 			<p class="img_centrada"><img src="img/tema5/5-15.png" width="80%" alt=""></p>
+ 			
+ 			<p class="texto">
+ 				Al ejecutarlo se nos pasa el giro asi que vamos acotar el giro tanto en la Base como en el eje.<br>
+ 				&emsp;• Update:<br>
+      	&emsp;&emsp;o Dejamos comentado le rotacion de BaseCanyon y EjeCanyon y añadimos lo siguiente:<br>
+      	&emsp;&emsp;o RotacionHorizontal acumulada de YR.<br>
+      	&emsp;&emsp;o La RotacioHorizontal será entre -90 y 90. Lo hacemos con el método Math.Clamp.<br> 
+      	&emsp;&emsp;o Y esta RotacionHorizontal se la añadimos al BaseCanyon usando Quaternion.Euler en Y.<br>
+      	&emsp;&emsp;o RotacionVertical acumulada de XR.<br>
+      	&emsp;&emsp;o Haremos lo mismo con la RotacionVertical pero entre -20 y 20.<br>
+      	&emsp;&emsp;o Y esta RotacionVertical se la añadimos al EjeCanyon usando Quaternion.Euler en X pero *-1.
+      </p>
+ 			<p class="img_centrada"><img src="img/tema5/5-16.png" width="80%" alt=""></p>
+ 			
+ 			<p class="nota"> 
+ 			   Pero cuando movemos las flechas derecha e izquierda algo raro ocurre con el EjeCanyo. ¿Como lo solucionamos?.<br>
+ 			   Poniendo la rotacionHorizontal en la Y.	
+ 			</p> 	
+ 			<p class="img_centrada"><img src="img/tema5/5-17.png" width="80%" alt=""></p>
+ 			
+ 			<h3>Proyectil</h3>
+ 			<p class="texto">
+ 				 Nos falta crear el proyectil que lanzará el cañon cuando le demos al espacio:<br>
+ 				 &emsp;• Buscar una proyectil y crear un prefab con el componente RigidBody y con gravedad.
+ 			</p> 	
+ 			<p class="img_centrada"><img src="img/tema5/5-18.png" width="80%" alt=""></p>
+ 			
+ 			<h3>Script Torreta.cs</h3>
+      <p class="texto">
+      	En el Update cuando pulsamos el espacio creamos el proyectil en el puntoGeneracion y le damos un
+      	 AddRelativeForce al Rigidbody.
+ 			</p> 	
+ 			<p class="img_centrada"><img src="img/tema5/5-19.png" width="80%" alt=""></p>
+ 			
+ 			<h3>Carteles</h3>
+ 			<p class="texto">
+ 				Necesitamos 3 carteles: CartelFijo, CartelBisagra y CartelMuelle. Tendrán un componente Rigidbody cada
+ 				uno.
+ 			</p> 		
+ 			<p class="img_centrada"><img src="img/tema5/5-20.png" width="80%" alt=""></p>
+ 					
+ 			<h3>SoporteFijo</h3>
+ 			<p class="texto">
+ 				El soporte fijo es un GO vacío. Tiene 2 objetos más:<br>
+ 				 &emsp;• PosteVertical (Cilindro).<br>
+ 				 &emsp;• PosteHorizontal (Cilindro). Componentes:<br>
+ 				 &emsp;&emsp;o Rigidbody. Tiene seleccionado IsKinematic.<br>
+ 				 &emsp;&emsp;o Fixed Joint es una articulación que une dos objetos mediante físicas. Funciona como emparentar
+ 				  objetos (Parenting) pero permite que se rompan ante impactos fuertes, ideal para simular cadenas, objetos
+ 				   rompibles o para conectar piezas mecánicas sin modificar la jerarquía original.
+ 			</p> 	
+ 		 			
+ 			<p class="nota">
+ 				La propiedad isKinematic en Unity desactiva el control del motor de físicas sobre un Rigidbody. Al activarla
+ 				 (marcarla como true), el objeto ignora la gravedad y las fuerzas de colisión. En su lugar, se mueve 
+ 				 exclusivamente a través de scripts o animaciones, aunque sigue pudiendo afectar físicamente a otros objetos.
+ 			</p> 	
+ 			<p class="img_centrada"><img src="img/tema5/5-21.png" width="80%" alt=""></p>
+ 			
+ 			<p class="texto">
+ 				Hay que arrastrar el CartelFijo al Connected Body del Fixed Joint. Le podemos añadir una force....
+ 			</p> 	
+ 			<p class="img_centrada"><img src="img/tema5/5-22.png" width="80%" alt=""></p>
+
+			<h3>SoporteBisagra</h3>
+ 			<p class="texto">
+ 				El soporte bisagra es un GO vacío. Tiene 2 objetos más:<br>
+ 				 &emsp;• PosteVertical (Cilindro).<br>
+ 				 &emsp;• PosteHorizontal (Cilindro). Componentes:<br>
+ 				 &emsp;&emsp;o Rigidbody. Tiene seleccionado IsKinematic.<br>
+ 				 &emsp;&emsp;o Hinge Joint es una articulación que une dos objetos físicos (Rigidbodies) restringiendo sus
+ 				  movimientos para que actúen como si estuvieran conectados por una bisagra. Es ideal para simular puertas,
+ 				  péndulos, manivelas o cadenas, permitiendo la rotación libre o limitada sobre un eje específico..<br>
+ 				  Hay que arrastrar el CartelBisagra al Connected Body del Hinge Joint.<br>
+ 				&emsp;&emsp;&emsp;- Hay que arrastrar el CartelBisagra a Connected Body.
+ 			</p> 		
+ 			<p class="img_centrada"><img src="img/tema5/5-23.png" width="80%" alt=""></p>
+ 			
+ 			<h3>SoporteMuelle</h3>
+ 			<p class="texto">
+ 				El soporte muelle es un GO vacío. Tiene 2 objetos más:<br>
+ 				 &emsp;• PosteVertical (Cilindro).<br>
+ 				 &emsp;• PosteHorizontal (Cilindro). Componentes:<br>
+ 				 &emsp;&emsp;o Rigidbody. Tiene seleccionado IsKinematic.<br>
+ 				 &emsp;&emsp;o Tendrá 2 componentes Spring Joint es una articulación que une dos Rigidbodies o un punto fijo.
+ 				  Actúa como un resorte invisible, aplicando fuerzas automáticamente para que los objetos intenten mantener
+ 				   una distancia específica, permitiendo que se estiren o compriman de forma realista.<br>
+ 				   Ponemos 2 ya que iran en los extremos del PosteHorizontal moviendo en Anchor Y (aparecerán unos puntos).<br>
+ 				 &emsp;&emsp;&emsp;- Hay que arrastrar el CartelMuelle a cada Sprint Joint/Connected Body.
+ 			</p> 		
+ 			<p class="img_centrada"><img src="img/tema5/5-24.png" width="80%" alt=""></p>
+ 			
+ 		
+
+
+
+
+
+
+
+ 			<p>			
+      <p class="texto">				
+      <br><br>
+      <a class="texto volver" href="javascript:history.back(-1);">Volver al índice</a>
+   </div>
+   <div id="pie">
+      <h1> Fun Tech Academy - Calle Alcobendas, 23 Leganés 28914 Madrid - www.funtech.academy </h1>
+   </div>
+</body>
+</html>
