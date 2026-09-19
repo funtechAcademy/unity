@@ -142,7 +142,7 @@
  				 &emsp;&emsp;o Cuando salga de la colision con el Player haremos collision.transform.SetParent(null) para que
  				 la plataforma deje de ser el padre del Player.
       </p>
-      <p class="img_centrada"><img src="img/tema9/9-2.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema9/9-200.png" width="80%" alt=""></p>
        
       <h3>Script PlataformaRebotona.cs</h3>
  			<p class="texto">
@@ -165,8 +165,8 @@
  				 	&emsp;•	PararAnimacion().<br>
  				 	&emsp;&emsp;o Desactivar la animación.		 	
       </p>
-      <p class="img_centrada"><img src="img/tema9/9-3.png" width="80%" alt=""></p>
-      <p class="img_centrada"><img src="img/tema9/9-4.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema9/9-300.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema9/9-400.png" width="80%" alt=""></p>
       
       
      <h3>TilemapAguaDanyo</h3>
@@ -175,18 +175,18 @@
  				&emsp;•	Tag AguaDanyo por si lo necesitamos.<br>
  				&emsp;•	BoxCollider2D.
  			</p>
- 			<p class="img_centrada"><img src="img/tema9/9-5.png" width="80%" alt=""></p>	
+ 			<p class="img_centrada"><img src="img/tema9/9-500.png" width="80%" alt=""></p>	
  			<p class="texto">		
  				El TilemapAguaDanyo tiene los siguientes componentes:
  			</p>		
-			<p class="img_centrada"><img src="img/tema9/9-6.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-600.png" width="80%" alt=""></p>
 			<p class="texto">		
  				AguaScript.cs:<br>
  				&emsp;• Si choca con el Player.<br>
  				&emsp;&emsp;o Quita 1 Corazón del Player.<br>
  				&emsp;&emsp;o Y cambia la posición del player cogiendo la variable derecha del Player.		
  			</p>	
-			<p class="img_centrada"><img src="img/tema9/9-7.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-700.png" width="80%" alt=""></p>
 			 
      
  			<h3>Player</h3>
@@ -194,7 +194,7 @@
       		Necesitamos un Personaje 2D que tenga animaciones de Idle, Jump, Walk….<br><br>		
 					Arrastrar el Sprite 2d de Idle a la Escena y lo llamaremos Player.<br><br>
 			</p>
-			<p class="img_centrada"><img src="img/tema9/9-8.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-800.png" width="80%" alt=""></p>
 			
 			  
       <p class="nota">
@@ -214,8 +214,8 @@
 					&emsp;&emsp;&emsp;-	Walk.<br>
 					&emsp;&emsp;&emsp;-	Jump.
  			</p>
- 			<p class="img_centrada"><img src="img/tema9/9-9.png" width="80%" alt=""></p>
- 			<p class="img_centrada"><img src="img/tema9/9-10.png" width="80%" alt=""></p>
+ 			<p class="img_centrada"><img src="img/tema9/9-900.png" width="80%" alt=""></p>
+ 			<p class="img_centrada"><img src="img/tema9/9-1000.png" width="80%" alt=""></p>
  		
  			<h3>Animación Player</h3>
       <p class="texto">
@@ -226,38 +226,38 @@
       	&emsp;• Crear un New Clip Idle. Y Add Property.<br>
       	&emsp;• Seleccionar Sprite Renderer y desplegar en la flecha.
  			</p>
- 			<p class="img_centrada"><img src="img/tema9/9-11.png" width="80%" alt=""></p>
+ 			<p class="img_centrada"><img src="img/tema9/9-1100.png" width="80%" alt=""></p>
  		
  			<p class="texto">
       	&emsp;• Seleccionar Sprite dentro de Sprite Renderer.
  			</p>
- 			<p class="img_centrada"><img src="img/tema9/9-12.png" width="80%" alt=""></p>
+ 			<p class="img_centrada"><img src="img/tema9/9-1200.png" width="80%" alt=""></p>
 
  			<p class="texto">
       	&emsp;• Cuando le damos "+" incluira una linea con el sprite que tenemos por defecto en el Player.
  			</p>
- 			<p class="img_centrada"><img src="img/tema9/9-13.png" width="80%" alt=""></p>
+ 			<p class="img_centrada"><img src="img/tema9/9-1300.png" width="80%" alt=""></p>
  			
  			<p class="texto">
       	&emsp;• Y ahora simplemente me voy a donde tengo los sprites del Player y arrastro el siguiente en la 
       	linea de tiempo. Lo puedo arrastrar donde más me convenga.
  			</p>
- 			<p class="img_centrada"><img src="img/tema9/9-14.png" width="80%" alt=""></p>
+ 			<p class="img_centrada"><img src="img/tema9/9-1400.png" width="80%" alt=""></p>
  			
  			<p class="texto">
       	Asi hariamos todas las Animaciones que necesitemos.<br>
       	En la ventana de Animator necesitamos incluir un parámetro bool Andando. Y hacer las transiciones necesarias
       	entre Idle y Walking.
  			</p>
- 			<p class="img_centrada"><img src="img/tema9/9-15.png" width="80%" alt=""></p>
- 			<p class="img_centrada"><img src="img/tema9/9-16.png" width="80%" alt=""></p>
+ 			<p class="img_centrada"><img src="img/tema9/9-1500.png" width="80%" alt=""></p>
+ 			<p class="img_centrada"><img src="img/tema9/9-1600.png" width="80%" alt=""></p>
  			
  			<h3>Script Player.cs</h3>
  			<p class="texto">
  				•	Variables: Tendremos variables públicas que lo pasaremos desde el Editor y otras privadas.
  			</p>	 			
- 			<p class="img_centrada"><img src="img/tema9/9-17.png" width="80%" alt=""></p>
- 			<p class="img_centrada"><img src="img/tema9/9-18.png" width="80%" alt=""></p>
+ 			<p class="img_centrada"><img src="img/tema9/9-1700.png" width="80%" alt=""></p>
+ 			<p class="img_centrada"><img src="img/tema9/9-1800.png" width="80%" alt=""></p>
  			
  			<p class="nota">	
 					Para los parámetros que sean tipo TMP_Text necesitaremos incluir al principio del Script la 
@@ -277,7 +277,7 @@
 			<p class="texto">	
 				Antes del Método Start tenemos otro que es el Awake():<br>
 			</p>		
-			<p class="img_centrada"><img src="img/tema9/9-19.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-1900.png" width="80%" alt=""></p>
 					
 					
 			<p class="nota">	
@@ -290,7 +290,7 @@
 				&emsp;En esta imagen vemos algunos parámetros ya rellenos del Script del Player.<br>
 			</p>	
 			
-			<p class="img_centrada"><img src="img/tema9/9-20.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-2000.png" width="80%" alt=""></p>
 			
 			
 			<p class="texto">	
@@ -307,8 +307,8 @@
 			<p class="texto">	
 				&emsp;•	Update()<br>
 			</p>	
-			<p class="img_centrada"><img src="img/tema9/9-21.png" width="80%" alt=""></p>
-			<p class="img_centrada"><img src="img/tema9/9-22.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-2100.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-2200.png" width="80%" alt=""></p>
  					
 			<p class="texto">		
 				&emsp;&emsp;o	Con el Espacio salta(GetKeyDown(KeyCode.Space)).<br>
@@ -331,7 +331,7 @@
 				 por parámetro) Physics2D.OverlapCircle.<br>
 				 &emsp;&emsp;o Si lo que nos devuelve no es nulo es que ha chocado con algo.<br><br>
 			</p>	
-			<p class="img_centrada"><img src="img/tema9/9-23.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-2300.png" width="80%" alt=""></p>
 			
 			<p class="texto">	
 				&emsp;•	FixedUpdate() Haremos los movimientos del Player.<br>
@@ -378,9 +378,9 @@
 				A continuación dejo el Script de como podría ser el Movimiento con el Input System. Está explicado en el
 				 enlace.
 			</p>
-			<p class="img_centrada"><img src="img/tema9/9-24.png" width="80%" alt=""></p>
-			<p class="img_centrada"><img src="img/tema9/9-25.png" width="80%" alt=""></p>
-			<p class="img_centrada"><img src="img/tema9/9-26.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-2400.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-2500.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-2600.png" width="80%" alt=""></p>
 						
 			<p class="nota">	
 				En este punto decidir como quereis hacer el movimiento del Player y si quereis hacerlo con estados (Enum) 
@@ -397,7 +397,7 @@
 					 la Izquierda/Derecha con AddRelativeForce con sonido.<br>
 				&emsp;&emsp;&emsp;-	Y pongo la variable derecha para poder llamarla desde el Agua.
 			</p>
-			<p class="img_centrada"><img src="img/tema9/9-27.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-2700.png" width="80%" alt=""></p>
 
 		  <h3>Prefab Bala</h3>		
 			<p class="texto">	
@@ -406,7 +406,7 @@
 				&emsp;• RigidBody.<br>
 				&emsp;• AudioSource
 			</p>		
-			<p class="img_centrada"><img src="img/tema9/9-28.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-2800.png" width="80%" alt=""></p>
 				
 			<p class="texto">	
 			&emsp;• Script BalaCalabaza.cs.<br>	
@@ -417,7 +417,7 @@
 			&emsp;&emsp;&emsp;- Destruir Bala.<br>
 			&emsp;&emsp;o Y sino se destruye solo la Bala.<br>	
 			</p>		
-			<p class="img_centrada"><img src="img/tema9/9-29.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-2900.png" width="80%" alt=""></p>
 				
 		<h3>Script Player.cs. Método IncrementarPuntuacion (int puntosAIncrementar()</h3>
  			<p class="texto">
@@ -425,7 +425,7 @@
  				&emsp;• Sumamos esos puntosAIncrementar a los puntos totales que tenemos.<br>
  				&emsp;• Buscar la puntuación del Canvas y actualizar su valor.
  			</p>	 				
-		<p class="img_centrada"><img src="img/tema9/9-30.png" width="80%" alt=""></p>
+		<p class="img_centrada"><img src="img/tema9/9-3000.png" width="80%" alt=""></p>
 	
 		<h3>Canvas</h3>
  			<p class="texto">	
@@ -454,7 +454,7 @@
 					&emsp;&emsp;o	El Player recoja los caramelos.<br>			
 					&emsp;•	GameOver es una imagen que se desactivara en el Start hasta que termine el juego.<br><br>
 				</p>
-				 <p class="img_centrada"><img src="img/tema9/9-31.png" width="80%" alt=""></p>
+				 <p class="img_centrada"><img src="img/tema9/9-3100.png" width="80%" alt=""></p>
 			
 				<p class="texto">
 					El Canvas tiene asociado un Script UIScript.cs. Pasaremos por parámetro:<br>
@@ -472,7 +472,7 @@
 					&emsp;&emsp;o Recorrer el Array para poner el color distinto al resto de los corazones. Asi distinguimos
 					cuanta vida me queda.
 				</p>					 				
-			 <p class="img_centrada"><img src="img/tema9/9-32.png" width="80%" alt=""></p>
+			 <p class="img_centrada"><img src="img/tema9/9-3200.png" width="80%" alt=""></p>
 				
 			<h3>Script Player.cs</h3>		
 				<p class="texto">
@@ -495,7 +495,7 @@
 				Pendiente Escena Portada. Pendiente jugar en PlayerScript.cs Update
 			</p>	 				
 			
-			<p class="img_centrada"><img src="img/tema9/9-33.png" width="80%" alt=""></p>		
+			<p class="img_centrada"><img src="img/tema9/9-3300.png" width="80%" alt=""></p>		
 			
 			<p class="texto">
 				Vamos a ver el método Start() ya que lo necesitamos para recoger referencias a variables, recoger variables que
@@ -505,7 +505,7 @@
 				&emsp;• Y mostramos los Textos en el Canvas.<br>
 				&emsp;• Hacemos un InvokeRepeating llamando a ContarSegundos() que se ejecutará cada segundo.<br>		
 			</p>	 				
-			<p class="img_centrada"><img src="img/tema9/9-34.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-3400.png" width="80%" alt=""></p>
 			
 			<h3>Script GameControler.cs</h3>		
 			<p class="texto">
@@ -541,8 +541,8 @@
 				&emsp;&emsp;o Cargamos el objeto a 1 para que cuando volvamos a jugar si ya lo hemos recogido no vuelva
 				aparecer.<br>
 			</p>	
-			<p class="img_centrada"><img src="img/tema9/9-35.png" width="80%" alt=""></p>
-			<p class="img_centrada"><img src="img/tema9/9-36.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-3500.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-3600.png" width="80%" alt=""></p>
 			
 			<h3>Script Player.cs</h3>		
 			<p class="texto">
@@ -553,7 +553,7 @@
 				&emsp;• Y si no tiene datos es porque es la primera vez que jugamos y recogemos la posicion actual del
 				 player y lo guardamos en el GameControler.StorePosition().
 			</p>	
-			<p class="img_centrada"><img src="img/tema9/9-37.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-3700.png" width="80%" alt=""></p>
 		
 			<p class="texto">
 				Nos quedan todavia varios métodos en este Script para terminar:<br>
@@ -591,7 +591,7 @@
 					&emsp;&emsp;o Explosión del Player.<br>
 					&emsp;&emsp;o Finalizar juego Menú portada llamamos al método.<br><br>
 			</p>	
-			<p class="img_centrada"><img src="img/tema9/9-38.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-3800.png" width="80%" alt=""></p>
 			
 			<p class="texto">
 					Método RecibirSalud (int incrementoSalud):<br>
@@ -607,7 +607,7 @@
 					&emsp;&emsp;o	Se suma a la vidaBarra el incrementoSalud / vidaMaximaBarra.<br>
 					&emsp;• Y rellenamos la barra con la vidaBarra que hamos calculado anteriormente.			
 			</p>	
-			<p class="img_centrada"><img src="img/tema9/9-39.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-3900.png" width="80%" alt=""></p>
 			
 			<p class="texto">
 					Método RecibirDanyo (int danyo, bool derecha, int contrario):<br>
@@ -620,7 +620,7 @@
 					&emsp;&emsp;o	salud = saludMaxima (100) Volvemos a inicializar a 100 la salud.<br>
 					&emsp;• CambiarPosicionPlayer(bool derecha , string tipoEnemigo, int contrario).
 			</p>	
-			<p class="img_centrada"><img src="img/tema9/9-40.png" width="80%" alt=""></p>			
+			<p class="img_centrada"><img src="img/tema9/9-4000.png" width="80%" alt=""></p>			
 				
 			<p class="texto">
 					Método CambiarPosicionPlayer(bool derecha, int contrario):<br>
@@ -639,7 +639,7 @@
 					Variable contrario es cuando el Player colisiona con la parte superior del enemigo/mosca salte hacia
 					el lado contrario del movimiento de los enemigos y no se quede encima de ellos.
 				</p>
-			<p class="img_centrada"><img src="img/tema9/9-41.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-4100.png" width="80%" alt=""></p>
 			
 			<p class="nota">	
 				ForceMode2D Añade un impulso de fuerza instantáneo al rigidbody2D, utilizando su masa.
@@ -660,7 +660,7 @@
 				&emsp;•	Obtenemos la posición que tenía nuestro Player con GameControler.GetPosition().<br>
 				&emsp;•	Y colocamos al Player en esa posición.<br><br>
 			</p>		
-			<p class="img_centrada"><img src="img/tema9/9-42.png" width="80%" alt=""></p>	
+			<p class="img_centrada"><img src="img/tema9/9-4200.png" width="80%" alt=""></p>	
 			
 			<p class="texto">	
 				Para poder llamar a este metódo necesitamos un GO vacio que llamaremos MargenInferior:<br>
@@ -669,8 +669,8 @@
 				&emsp;&emsp;&emsp;- Quitar vida (Corazón) del Player.<br>
 				&emsp;&emsp;&emsp;- Y si tenemos todavia vidas llamaremos al método SaltoAlVacio().<br>
 			</p>				
-			<p class="img_centrada"><img src="img/tema9/9-43.png" width="80%" alt=""></p>	
-			<p class="img_centrada"><img src="img/tema9/9-44.png" width="80%" alt=""></p>	
+			<p class="img_centrada"><img src="img/tema9/9-4300.png" width="80%" alt=""></p>	
+			<p class="img_centrada"><img src="img/tema9/9-4400.png" width="80%" alt=""></p>	
 	
 	
 		<h3>BackGround</h3>
@@ -678,14 +678,14 @@
  				&emsp;• Será un GO 2D Object/Sprites/Square.<br>
  				&emsp;• Buscar un Sprite para el BackGround y asignarlo al componente Sprite Renderer. 
  			</p>	
- 			<p class="img_centrada"><img src="img/tema9/9-45.png" width="80%" alt=""></p>		
+ 			<p class="img_centrada"><img src="img/tema9/9-4500.png" width="80%" alt=""></p>		
  			
  		<h3>MusicaAmbiental</h3>
  			<p class="texto">	
  				&emsp;• Será un GO vacio con un componente AudioSource.<br>
  				&emsp;• Buscar una música con formato wav, mp3....y asignarlo.
  			</p>	
- 			<p class="img_centrada"><img src="img/tema9/9-46.png" width="80%" alt=""></p>
+ 			<p class="img_centrada"><img src="img/tema9/9-4600.png" width="80%" alt=""></p>
  				
  		
  			<h3>Resto Objetos</h3>
@@ -700,7 +700,7 @@
  				&emsp;•	ParticleSystem.<br>
  				&emsp;•	AudioSource.<br>
  			</p>		
- 			<p class="img_centrada"><img src="img/tema9/9-47.png" width="80%" alt=""></p>	
+ 			<p class="img_centrada"><img src="img/tema9/9-4700.png" width="80%" alt=""></p>	
  			<p class="texto">		
 				&emsp;•	CarameloScript.cs:.<br>
 				&emsp;&emsp;Nos dara 5 puntos cada vez que el Player lo recoja.<br>
@@ -710,7 +710,7 @@
 				&emsp;&emsp;&emsp;-	ParticleSystem, AudioSource.<br>
 				&emsp;&emsp;&emsp;- Destruir el Caramelo.<br>		
 		</p>
-		<p class="img_centrada"><img src="img/tema9/9-48.png" width="80%" alt=""></p>
+		<p class="img_centrada"><img src="img/tema9/9-4800.png" width="80%" alt=""></p>
 		
 		<h4>CalabazaSalud</h4>
 		<p class="texto">		
@@ -718,7 +718,7 @@
  				&emsp;•	BoxCollider2D.<br>
  				&emsp;•	ParticleSystem.<br>
  			</p>		
- 			<p class="img_centrada"><img src="img/tema9/9-49.png" width="80%" alt=""></p>	
+ 			<p class="img_centrada"><img src="img/tema9/9-4900.png" width="80%" alt=""></p>	
  			<p class="texto">		
 				&emsp;•	CalabazaVidaScrip.cs:.<br>
 				&emsp;&emsp;Nos dara 40 de salud cada vez que el Player lo recoja.<br>
@@ -732,14 +732,14 @@
 			 		 nuevo el juego se destruya.<br>
 				&emsp;&emsp;&emsp;&emsp;• Destruir la CalabazaSalud.<br>		
 		</p>
-		<p class="img_centrada"><img src="img/tema9/9-50.png" width="80%" alt=""></p>
+		<p class="img_centrada"><img src="img/tema9/9-5000.png" width="80%" alt=""></p>
 			
 		<h4>EnemigoMovilConLimites</h4>
 		<p class="texto">		
 			Este Enemigo ira de derecha a izquierda continuamente a unos limites que añadiremos en el Prefab. Lo primero
 			que haremos será crear nuestro Enemigo:<br>
 		</p>
-		<p class="img_centrada"><img src="img/tema9/9-51.png" width="80%" alt=""></p>
+		<p class="img_centrada"><img src="img/tema9/9-5100.png" width="80%" alt=""></p>
 			
 		<p class="texto">
 			&emsp;• Enemigo.<br>
@@ -750,7 +750,7 @@
 			&emsp;&emsp;&emsp;&emsp;• Y se destruye el Enemigo.
 			&em
 		</p>
-		<p class="img_centrada"><img src="img/tema9/9-52.png" width="80%" alt=""></p>
+		<p class="img_centrada"><img src="img/tema9/9-5200.png" width="80%" alt=""></p>
 					
 		<p class="texto">	
 			&emsp;&emsp;o ColliderInferior GO vacio.<br>
@@ -762,7 +762,7 @@
 			&emsp;&emsp;&emsp;&emsp;&emsp;o haciaDerecha para saber en que dirección anda el Enemigo.<br>
 			&emsp;&emsp;&emsp;&emsp;&emsp;o Y cambia la posición del Player con el Contrario a 1 para que salte hacia la izquierda.		
 		</p>
-		<p class="img_centrada"><img src="img/tema9/9-53.png" width="80%" alt=""></p>
+		<p class="img_centrada"><img src="img/tema9/9-5300.png" width="80%" alt=""></p>
 		
 		<p class="texto">		
 			&emsp;•	Le ponemos un TAG Enemigo para poder diferenciarlo.<br>
@@ -786,7 +786,7 @@
 			&emsp;&emsp;o Método CambiarOrientacion().<br>
 			&emsp;&emsp;&emsp;- Si es derecha ponemos el sprite.flipX a false y sino al contrario.  <br>
 		</p>
-		<p class="img_centrada"><img src="img/tema9/9-54.png" width="80%" alt=""></p>
+		<p class="img_centrada"><img src="img/tema9/9-5400.png" width="80%" alt=""></p>
 
 		<p class="nota">	
 				El cambio de orientacion también se podria hacer con el transform.localScale.
@@ -805,7 +805,7 @@
 			&emsp;&emsp;o Añadir el Prefab que hicimos anteriormente y lo llamamos "Malo" ya que es el unico que podemos
 			matar con la bala.
 		</p>	
-		<p class="img_centrada"><img src="img/tema9/9-55.png" width="80%" alt=""></p>
+		<p class="img_centrada"><img src="img/tema9/9-5500.png" width="80%" alt=""></p>
 		
 		<p class="nota">	
 				Hacer un Prefab del Enemigo para poder usarlo en nuestro juego.
@@ -817,7 +817,7 @@
 				Haremos una mosca que se mueva de derecha a izquierda y con un slider de vidas. Lo tendremos que hacer igual
 				que el Enemigo. La mosca la podemos hacer con un solo Prefab.	<br>
 		</p>	
-		<p class="img_centrada"><img src="img/tema9/9-56.png" width="80%" alt=""></p>		
+		<p class="img_centrada"><img src="img/tema9/9-5600.png" width="80%" alt=""></p>		
 				
 		<p class="texto">
 			&emsp;• MoscaConLimitesYSlider.<br>
@@ -845,8 +845,8 @@
 			&emsp;&emsp;o Método QuitarVida().<br>
 			&emsp;&emsp;&emsp;- Le restamos 25 al value del slider y retornamos el valor.<br>
 		</p>
-		<p class="img_centrada"><img src="img/tema9/9-57.png" width="80%" alt=""></p>
-  	<p class="img_centrada"><img src="img/tema9/9-58.png" width="80%" alt=""></p>
+		<p class="img_centrada"><img src="img/tema9/9-5700.png" width="80%" alt=""></p>
+  	<p class="img_centrada"><img src="img/tema9/9-5800.png" width="80%" alt=""></p>
 			  
 			  
 		<p class="texto">	  
@@ -857,7 +857,7 @@
 			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;- Y si ya no tiene vidas comprobando el método de QuitarVidas() que
 			hicimos anteriromente se destruye la mosca.	
 		</p>
-	  <p class="img_centrada"><img src="img/tema9/9-59.png" width="80%" alt=""></p>
+	  <p class="img_centrada"><img src="img/tema9/9-5900.png" width="80%" alt=""></p>
 	  
 		<p class="texto">	  
 			&emsp;&emsp;&emsp;&emsp;• ColliderInferior GO vacio.<br>
@@ -870,7 +870,7 @@
 			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;• Contrario a -1 para que sale al contrario del movimiento del
 			 enemigo.
 			</p>
-			<p class="img_centrada"><img src="img/tema9/9-60.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-6000.png" width="80%" alt=""></p>
 			
 			<h4>CheckPoint</h4>
 			<p class="texto">		
@@ -878,7 +878,7 @@
 				 momento, coleccionables… Y si volvemos a empezar no tendremos que volver a pasar todo el juego y
 				 se eliminara ese CheckPoint.
 			</p>
-			<p class="img_centrada"><img src="img/tema9/9-61.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-6100.png" width="80%" alt=""></p>
 		 
 			<p class="texto">	
 				 Componentes:<br>
@@ -896,21 +896,21 @@
 			 		 nuevo el juego se destruya.<br>
 			 		&emsp;&emsp;&emsp;- Y eliminamos el CheckPoint.
 				</p>
-				<p class="img_centrada"><img src="img/tema9/9-62.png" width="80%" alt=""></p> 	
+				<p class="img_centrada"><img src="img/tema9/9-6200.png" width="80%" alt=""></p> 	
 				
 				
 				<p class="texto">	
 					En el Script GameControler.cs añadimos este método para guardar el name del CheckPoint ó CalabazaVida
 					 que eliminaremos si volvemos a entrar en el juego.
 				</p>	
-				<p class="img_centrada"><img src="img/tema9/9-63.png" width="80%" alt=""></p>
+				<p class="img_centrada"><img src="img/tema9/9-6300.png" width="80%" alt=""></p>
 				 	
 				<h4>Spider</h4>
 				<p class="texto">	
 					Vamos a crear un GO que contenga una tela de araña con una araña que este colgada de ella y que
 					se mueva. Solo quitará vidas al Player.
 				</p>	
-				<p class="img_centrada"><img src="img/tema9/9-64.png" width="80%" alt=""></p>
+				<p class="img_centrada"><img src="img/tema9/9-6400.png" width="80%" alt=""></p>
 				
 				<p class="texto">		
 					&emsp;• GO 2D/Sprites/Square y le añadimos un sprite que hallamos usado para hacer las tiles. Lo llamaremos
@@ -922,7 +922,7 @@
 					&emsp;&emsp;o Rigidbody2D Dynamic.<br>
 					&emsp;&emsp;o BoxCollider2D.<br>
 				</p>	
-				<p class="img_centrada"><img src="img/tema9/9-65.png" width="80%" alt=""></p>
+				<p class="img_centrada"><img src="img/tema9/9-6500.png" width="80%" alt=""></p>
 				
 				<p class="texto">		
 					&emsp;&emsp;o SpiderScript.cs:.<br>
@@ -933,14 +933,14 @@
 					&emsp;&emsp;&emsp;- OnCollisionEnter2D().<br>
 					&emsp;&emsp;&emsp;&emsp;•	Si colisiona con el Player le hara un daño y saltara hacia atrás.
 				</p>	
-				<p class="img_centrada"><img src="img/tema9/9-66.png" width="80%" alt=""></p>
+				<p class="img_centrada"><img src="img/tema9/9-6600.png" width="80%" alt=""></p>
 					
 				<p class="texto">		
 					&emsp;• SpiderWeb.<br>
 					&emsp;&emsp;o Tiene un componene Line Renderer:<br>
 					&emsp;&emsp;&emsp;- Con 2 Posiciones de inicio y fin que va desde la CajaTelaSpider hasta el Spider.
 				</p>	
-				<p class="img_centrada"><img src="img/tema9/9-67.png" width="80%" alt=""></p>
+				<p class="img_centrada"><img src="img/tema9/9-6700.png" width="80%" alt=""></p>
 					
 				<p class="texto">		
 					&emsp;&emsp;o RopeScript.cs:<br>
@@ -951,14 +951,14 @@
 					&emsp;&emsp;&emsp;&emsp;• Y modificamos la posición de un vértice especifico en una línea que ya ha sido
 					creada.
 				</p>		
-				<p class="img_centrada"><img src="img/tema9/9-68.png" width="80%" alt=""></p>
-				<p class="img_centrada"><img src="img/tema9/9-69.png" width="80%" alt=""></p>		
+				<p class="img_centrada"><img src="img/tema9/9-6800.png" width="80%" alt=""></p>
+				<p class="img_centrada"><img src="img/tema9/9-6900.png" width="80%" alt=""></p>		
 				
 			<h4>EnemigoEstatico</h4>
 			<p class="texto">		
 				Es un enemigo que no se mueve y solo lanzara una bala cada cierto tiempo.
 			</p>		
-			<p class="img_centrada"><img src="img/tema9/9-70.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-7000.png" width="80%" alt=""></p>
 			
 			<p class="texto">		
 					El Enemigo tendra asociado un Script EnemigoEstaticoScript.cs:<br>
@@ -973,20 +973,20 @@
 					&emsp;&emsp;o Hacemos un AddRelativeForce con una potencia.<br>
 					&emsp;&emsp;o Y un sonido.	
 			</p>	
-			<p class="img_centrada"><img src="img/tema9/9-71.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-7100.png" width="80%" alt=""></p>
 			
 			<h4>BalaEnemigoEstatico</h4>
 			<p class="texto">		
 				La bala será un Prefab.
 			</p>		
-			<p class="img_centrada"><img src="img/tema9/9-72.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-7200.png" width="80%" alt=""></p>
 			
 			<p class="texto">		
 					La Bala tendra asociado un Script BalaEstaticoScript.cs:<br>
 					&emsp;• OnCollisionEnter2D().<br>
 					&emsp;&emsp;o Si colisiona con el Player le quitar 1 vida y la cambiara de posición.<br>
 			</p>	
-			<p class="img_centrada"><img src="img/tema9/9-73.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-7300.png" width="80%" alt=""></p>
 				
 			<h4>Salida</h4>
 			<p class="texto">		
@@ -997,8 +997,8 @@
 				&emsp;&emsp;o OnCollisionEnter2D().<br>
 			  &emsp;&emsp;&emsp;- Si colisiona con el Player se hará un sonido y volvera a la Portada.			
 			</p>		
-			<p class="img_centrada"><img src="img/tema9/9-74.png" width="80%" alt=""></p>
-			<p class="img_centrada"><img src="img/tema9/9-75.png" width="80%" alt=""></p>	
+			<p class="img_centrada"><img src="img/tema9/9-7400.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-7500.png" width="80%" alt=""></p>	
 			
 			<h3>Script Player.cs</h3>		
 				<p class="texto">
@@ -1010,7 +1010,7 @@
 				  &emsp;&emsp;&emsp;- Mostrar la imagen de GameOver.<br>
 				  &emsp;&emsp;&emsp;- Llamamos al método FinalizarJuego()) para que cargue de nuevo la Escena Portada.
  			</p>		
-			<p class="img_centrada"><img src="img/tema9/9-76.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-7600.png" width="80%" alt=""></p>
 					
 		 <h3>Cinemachine</h3>
       	<p class="texto">	
