@@ -142,7 +142,7 @@
  				 &emsp;&emsp;o Cuando salga de la colision con el Player haremos collision.transform.SetParent(null) para que
  				 la plataforma deje de ser el padre del Player.
       </p>
-      <p class="img_centrada"><img src="img/tema9/9-200.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema9/9-11.png" width="80%" alt=""></p>
        
       <h3>Script PlataformaRebotona.cs</h3>
  			<p class="texto">
@@ -165,8 +165,8 @@
  				 	&emsp;•	PararAnimacion().<br>
  				 	&emsp;&emsp;o Desactivar la animación.		 	
       </p>
-      <p class="img_centrada"><img src="img/tema9/9-300.png" width="80%" alt=""></p>
-      <p class="img_centrada"><img src="img/tema9/9-400.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema9/9-12.png" width="80%" alt=""></p>
+      <p class="img_centrada"><img src="img/tema9/9-13.png" width="80%" alt=""></p>
       
       
      <h3>TilemapAguaDanyo</h3>
@@ -175,18 +175,18 @@
  				&emsp;•	Tag AguaDanyo por si lo necesitamos.<br>
  				&emsp;•	BoxCollider2D.
  			</p>
- 			<p class="img_centrada"><img src="img/tema9/9-500.png" width="80%" alt=""></p>	
+ 			<p class="img_centrada"><img src="img/tema9/9-14.png" width="80%" alt=""></p>	
  			<p class="texto">		
  				El TilemapAguaDanyo tiene los siguientes componentes:
  			</p>		
-			<p class="img_centrada"><img src="img/tema9/9-600.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-15.png" width="80%" alt=""></p>
 			<p class="texto">		
  				AguaScript.cs:<br>
  				&emsp;• Si choca con el Player.<br>
  				&emsp;&emsp;o Quita 1 Corazón del Player.<br>
  				&emsp;&emsp;o Y cambia la posición del player cogiendo la variable derecha del Player.		
  			</p>	
-			<p class="img_centrada"><img src="img/tema9/9-700.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-16.png" width="80%" alt=""></p>
 			 
      
  			<h3>Player</h3>
@@ -194,7 +194,7 @@
       		Necesitamos un Personaje 2D que tenga animaciones de Idle, Jump, Walk….<br><br>		
 					Arrastrar el Sprite 2d de Idle a la Escena y lo llamaremos Player.<br><br>
 			</p>
-			<p class="img_centrada"><img src="img/tema9/9-800.png" width="80%" alt=""></p>
+			<p class="img_centrada"><img src="img/tema9/9-17.png" width="80%" alt=""></p>
 			
 			  
       <p class="nota">
@@ -214,8 +214,8 @@
 					&emsp;&emsp;&emsp;-	Walk.<br>
 					&emsp;&emsp;&emsp;-	Jump.
  			</p>
- 			<p class="img_centrada"><img src="img/tema9/9-900.png" width="80%" alt=""></p>
- 			<p class="img_centrada"><img src="img/tema9/9-1000.png" width="80%" alt=""></p>
+ 			<p class="img_centrada"><img src="img/tema9/9-18.png" width="80%" alt=""></p>
+ 			<p class="img_centrada"><img src="img/tema9/9-19.png" width="80%" alt=""></p>
  		
  			<h3>Animación Player</h3>
       <p class="texto">
@@ -226,31 +226,31 @@
       	&emsp;• Crear un New Clip Idle. Y Add Property.<br>
       	&emsp;• Seleccionar Sprite Renderer y desplegar en la flecha.
  			</p>
- 			<p class="img_centrada"><img src="img/tema9/9-1100.png" width="80%" alt=""></p>
+ 			<p class="img_centrada"><img src="img/tema9/9-20.png" width="80%" alt=""></p>
  		
  			<p class="texto">
       	&emsp;• Seleccionar Sprite dentro de Sprite Renderer.
  			</p>
- 			<p class="img_centrada"><img src="img/tema9/9-1200.png" width="80%" alt=""></p>
+ 			<p class="img_centrada"><img src="img/tema9/9-21.png" width="80%" alt=""></p>
 
  			<p class="texto">
       	&emsp;• Cuando le damos "+" incluira una linea con el sprite que tenemos por defecto en el Player.
  			</p>
- 			<p class="img_centrada"><img src="img/tema9/9-1300.png" width="80%" alt=""></p>
+ 			<p class="img_centrada"><img src="img/tema9/9-22.png" width="80%" alt=""></p>
  			
  			<p class="texto">
       	&emsp;• Y ahora simplemente me voy a donde tengo los sprites del Player y arrastro el siguiente en la 
       	linea de tiempo. Lo puedo arrastrar donde más me convenga.
  			</p>
- 			<p class="img_centrada"><img src="img/tema9/9-1400.png" width="80%" alt=""></p>
+ 			<p class="img_centrada"><img src="img/tema9/9-23.png" width="80%" alt=""></p>
  			
  			<p class="texto">
       	Asi hariamos todas las Animaciones que necesitemos.<br>
       	En la ventana de Animator necesitamos incluir un parámetro bool Andando. Y hacer las transiciones necesarias
       	entre Idle y Walking.
  			</p>
- 			<p class="img_centrada"><img src="img/tema9/9-1500.png" width="80%" alt=""></p>
- 			<p class="img_centrada"><img src="img/tema9/9-1600.png" width="80%" alt=""></p>
+ 			<p class="img_centrada"><img src="img/tema9/9-24.png" width="80%" alt=""></p>
+ 			<p class="img_centrada"><img src="img/tema9/9-25.png" width="80%" alt=""></p>
  			
  			<h3>Script Player.cs</h3>
  			<p class="texto">
