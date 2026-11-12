@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="styles/style.css">
+   <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Sanchez&display=swap" rel="stylesheet">
+   <script src="js/scripts.js"></script>
+   <title>Plataforma 2D</title>
+</head>
+<body>
+   <div id="cabecera">
+      <h1>Plataforma 2D</h1>
+   </div>
+   <!-- INICIO_LOADER -->
+   <div id="pageloader">
+      <img src="img/LogoOjo_FTA.png" class="spining" width="100px">
+   </div>
+   <!-- FIN_LOADER -->
+   <div id="contenido">
+
+<h2>Enemigo Listo</h2>
+<p class="texto">
+El Enemigo Listo también se movera como el Tonto pero cuando este a una cierta distancia del Player ira hacia el.
+<br>
+Ahora necesitamos otro Script EnemigoListo.cs y se lo añadimos al prefab del EnemigoListo que heredara de EnemigoMovil.cs.
+<br>
+Y arrastramos el Prefab a la Escena.
+</p> 
+
+<p class="img_centrada"><img src="img/tema8/8-47.png" width="80%" alt=""></p>
+
+
+Como comentamos anteriormente tendremos varios tipos de Enemigos: E.Tonto, E.Listo, E.Estático y el E.Boss.
+&nbsp; 
+Vamos hacer un script que será el padre que se llamara Enemigo.cs (el que utilizamos para Enemigo Tonto) que contendrá todos los Métodos comunes a todos y tendremos hasta 2 niveles de herencias:
+&nbsp; 
+La rama de herencias será asi:
+&nbsp; 
+Enemigo.cs (es el Script padre).
+&nbsp; 
+&emsp;- EnemigoMovil.cs. Tanto el E.Tonto, E.Listo y E.Boss se moverán asi que tendrán Métodos comunes como Avanzar().....
+&nbsp; 
+&emsp;&emsp;- EnemigoTonto.cs.
+<&nbsp; 
+&emsp;&emsp;- EnemigoListo.cs.
+&nbsp; 
+&emsp;&emsp;- EnemigoBoss.cs.
+&nbsp; 
+&emsp;- EnemigoEstatico.cs
+&nbsp; 
+Vamos a montar este sistema para el Enemigo Tonto que acabamos de hacer.
+&nbsp; 
+Necesitamos crear 2 Scripts: EnemigoMovil.cs y EnemigoTonto.cs.
+&nbsp; 
+EnemigoMovil.cs hereda de Enemigo y EnemigoTonto.cs hereda de EnemigoMovil.
+&nbsp; 
+- ¿Que Scripts podriamos tener en el EnemigoMovil y EnemigoTonto para que funcione correctamente?
+&nbsp; 
+<p class="nota">
+Pista: El Enemigo.cs se queda sin nada de código (de momento).
+</p> 	
+<p class="nota">
+Si queremos usar algún método en un hijo que este en un padre lo tengo que poner que sea "protected" sirve para permitir que una clase base (padre) comparta información o métodos con sus clases derivadas (hijos), manteniéndolas ocultas para el resto de scripts y componentes externos.
+</p> 
+
