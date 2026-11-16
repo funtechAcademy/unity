@@ -28,42 +28,102 @@ El Enemigo Listo también se movera como el Tonto pero cuando este a una cierta 
 <br>
 Ahora necesitamos otro Script EnemigoListo.cs y se lo añadimos al prefab del EnemigoListo que heredara de EnemigoMovil.cs.
 <br>
+Comprobar el Rigibody del EnemigoListo poner Interpolate a None y Collision Detection a Continuos. Y en Contraints marcar solo Freeze Rotacion X y Z.
+<br>
 Y arrastramos el Prefab a la Escena.
 </p> 
-
 <p class="img_centrada"><img src="img/tema8/8-47.png" width="80%" alt=""></p>
 
 
-Como comentamos anteriormente tendremos varios tipos de Enemigos: E.Tonto, E.Listo, E.Estático y el E.Boss.
-&nbsp; 
-Vamos hacer un script que será el padre que se llamara Enemigo.cs (el que utilizamos para Enemigo Tonto) que contendrá todos los Métodos comunes a todos y tendremos hasta 2 niveles de herencias:
-&nbsp; 
-La rama de herencias será asi:
-&nbsp; 
-Enemigo.cs (es el Script padre).
-&nbsp; 
-&emsp;- EnemigoMovil.cs. Tanto el E.Tonto, E.Listo y E.Boss se moverán asi que tendrán Métodos comunes como Avanzar().....
-&nbsp; 
-&emsp;&emsp;- EnemigoTonto.cs.
-<&nbsp; 
-&emsp;&emsp;- EnemigoListo.cs.
-&nbsp; 
-&emsp;&emsp;- EnemigoBoss.cs.
-&nbsp; 
-&emsp;- EnemigoEstatico.cs
-&nbsp; 
-Vamos a montar este sistema para el Enemigo Tonto que acabamos de hacer.
-&nbsp; 
-Necesitamos crear 2 Scripts: EnemigoMovil.cs y EnemigoTonto.cs.
-&nbsp; 
-EnemigoMovil.cs hereda de Enemigo y EnemigoTonto.cs hereda de EnemigoMovil.
-&nbsp; 
-- ¿Que Scripts podriamos tener en el EnemigoMovil y EnemigoTonto para que funcione correctamente?
-&nbsp; 
-<p class="nota">
-Pista: El Enemigo.cs se queda sin nada de código (de momento).
-</p> 	
-<p class="nota">
-Si queremos usar algún método en un hijo que este en un padre lo tengo que poner que sea "protected" sirve para permitir que una clase base (padre) comparta información o métodos con sus clases derivadas (hijos), manteniéndolas ocultas para el resto de scripts y componentes externos.
+<h3>Script Enemigo.cs</h3>
+<p class="texto">
+Variable distanciaDeteccion sera protected para poder usarla en los hijos y SerializeField para poderla modificar en el Editor.
+<br>
+Y también necesitamos una referencia del Player protected para saber la distancia que hay entre el Enemigo y el Player. Y tenemos que recoger esa referencia en el Awake() haciendo un Find para encontrarlo.
 </p> 
 
+<p class="img_centrada"><img src="img/tema8/8-48.png" width="80%" alt=""></p>
+
+
+<p class="nota">
+En Unity no puedes arrastrar directamente un archivo Prefab desde la ventana del proyecto (Project) a una variable de tipo GameObject o componente dentro del Inspector de otro Prefab si estás editando el Prefab de forma aislada. Por esto lo hacemos buscando al Player con Find.
+</p> 
+
+<p class="texto">
+Método GetDistance(). Creamos este método que nos devolvera un Vector3 con la distancia entre el Player y el enemigo. Y también de tipo protected.
+</p> 
+<p class="img_centrada"><img src="img/tema8/8-49.png" width="80%" alt=""></p>
+
+<h3>Script EnemigoListo.cs</h3>
+<p class="texto">
+Método Update().
+<br>
+- Ponemos una distanciaDeteccion por defecto. Aunque realmente el valor que usara es el que está en el Editor de Unity.
+<br>
+- Recogemos en un Vector3 la distancia llamando al Método GetDistance() del padre.
+<br>
+- Y si sqrMagnitude < distanciaDeteccion * distanciaDeteccion le hacemos un LookAt a la posición del Player.
+<br>
+-  Y por último llamamos al Método Avanzar() continuamente que está en el Script de su padre EnemigoMovil.cs.
+</p> 
+
+<p class="nota">
+El sqrMagnitude es una propiedad de los vectores (como Vector2 o Vector3) que devuelve el cuadrado de la longitud (magnitud) del vector.
+<br>
+El sqrMagnitude: Calcula x² + y² + z² 
+</p> 
+<p class="img_centrada"><img src="img/tema8/8-50.png" width="80%" alt=""></p>
+
+
+<h3>Prefab EnemigoListo</h3>
+<p class="texto">
+Si ejecutamos comprobamos que nuestro EnemigoListo no va a por el Player cuando está a una cierta distancia. Esto es debido a que el LookAt lo hace sobre el eje Z en positivo y el sprite de la cara mira al lado contrario.
+<br>
+La solución será que nuestro EnemigoListo su sprite este mirando hacia la Z en positivo. Para ello haremos lo siguiente:
+<br>
+- Crear en la Hierarchy un GO vacio (Pivot y Global) que se llame "EListo":
+<br>
+&emsp;- Position 0,0,0.
+<br>
+&emsp;- Tag "EnemigoListo".
+<br>
+&emsp;- BoxCollider (Center 0,0,0 y Size 4,4,4).
+<br>
+&emsp;- RigidBody
+<br>
+&emsp;- Añadir el Script EnemigoListo.cs. 
+</p> 
+<p class="nota">
+Que sus propiedades sean iguales a los que tiene el Prefab EnemigoListo.
+</p>
+
+<p class="img_centrada"><img src="img/tema8/8-51.png" width="80%" alt=""></p>
+
+<p class="texto">
+- Abrir el Prefab EnemigoListo. En su transform/Position 0,0,0 (Para que se quede centrado) y en Rotation Y le ponemos 180 y eliminar:
+<br>
+&emsp;- BoxCollider. 
+<br>
+&emsp;- RigidBody
+<br>
+&emsp;- Script EnemigoListo.cs.
+<br>
+&emsp;- Y arrastrar el Prefab dentro del GO EListo.
+<br>
+- Una vez hecho volver arrastrar EListo al directorio de Prefabs/Enemigos. Y este es el que utilizaremos en la Escena.
+</p> 
+<p class="img_centrada"><img src="img/tema8/8-52.png" width="80%" alt=""></p>
+<br>
+<p class="img_centrada"><img src="img/tema8/8-53.png" width="80%" alt=""></p>
+
+
+<p class="texto">
+Faltaria modificar su Método Avanzar del EnemigoMovil.cs para que se mueva hacia el forward.
+</p>
+
+<p class="img_centrada"><img src="img/tema8/8-54.png" width="80%" alt=""></p>
+
+<p class="nota">
+Hay que hacer lo mismo con el Enemigo Tonto.
+</p> 
+<p class="img_centrada"><img src="img/tema8/8-55.png" width="80%" alt=""></p>
