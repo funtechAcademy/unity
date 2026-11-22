@@ -37,24 +37,22 @@ Abrir su Prefab y añadir un Canvas:
 <br>	
 - Hay que poner el Canvas encima del Enemigo. Y ajustamos la posición y tamaño.
 <br>
-- Event Camera indica que una Camera para proyectar rayos (raycasts) y detectar interacciones del usuario (clics, toques, hover) sobre los elementos de la interfaz , pero nosotros no necesitamos ninguna.
-<br>
-- Vertex Color Always In Game checkeado.
+- Event Camera indica una Camera para proyectar rayos (raycasts) y detectar interacciones del usuario (clics, toques, hover) sobre los elementos de la interfaz , pero nosotros no necesitamos ninguna.
 </p> 
 <p class="img_centrada"><img src="img/tema8/8-63.png" width="80%" alt=""></p>	
-	
+
 <p class="texto">
 Dentro del Canvas añadir un Slider:
 <br>
 - Seleccionando Canvas con click dcho y dentro el Slider.
 </p> 
 <p class="img_centrada"><img src="img/tema8/8-64.png" width="80%" alt=""></p>
-	
-	
+
+
 <p class="texto">
 - Ajustamos la posición y tamaño del Slider.
 <br>
-- Desactivar Interactable para que el jugador no pueda arrastrar o hacer clic en la barra con el ratón, teclado o pantalla táctil.
+- Interactable desactivado para que el jugador no pueda arrastrar o hacer clic en la barra con el ratón, teclado o pantalla táctil.
 <br>
 - Target Graphic a None.
 <br>
@@ -67,18 +65,15 @@ Se puede ver el botón de slider pero no preocuparse luego se quitará. Si no qu
 </p>
 
 <p class="texto">
-- Dentro del Slider no encontramos con el BackGround:
+- Objeto Slider/BackGround:
 <br>
 &emsp;- Rect Tranform seleccionar las 4 direcciones con SHIFT + ALT (pivote y posición).
 </p>
 <p class="img_centrada"><img src="img/tema8/8-66.png" width="80%" alt=""></p>
 
-<p class="nota">
-Si queremos que el Slider sea más ancho ó más fino modificar el Top y Bottom del BackGround y Fill.
-</p>
 
 <p class="texto">
-&emsp;En Image:
+&emsp;- Componente Image:
 <br>
 &emsp;&emsp;- Source Image: SliderHandleSprite.
 <br>
@@ -89,19 +84,18 @@ Si queremos que el Slider sea más ancho ó más fino modificar el Top y Bottom 
 
 
 <p class="texto">
-- Dentro del Slider también tenemos Fill Area.
+- Objeto Slider/Fill Area:
 <br>
 &emsp;- Ajustamos su posición.
 <br>
 &emsp;- Rect Tranform seleccionar las 4 direcciones con SHIFT + ALT (pivote y posición).
-</p>
 </p>
 
 <p class="img_centrada"><img src="img/tema8/8-68.png" width="80%" alt=""></p>
 
 
 <p class="texto">
-Y dentro su componente Fill:
+- Objeto Slider/Fill Area/Fill:
 <br>
 &emsp;- Inicializar sus posiciones.
 <br>
@@ -111,12 +105,16 @@ Y dentro su componente Fill:
 </p>
 <p class="img_centrada"><img src="img/tema8/8-69.png" width="80%" alt=""></p>
 
+<p class="nota">
+Si queremos que el Slider sea más ancho ó más fino modificar el Top y Bottom del BackGround y Fill.
+</p>
+
 <p class="texto">
 Si arrastramos del Slider el Value vemos que aparece por debajo el color verde. Esto es lo que tenemos que modificar en el Script.
 </p>
 <p class="img_centrada"><img src="img/tema8/8-70.png" width="80%" alt=""></p>
-	
-	
+
+
 <p class="nota">
 Hacer los mismos pasos para el EListo.
 </p>
