@@ -1,100 +1,122 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <link rel="stylesheet" href="styles/style.css">
-   <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree&display=swap" rel="stylesheet">
-   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
-   <link href="https://fonts.googleapis.com/css?family=Sanchez&display=swap" rel="stylesheet">
-   <script src="js/scripts.js"></script>
-   <title>Plataforma 2D</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="styles/style.css">
+<link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Sanchez&display=swap" rel="stylesheet">
+<script src="js/scripts.js"></script>
+<title>Plataforma 2D</title>
 </head>
 <body>
-   <div id="cabecera">
-      <h1>Movil</h1>
-   </div>
-   <!-- INICIO_LOADER -->
-   <div id="pageloader">
-      <img src="img/LogoOjo_FTA.png" class="spining" width="100px">
-   </div>
-   <!-- FIN_LOADER -->
-   <div id="contenido">
+<div id="cabecera">
+<h1>Movil</h1>
+</div>
+<!-- INICIO_LOADER -->
+<div id="pageloader">
+<img src="img/LogoOjo_FTA.png" class="spining" width="100px">
+</div>
+<!-- FIN_LOADER -->
+<div id="contenido">
 
-<h2>Enemigo Movil</h2>
+<h2>Slider Vidas Enemigos</h2>
 <p class="texto">
-Tenemos que hacer algunos ajustes para los Enemigos Moviles (Tonto y Listo) en el Script de EnemigoMovil.cs:
+Los Enemigos Listos y Tontos tendrán un Slider para las vidas. Para ello tendremos que modificar los Prefabs de EListo y ETonto. Empezaremos con el ETonto.
 <br>
-- El Enemigo avanzará si sigue vivo él o el Player.
+Abrir su Prefab y añadir un Canvas:
 <br>
-- Tendra que rotar aleatoriamente cada cierto tiempo pero si choca con cualquier collider también rotara.
-<br>
-&emsp;- Pero si choca con el EnemigoListo tendrá que pausar el cálculo de la distancia para se despegue del Player y al cabo de unos segundos volveremos a activar esa distancia.
-
+- Seleccionando EnemigoTonto con click dcho.
 </p> 
+<p class="img_centrada"><img src="img/tema8/8-62.png" width="80%" alt=""></p>
 
+<p class="texto">
+- En Render Mode los ponemos a "World Space" para poder modificar la posición......
+<br>	
+- Hay que poner el Canvas encima del Enemigo. Y ajustamos la posición y tamaño.
+<br>
+- Event Camera indica que una Camera para proyectar rayos (raycasts) y detectar interacciones del usuario (clics, toques, hover) sobre los elementos de la interfaz , pero nosotros no necesitamos ninguna.
+<br>
+- Vertex Color Always In Game checkeado.
+</p> 
+<p class="img_centrada"><img src="img/tema8/8-63.png" width="80%" alt=""></p>	
+	
+<p class="texto">
+Dentro del Canvas añadir un Slider:
+<br>
+- Seleccionando Canvas con click dcho y dentro el Slider.
+</p> 
+<p class="img_centrada"><img src="img/tema8/8-64.png" width="80%" alt=""></p>
+	
+	
+<p class="texto">
+- Ajustamos la posición y tamaño del Slider.
+<br>
+- Desactivar Interactable para que el jugador no pueda arrastrar o hacer clic en la barra con el ratón, teclado o pantalla táctil.
+<br>
+- Target Graphic a None.
+<br>
+- El Componente Handle Slide Area se elimina ya que es el botón deslizable.
+</p>
+<p class="img_centrada"><img src="img/tema8/8-65.png" width="80%" alt=""></p>
 
 <p class="nota">
-Faltaria hacer el Boss que también heredaria del EnemigoMovil. Pero lo haremos más adelante.
-</p> 
-
-
-<p class="texto">
-Crear un variable en el Script Enemigo.cs de estaVivo a true. Será protected para poder utilizarlo en el resto de los Scripts.	
-</p> 
-<p class="img_centrada"><img src="img/tema8/8-56.png" width="80%" alt=""></p>
-
-<p class="texto">
-Vamos a crear 2 variables de tipo SerializeField inicioRotacion y tiempoRotacion:
-<br>
-- inicioRotacion será cuando tarda en empiezar el Método RotarAleatoriamente a ejecutarse.
-<br>
-- tiempoRotacion cada cuando tiempo se ejecuta.
-<br>
-Llamaremos al Método en el Start con un InvokeRepeating para que se ejecute continuamente por cada tiempoRotacion (2sg).
+Se puede ver el botón de slider pero no preocuparse luego se quitará. Si no quereis que se vea se puede poner el Value del Slider a 1.
 </p>
 
-<p class="nota">
-Todo tiene que estar parametrizado con variables. Siempre será más facil modificar el valor de una variable que repasar todo el script y buscar donde tengo que cambiarlo.
-</p> 
-
-<p class="img_centrada"><img src="img/tema8/8-57.png" width="80%" alt=""></p>
-
 <p class="texto">
-Cuando colisiona el Enemigo con cualquier cosa tiene que hacer el Método RotarAleatoriamente(). Asi que de momento quitamos el if de colisión con el Muro.
-</p> 
-
-<p class="img_centrada"><img src="img/tema8/8-58.png" width="80%" alt=""></p>
-
-
-<p class="texto">
-Cuando el Enemigo Listo choque con el Player tenemos que hacer que RoteAleatoriamente pero como está dentro de la distancia para ir a por el Player no se despegara. Asi que tendremos que modificar la colisión.
+- Dentro del Slider no encontramos con el BackGround:
 <br>
-Script EnemigoMovil.cs.
-<br>
-&emsp;- Crear una variable pausarLookAt sera protected bool y lo inicializamos a false.
-<br>
-&emsp;- Y solo avanzara si está vivo el Player y el Enemigo.
-</p> 
-<p class="img_centrada"><img src="img/tema8/8-59.png" width="80%" alt=""></p>
+&emsp;- Rect Tranform seleccionar las 4 direcciones con SHIFT + ALT (pivote y posición).
+</p>
+<p class="img_centrada"><img src="img/tema8/8-66.png" width="80%" alt=""></p>
 
 <p class="nota">
-Player.estaVivo es una variable publica static del Script Player.cs. Y se puede acceder desde cualquier Script sin hacer referencia.
-</p> 
+Si queremos que el Slider sea más ancho ó más fino modificar el Top y Bottom del BackGround y Fill.
+</p>
 
 <p class="texto">
-&emsp;- Método OnCollisionEnter preguntamos si la colision es el Player y si esta vivo y si nos hemos chocado con el tag EnemigoListo.
+&emsp;En Image:
 <br>
-&emsp;&emsp;- Si vuelve a chocar el Enemigo y pausarLookAt esta a true es porque está funcionando la Corrutina, asi que hay que parar la Corrutina porque no tiene sentido que este esperando si le ha vuelto el Enemigo a dar al Player.
+&emsp;&emsp;- Source Image: SliderHandleSprite.
 <br>
-&emsp;- Método PausarLookAt() Es una Corrutina y la pausaremos durante 5 segundos y volvemos a dejar la variable pausarLookAt a false para poder activar el LooAt().
-</p> 
-<p class="img_centrada"><img src="img/tema8/8-60.png" width="80%" alt=""></p>
-	
+&emsp;&emsp;- Cambiamos en Image el Color a rojo.
+</p>
+
+<p class="img_centrada"><img src="img/tema8/8-67.png" width="80%" alt=""></p>
+
 
 <p class="texto">
-En EnemigoListo.cs tenemos que preguntar por la variable pausarLookAt y si no se pausa dejara hacer el LookAt().
-</p> 
-<p class="img_centrada"><img src="img/tema8/8-61.png" width="80%" alt=""></p>
+- Dentro del Slider también tenemos Fill Area.
+<br>
+&emsp;- Ajustamos su posición.
+<br>
+&emsp;- Rect Tranform seleccionar las 4 direcciones con SHIFT + ALT (pivote y posición).
+</p>
+</p>
+
+<p class="img_centrada"><img src="img/tema8/8-68.png" width="80%" alt=""></p>
+
+
+<p class="texto">
+Y dentro su componente Fill:
+<br>
+&emsp;- Inicializar sus posiciones.
+<br>
+&emsp;- Source Image: SliderHandleSprite.
+<br>
+&emsp;- Imagen lo cambiamos a el color verde.
+</p>
+<p class="img_centrada"><img src="img/tema8/8-69.png" width="80%" alt=""></p>
+
+<p class="texto">
+Si arrastramos del Slider el Value vemos que aparece por debajo el color verde. Esto es lo que tenemos que modificar en el Script.
+</p>
+<p class="img_centrada"><img src="img/tema8/8-70.png" width="80%" alt=""></p>
 	
+	
+<p class="nota">
+Hacer los mismos pasos para el EListo.
+</p>
