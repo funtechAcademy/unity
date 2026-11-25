@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Sanchez&display=swap" rel="stylesheet">
 <script src="js/scripts.js"></script>
-<title>Plataforma 2D</title>
+<title>Quitar Vidas al Enemigo Tonto y Listo</title>
 </head>
 <body>
 <div id="cabecera">
@@ -22,99 +22,117 @@
 <!-- FIN_LOADER -->
 <div id="contenido">
 
-<h2>Slider Vidas Enemigos</h2>
+<h2>Quitar Vidas al Enemigo Tonto y Listo</h2>
+<h3>Script Enemigo.cs</h3>
 <p class="texto">
-Los Enemigos Listos y Tontos tendrán un Slider para las vidas. Para ello tendremos que modificar los Prefabs de EListo y ETonto. Empezaremos con el ETonto.
+Necesitamos crear unas variables:
 <br>
-Abrir su Prefab y añadir un Canvas:
+- danyoAlEnemigo la ponemos protected int para poder usarla en el EnemigoMovil.cs y la ponemos SerializeField para poderla inicializar en el Editor de cada Prefab de cada Enemigo.
 <br>
-- Seleccionando EnemigoTonto con click dcho.
+- vidaEnemigo será public float para poder inicializarlas en el Editor de cada Prefab de cada Enemigo. El EListo tendrá más vidas que el ETonto.
+<br>
+- maxVidaEnemigo es la maxima vida que tiene el Enemigo y la ponemos protected float para poder acceder desde los scripts EnemigoListo.cs y EnemigoTonto.cs.
 </p> 
-<p class="img_centrada"><img src="img/tema8/8-62.png" width="80%" alt=""></p>
+<p class="img_centrada"><img src="img/tema8/8-71.png" width="80%" alt=""></p>
+
+<h3>Script EnemigoListo.cs</h3>
+<p class="texto">
+Recogemos en el Start() su variable maxVidaEnemigo las vidas del EnemigoListo.
+</p> 
+<p class="img_centrada"><img src="img/tema8/8-72.png" width="80%" alt=""></p>
+	
+<h3>Script EnemigoTonto.cs</h3>
+<p class="texto">
+Recogemos en el Start() su variable maxVidaEnemigo las vidas del EnemigoTonto.
+</p> 
+<p class="img_centrada"><img src="img/tema8/8-73.png" width="80%" alt=""></p>
+	
+	
+<h3>Script Enemigo.cs</h3>
+<p class="texto">
+Nuevo Método RecibirDanyo(). Lo llamaremos desde OnCollisionEnter del EnemigoMovil.cs. Le pasamos dos parámetros:
+<br>
+- tipoEnemigo de tipo string será el tag que tenga el enemigo para saber de que tipo es Listo, Tonto.....
+<br>
+- danyo es de tipo int y es el danyo que le hace el Player al Enemigo.
+<br>
+Haremos lo siguiente:
+<br>
+- Quitamos a la vidaEnemigo el danyo que le hace el Player.
+<br>
+- Y si nos quedamos sin vida destruimos el Enemigo.
+</p> 
+<p class="img_centrada"><img src="img/tema8/8-74.png" width="80%" alt=""></p>
+<p class="img_centrada"><img src="img/tema8/8-75.png" width="80%" alt=""></p>
+
+
+	
+<h3>Script EnemigoMovil.cs</h3>
+<p class="texto">
+Añadir la llamada del Método RecibirDanyo() dentro del OnCollisionEnter() con los parámetros de con quien está colisionando con su tag y el daño que le hace el Player al Enemigo.
+</p> 
+<p class="img_centrada"><img src="img/tema8/8-76.png" width="80%" alt=""></p>
+
+
+<h3>Script BarraVida.cs</h3>
+<p class="texto">
+Este Script lo pondremos en la BarraVida de cada Prefab ETonto y EListo.
+<br>
+Una vez quitado las vidas de los Enemigos tendrémos que hacer que se refleje en la barra de vida que pusimos anteriormente.	Asi que creamos un nuevo Script BarraVida.cs.
+<br>
+Variables:
+<br>
+- Slider slider.
+<br>
+- Camera camara. Para que el slider siempre este mirando hacia la cámara aunque el enemigo este avanzado en otra dirección.
+<br>
+- GameObject player que será SerializeField para que podamos arrastrar el Prefab desde el Editor.
+<br>
+Método Awake():
+<br>
+- Recoger la cámara del Player con GetChild(0). Lo que hace es recoger del Objeto FirstPersonCharacter (que es el hijo 0) el componente Camera.
+<br>
+- Y también recogemos el componente Slider del Enemigo.
+<br>
+Método Update():
+<br>
+- Rota el Slider a la rotación que tenga la cámara.
+<br>
+Método ActualizarBarraVida (valorActual, valorMaximo):
+<br>
+- Nuevo método que hara el cálculo para que se refleje en la barra la vida que tenga el Enemigo.
+<br>
+- Se inicializa el slider.value a valorActual/ValorMaximo.
+</p> 
+<p class="img_centrada"><img src="img/tema8/8-77.png" width="80%" alt=""></p>
+<p class="img_centrada"><img src="img/tema8/8-78.png" width="80%" alt=""></p>
+
+
+<h3>Script Enemigo.cs</h3>
+<p class="texto">
+Nos faltaria hacer que el Enemigo cuando le quiten las vidas llamemos al Método ActualizarBarraVida.
+<br>
+Variables:
+<br>
+- BarraVida barraVida. Este es el Script que creamos anteriormente y asi podremos recoger el método.
+<br>
+Método Awake():
+<br>
+- Recoger el componente BarraVida y lo busca en cualquier hijo del Enemigo con GetComponentInChildren.
+</p> 
+<p class="img_centrada"><img src="img/tema8/8-79.png" width="80%" alt=""></p>
 
 <p class="texto">
-- En Render Mode los ponemos a "World Space" para poder modificar la posición......
+Método RecibirDanyo():
 <br>	
-- Hay que poner el Canvas encima del Enemigo. Y ajustamos la posición y tamaño.
-<br>
-- Event Camera indica una Camera para proyectar rayos (raycasts) y detectar interacciones del usuario (clics, toques, hover) sobre los elementos de la interfaz , pero nosotros no necesitamos ninguna.
+- Actualizar la Barra de Vida pasandole por parámetro la vidaEnemigo y maxVidaEnemigo.
 </p> 
-<p class="img_centrada"><img src="img/tema8/8-63.png" width="80%" alt=""></p>	
+<p class="img_centrada"><img src="img/tema8/8-80.png" width="80%" alt=""></p>
+
 
 <p class="texto">
-Dentro del Canvas añadir un Slider:
-<br>
-- Seleccionando Canvas con click dcho y dentro el Slider.
+Método Morir():
+<br>	
+- Cuando no tengamos más vidas llamamos a un nuevo Método Morir(). De momento solo destruimos al Enemigo. Más adelante tendremos que poner particulas, sonido...
 </p> 
-<p class="img_centrada"><img src="img/tema8/8-64.png" width="80%" alt=""></p>
-
-
-<p class="texto">
-- Ajustamos la posición y tamaño del Slider.
-<br>
-- Interactable desactivado para que el jugador no pueda arrastrar o hacer clic en la barra con el ratón, teclado o pantalla táctil.
-<br>
-- Target Graphic a None.
-<br>
-- El Componente Handle Slide Area se elimina ya que es el botón deslizable.
-</p>
-<p class="img_centrada"><img src="img/tema8/8-65.png" width="80%" alt=""></p>
-
-<p class="nota">
-Se puede ver el botón de slider pero no preocuparse luego se quitará. Si no quereis que se vea se puede poner el Value del Slider a 1.
-</p>
-
-<p class="texto">
-- Objeto Slider/BackGround:
-<br>
-&emsp;- Rect Tranform seleccionar las 4 direcciones con SHIFT + ALT (pivote y posición).
-</p>
-<p class="img_centrada"><img src="img/tema8/8-66.png" width="80%" alt=""></p>
-
-
-<p class="texto">
-&emsp;- Componente Image:
-<br>
-&emsp;&emsp;- Source Image: SliderHandleSprite.
-<br>
-&emsp;&emsp;- Cambiamos en Image el Color a rojo.
-</p>
-
-<p class="img_centrada"><img src="img/tema8/8-67.png" width="80%" alt=""></p>
-
-
-<p class="texto">
-- Objeto Slider/Fill Area:
-<br>
-&emsp;- Ajustamos su posición.
-<br>
-&emsp;- Rect Tranform seleccionar las 4 direcciones con SHIFT + ALT (pivote y posición).
-</p>
-
-<p class="img_centrada"><img src="img/tema8/8-68.png" width="80%" alt=""></p>
-
-
-<p class="texto">
-- Objeto Slider/Fill Area/Fill:
-<br>
-&emsp;- Inicializar sus posiciones.
-<br>
-&emsp;- Source Image: SliderHandleSprite.
-<br>
-&emsp;- Imagen lo cambiamos a el color verde.
-</p>
-<p class="img_centrada"><img src="img/tema8/8-69.png" width="80%" alt=""></p>
-
-<p class="nota">
-Si queremos que el Slider sea más ancho ó más fino modificar el Top y Bottom del BackGround y Fill.
-</p>
-
-<p class="texto">
-Si arrastramos del Slider el Value vemos que aparece por debajo el color verde. Esto es lo que tenemos que modificar en el Script.
-</p>
-<p class="img_centrada"><img src="img/tema8/8-70.png" width="80%" alt=""></p>
-
-
-<p class="nota">
-Hacer los mismos pasos para el EListo.
-</p>
+<p class="img_centrada"><img src="img/tema8/8-81.png" width="80%" alt=""></p>
